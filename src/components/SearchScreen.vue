@@ -6,12 +6,12 @@
 </template>
 
 <script>
-  import Sidebar from '@/components/Sidebar'
+  import OverView from '@/components/MealOverview'
   import Search from '@/components/Search'
 
   export default {
     components: {
-      'sidebar': Sidebar,
+      'overview': Overview,
       'search': Search
     }
   }

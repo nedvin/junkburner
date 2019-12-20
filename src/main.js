@@ -1,8 +1,7 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import store from "./data/DinnerModel.js";
-import './style.css'
+import store from "./data/Model.js";
 
 Vue.config.productionTip = false;
 

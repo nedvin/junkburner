@@ -1,13 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import menu from "./modules/Menu";
-import search from "./modules/Search";
+import meal from "./modules/Meal";
+import workout from "./modules/Workout";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules : {
-   menu,
-   search
+   meal,
+   workout
   }
 });

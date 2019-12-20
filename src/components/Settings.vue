@@ -5,15 +5,11 @@
 <script>
 import {mapGetters, mapActions} from "vuex";
 export default {
-    data() {
-        return {
-        }
+  
+    computed: {
     },
-    methods : {
-       
-    },
-    computed : {
-      
+
+    methods: {
     }
-}
+};
 </script>
