@@ -3,6 +3,8 @@
 Adress to the deployed app:
 https://junkburner-mid.firebaseapp.com
 
+We have made an API call for a Big Mac and the results are in apiCallData.js
+
 Short description:
 A user can compose a meal by searching the nutritionix database for different fast food objects. Users can specify the amount of each item eaten. RDI for kcal and different macronutrients will be compared to that of the meal. The app will suggest a complimentary training session that evens out the calories eaten. 
 
