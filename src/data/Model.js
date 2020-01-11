@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import meal from "./modules/Meal";
 import workout from "./modules/Workout";
+import search from "./modules/Search"
 
 Vue.use(Vuex);
 
