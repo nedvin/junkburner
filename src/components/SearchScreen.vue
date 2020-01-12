@@ -1,15 +1,16 @@
 <template>
   <div>
-    <sidebar/>
+    <overview/>
     <search />
   </div>
 </template>
 
 <script>
-  import OverView from '@/components/MealOverview'
+  import Overview from '@/components/MealOverview'
   import Search from '@/components/Search'
 
   export default {
+    name: 'SearchScreen',
     components: {
       'overview': Overview,
       'search': Search

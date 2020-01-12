@@ -2,7 +2,7 @@
     <div id = "container-footer">
         <div id = "footer-div">
             <p>
-                Made by Richard and Edvin
+                Powered by <a href="https://www.nutritionix.com">Nutritionix</a>
             </p>
         </div>
     </div>
