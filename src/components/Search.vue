@@ -24,6 +24,24 @@
                 <img :src="icon.url" class="icon"><p>{{ icon.name }}</p>
             </span>
         </div>
+        <div class="search-results-box">
+            <div v-for="nr in 10" class="food-item-box">
+                <div class="food-picture-box">
+                    <img :src="fakeResult.thumbnail" class="responsive-pic">
+                </div>
+                <div class="food-title-box">
+                    {{ fakeResult.name }}
+                </div>
+                <div class="food-option-row-box">
+                    <span>
+                        <img :src="addIcon" class="icon-small">
+                     </span>
+                     <span>
+                        <img :src="infoIcon" class="icon-small">
+                     </span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -52,7 +70,17 @@ export default {
                                 salad: {name: 'Salads', url: require('@/images/005-salad.png')},
                                 coffee: {name: 'Coffees', url: require('@/images/006-coffee.png')},
                                 cookie: {name: 'Cookies', url: require('@/images/008-cookie.png')},
-                                coke: {name: 'Drinks', url: require('@/images/007-coke.png')}}}
+                                coke: {name: 'Drinks', url: require('@/images/007-coke.png')}}},
+            addIcon: require('@/images/add.png'),
+            infoIcon: require('@/images/brochure.png'),
+            fakeResult: {
+                thumbnail: 'https://d2xdmhkmkbyw75.cloudfront.net/2583_thumb.jpg',
+                name: 'big mac',
+                calories: 540,
+                fat: 28,
+                carbs: 45,
+                protein: 25
+            }
         }
     },
     methods : {
@@ -114,6 +142,29 @@ export default {
         margin-top: 40px;
     }
 
+    .search-results-box {
+        width: 80%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .food-item-box {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        border: 1px solid black;
+    }
+
+    .food-title-box {
+        text-transform: uppercase;
+    }
+
+    .food-option-row-box {
+        font-size: 0.8em;
+        display: flex;
+    }
+
     .restaurant-button {
         display: flex;
         justify-content: center;
@@ -168,6 +219,10 @@ export default {
         height: 24px;
     }
 
+     .icon-small {
+        height: 16px;
+    }
+
     @media screen and (max-width: 670px) {
     .restaurant-button {
         width: 50px;
@@ -180,6 +235,10 @@ export default {
     .type-button {
         font-size: 0.8em;
         padding: 2px 8px;
+    }
+
+    .food-item-box {
+        width: 120px;
     }
 }
 </style>
