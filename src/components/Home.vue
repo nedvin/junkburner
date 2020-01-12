@@ -11,16 +11,19 @@
             </div>
             <div v-if="form.visible" class="login-form">
                 <h1>{{ form.title }}</h1>
+                <div id="message">
+                    Please do not use your real e-mail and password. Just use some fake adress.
+                </div>
                 <div>
                     <label for="email"><b>E-mail:</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                    <input type="text" placeholder="Enter Email" name="email" v-model="email">
                 </div>
                 <div>
                     <label for="psw"><b>Password:</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <input type="password" placeholder="Enter Password" name="psw" v-model="password">
                 </div>
 
-                <button type="submit" class="btn">{{ form.button }}</button>
+                <button type="submit" class="btn" @click="formAction">{{ form.button }}</button>
                 <button @click="close">Close</button>
             </div>
         </div>
@@ -28,6 +31,8 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
     data() {
         return {
@@ -35,7 +40,9 @@ export default {
                 visible: false,
                 title: '',
                 button: ''
-            }
+            },
+            email: '',
+            password: ''
         }
     },
     methods: {
@@ -51,8 +58,34 @@ export default {
            }
         },
 
-        close(form) {
+        formAction() {
+            if(this.form.title === 'Login') {
+                this.login();
+            }
+            else {
+                this.signup();
+            }
+        },
+
+        close() {
            this.form.visible = false;
+        },
+
+        login() {
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+                this.close();
+                this.$router.replace('/search')
+            }).catch((err) => {
+            alert(err.message)
+            })
+        },
+
+        signup() {
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
+                this.close();
+            }).catch((err) => {
+                alert(err.message)
+            });
         }
     }
 }
@@ -101,6 +134,11 @@ export default {
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
+    }
+
+    #message {
+        font-size: 0.7em;
+        color: red;
     }
 
     @media screen and (max-width: 800px) {
