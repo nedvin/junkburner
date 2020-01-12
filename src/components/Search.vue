@@ -142,6 +142,7 @@ export default {
         display: flex;
         justify-content: center;
         border: 1px solid #696969;
+        border-radius: 50px;
         align-items: center;
         padding: 4px 15px;
         margin-left: 5px;
