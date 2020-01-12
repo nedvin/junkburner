@@ -10,12 +10,17 @@ new Vue({
   store,
   render: h => h(App),
 
-  created(){
+  async created(){
     //initialize store data structure by submitting action.
     this.$store.dispatch('INIT_SEARCH');
     this.$store.dispatch('INIT_MEAL');
     this.$store.dispatch('INIT_WORKOUT');
+    // Test för att testa vuexen.
+    /*
     this.$store.dispatch("newQuery", "Subway");
-    this.$store.dispatch("newSearch");
+    this.$store.dispatch("newSearch")
+    .then(() => {this.$store.dispatch("selectDish", 4)})
+    .then(() => {this.$store.dispatch("newSearchDetails")});
+    */
  }
 }).$mount("#app");
