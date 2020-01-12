@@ -50,10 +50,10 @@ body {
 
 #container-main {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: row;
     width: 100%;
-    min-height : calc(85vh - 50px);
+    min-height : calc(85vh - 60px);
 }
 
 button {

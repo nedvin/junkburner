@@ -1,11 +1,11 @@
 <template>
     <div id="search">
-        <div class="restaurants-box">
+        <div class="restaurants-box gray-container">
            <div v-for="button in restaurantButtons" :key="button.key" class="restaurant-button">
-               <img :src="button.url" class="responsive-pic">
+               <img :src="button.url" :alt="button.alt" class="responsive-pic">
            </div>
         </div>
-        <div class="types-of-food-box">
+        <div class="types-of-food-box gray-container">
             this is the types of food
         </div>
     </div>
@@ -16,9 +16,9 @@ import {mapGetters, mapActions} from "vuex";
 export default {
     data() {
         return {
-            restaurantButtons: [{url: require('@/images/mcdonalds_logo.png'), key: "mcDonalds"},
-                                {url: require('@/images/bk_logo.png'), key: "burgerKing"},
-                                {url: require('@/images/subway_logo.png'), key: "subway"}]
+            restaurantButtons: [{url: require('@/images/mcdonalds_logo.png'), alt: 'McDonalds logo', key: "mcDonalds"},
+                                {url: require('@/images/bk_logo.png'), alt: 'Burger King logo', key: "burgerKing"},
+                                {url: require('@/images/subway_logo.png'), alt: 'Subway logo', key: "subway"}]
         }
     },
     methods : {
@@ -38,12 +38,15 @@ export default {
         width: 100%;
     }
 
+    .gray-container {
+        background-color: #f5f5f5;
+        width: 80%;
+    }
+
     .restaurants-box {
         display: flex;
         justify-content: space-around;
-        background-color: #f5f5f5;
         margin-top: 40px;
-        width: 80%;
     }
 
     .restaurant-button {
@@ -64,7 +67,6 @@ export default {
 }
 
     .types-of-food-box {
-        background-color: purple;
         margin-top: 10px;
     }
 
