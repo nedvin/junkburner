@@ -54,6 +54,7 @@ body {
     flex-direction: row;
     width: 100%;
     min-height : calc(85vh - 60px);
+    margin-bottom: 25px;
 }
 
 button {
