@@ -2,7 +2,8 @@
     <div id = "container-footer">
         <div id = "footer-div">
             <p>
-                Made by Richard and Edvin
+                Powered by <a href="https://www.nutritionix.com">Nutritionix</a><br>
+                Icons made by <a href="https://www.flaticon.com/authors/freepik">Freepic</a> from <a href="https://www.flaticon.com">Flaticon</a>
             </p>
         </div>
     </div>
@@ -16,12 +17,11 @@ export default {
 </script>
 
 <style scoped>
-
     #container-footer {
         background-color: gainsboro;
         position: absolute;
         bottom: 0;
-        height: 50px;
+        height: 60px;
         width: 100%;
     }
 
@@ -33,8 +33,15 @@ export default {
         align-items: center;
     }
 
-    #footer-text{
-        margin: 0;
-        padding: 0;
+    p {
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+    a:link,
+    a:hover,
+    a:visited {
+        text-decoration: none;
+        color: gray;
     }
 </style>
