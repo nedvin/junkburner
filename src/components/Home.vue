@@ -9,8 +9,8 @@
                 <button @click="showForm('signup')">Sign up!</button>
                 <button @click="showForm('login')">Login</button>
             </div>
-            <div v-if="logInVisible" class="login-form">
-                <h1>Login</h1>
+            <div v-if="form.visible" class="login-form">
+                <h1>{{ form.title }}</h1>
                 <div>
                     <label for="email"><b>E-mail:</b></label>
                     <input type="text" placeholder="Enter Email" name="email" required>
@@ -20,22 +20,8 @@
                     <input type="password" placeholder="Enter Password" name="psw" required>
                 </div>
 
-                <button type="submit" class="btn">Login</button>
-                <button @click="close('login')">Close</button>
-            </div>
-            <div v-if="signUpVisible" class="login-form">
-                <h1>Login</h1>
-                <div>
-                    <label for="email"><b>E-mail:</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-                </div>
-                <div>
-                    <label for="psw"><b>Password:</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-                </div>
-
-                <button type="submit" class="btn">Sign up</button>
-                <button @click="close('signup')">Close</button>
+                <button type="submit" class="btn">{{ form.button }}</button>
+                <button @click="close">Close</button>
             </div>
         </div>
     </div>
@@ -45,27 +31,28 @@
 export default {
     data() {
         return {
-            logInVisible: false,
-            signUpVisible: false
+            form: {
+                visible: false,
+                title: '',
+                button: ''
+            }
         }
     },
     methods: {
         showForm(form) {
-             if(form === 'login') {
-                this.logInVisible = true;
+            this.form.visible = true;
+            if(form === 'login') {
+                this.form.title = 'Login',
+                this.form.button = 'Login'
            }
            else if(form === 'signup') {
-               this.signUpVisible = true;
+               this.form.title = 'Sign up',
+               this.form.button = 'Sign up'
            }
         },
 
         close(form) {
-           if(form === 'login') {
-                this.logInVisible = false;
-           }
-           else if(form === 'signup') {
-               this.signUpVisible = false;
-           }
+           this.form.visible = false;
         }
     }
 }
