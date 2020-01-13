@@ -8,7 +8,10 @@
                         fakeMenu.name
                     }}</span>
                 </div>
-                <input type="text" class="food-item-amount" value="2" />
+                <div>
+                    <input type="text" class="food-item-amount" value="2" />
+                    <button class="btn delete-btn">X</button>
+                </div>
             </div>
         </div>
     </div>
@@ -82,4 +85,18 @@ export default {
     float: right;
     text-align: center;
 }
+
+.delete-btn {
+    background-color: #ff3f34;
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: bold;
+    padding: 2px 4px;
+    margin-left: 5px;
+}
+
+.delete-btn:hover {
+    background-color: firebrick;
+}
+
 </style>
