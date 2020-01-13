@@ -246,6 +246,7 @@ export default {
 .search-results-box {
     width: 80%;
     margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -356,7 +357,7 @@ export default {
     }
 
     .food-item-box {
-        width: 120px;
+        width: 110px;
     }
 }
 </style>
