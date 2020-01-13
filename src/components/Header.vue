@@ -47,7 +47,7 @@ export default {
 
     #container-header {
         width: 100%;
-        background-color: #202020;
+        background-color: #1e272e;
         display: flex;
         flex-direction: column;
     }
@@ -61,8 +61,14 @@ export default {
 
     @media screen and (max-width: 670px) {
         .header h1 {
-            font-size: 16px;
+            font-size: 1.1em;
             margin-top: 50px;
+        }
+    }
+
+    @media screen and (max-width: 420px) {
+        .header h1 {
+            display: none;
         }
     }
 

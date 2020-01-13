@@ -1,7 +1,7 @@
 <template>
     <div id="toolbar">
         <div class="button-row">
-            <button @click="signout" class="btn">Sign out</button>
+            <button @click="signout" class="btn btn-signout">Sign out</button>
         </div>
     </div>
 </template>
@@ -35,13 +35,14 @@ export default {
         justify-content: flex-end;
     }
 
-    .btn {
-        padding: 2px;
-
+    .btn-signout {
+        background-color: #1e272e;
+        color: #fff;
+        padding: 5px 10px;
     }
 
-    .btn:hover {
-        background-color: #f5f5f5;
-        cursor: pointer;
+    .btn-signout:hover {
+        background-color: #485460;
     }
+    
 </style>

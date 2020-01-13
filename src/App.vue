@@ -68,6 +68,10 @@ body {
     font-size: 16px;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn-green {
     background-color: #05c46b;
 }
