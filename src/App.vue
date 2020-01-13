@@ -1,30 +1,26 @@
 <template>
-  <div id="app" class="container">
-    <div id="wrapper">
-        <header-view/>
-        <router-view id="container-main"/>
+    <div id="app" class="container wrapper">
+        <header-view />
+        <router-view id="container-main" />
+        <footer-view />
     </div>
-    <footer-view/>
-
-  </div>
 </template>
 
 <script>
 import footer from "./components/Footer.vue";
 import header from "./components/Header.vue";
 export default {
-  name: 'App',
-  components:
-  {
-    "header-view" : header,
-    "footer-view" : footer
-  }
-}
+    name: "App",
+    components: {
+        "header-view": header,
+        "footer-view": footer
+    }
+};
 </script>
 
 <style>
-
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -53,25 +49,52 @@ body {
     flex: 1;
     flex-direction: row;
     width: 100%;
-    min-height : calc(85vh - 60px);
-    margin-bottom: 25px;
 }
 
-button {
+.old-button {
     background-color: coral;
     padding: 10px;
     font-weight: bold;
     border: 1px solid Black;
 }
 
-#wrapper {
-    padding-bottom: 50px;
+.btn {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
-@media screen and (max-width: 670px) {
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-green {
+    background-color: #05c46b;
+}
+
+.btn-orange {
+    background-color: #ffa801;
+}
+
+.btn-abort {
+    background-color: #ff3f34;
+}
+
+.wrapper {
+    padding-bottom: 60px;
+    min-height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 850px) {
     #container-main {
         flex-direction: column;
     }
-}
 
+    button {
+        padding: 8px 16px;
+    }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="sidebar">
         this is sidebar
     </div>
 </template>
@@ -14,5 +14,8 @@ export default {
 </script>
 
 <style scoped>
-    
+    #sidebar {
+        background-color: #485460;
+        min-width: 300px;
+    }
 </style>
