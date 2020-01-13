@@ -49,7 +49,6 @@ body {
     flex: 1;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 25px;
 }
 
 .old-button {
@@ -89,7 +88,7 @@ body {
     min-height: calc(100vh - 60px);
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 850px) {
     #container-main {
         flex-direction: column;
     }

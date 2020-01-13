@@ -44,5 +44,5 @@ export default {
     .btn-signout:hover {
         background-color: #485460;
     }
-    
+
 </style>
