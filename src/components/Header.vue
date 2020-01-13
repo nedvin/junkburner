@@ -1,7 +1,8 @@
 <template>
     <div id="container-header">
-        <div id="header-div">
-            <h1>JUNKBURNER</h1>
+        <div class="header">
+            <img :src="logo">
+            <h1>JUNKFOOD BURNER</h1>
         </div>
         <toolbar/>
     </div>
@@ -16,21 +17,39 @@ export default {
     name: 'Header',
     components: {
         'toolbar': Toolbar
+    },
+    data() {
+        return {
+            logo: require('@/images/logo.png')
+        }
     }
 }
 </script>
 
 <style scoped>
+    .header img {
+        max-width: 80px;
+        height: auto;
+        float: left;
+        margin-top: 20px;
+        margin-left: 30px;
+    }
 
-    h1 {
-        font-size: 80px;
-        padding: 0;
-        margin: 0;
+    .header h1 {
+        display: inline-block;
+        letter-spacing: 2px;
+        word-spacing: 4px;
+        color: #fff;
+        font-size: 200%;
+        margin-top: 40px;
+        margin-left: 15px;
     }
 
     #container-header {
         width: 100%;
-        background-color: gainsboro;
+        background-color: #202020;
+        display: flex;
+        flex-direction: column;
     }
 
     #header-div {
@@ -40,27 +59,10 @@ export default {
         align-items: center;
     }
 
-    @media screen and (max-width: 770px) {
-        h1 {
-            font-size: 70px;
-        }
-    }
-
     @media screen and (max-width: 670px) {
-        h1 {
-            font-size: 60px;
-        }
-    }
-
-    @media screen and (max-width: 560px) {
-        h1 {
-            font-size: 50px;
-        }
-    }
-
-    @media screen and (max-width: 450px) {
-        h1 {
-            font-size: 30px;
+        .header h1 {
+            font-size: 16px;
+            margin-top: 50px;
         }
     }
 

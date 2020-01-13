@@ -1,11 +1,8 @@
 <template>
-  <div id="app" class="container">
-    <div id="wrapper">
+  <div id="app" class="container wrapper">
         <header-view/>
         <router-view id="container-main"/>
-    </div>
-    <footer-view/>
-
+        <footer-view/>
   </div>
 </template>
 
@@ -53,7 +50,6 @@ body {
     flex: 1;
     flex-direction: row;
     width: 100%;
-    min-height : calc(85vh - 60px);
     margin-bottom: 25px;
 }
 
@@ -64,8 +60,9 @@ button {
     border: 1px solid Black;
 }
 
-#wrapper {
-    padding-bottom: 50px;
+.wrapper {
+    padding-bottom: 60px;
+    min-height : calc(100vh - 60px);
 }
 
 @media screen and (max-width: 670px) {

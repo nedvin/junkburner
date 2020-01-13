@@ -106,9 +106,11 @@ export default {
         border: 1px solid Black;
 
     }
+
     #container-home{
     text-align: center;
     width : 100%;
+    margin-top: 30px;
     }
 
     #home-text{
