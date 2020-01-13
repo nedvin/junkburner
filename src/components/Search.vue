@@ -7,17 +7,17 @@
             <h3>Choose restaurant</h3>
             <div class="restaurant-buttons-row">
                 <div
-                v-for="button in restaurantButtons"
-                :key="button.key"
-                class="restaurant-button"
-                @click="displayMenuOptions(button.key)"
-            >
-                <img
-                    :src="button.url"
-                    :alt="button.alt"
-                    class="responsive-pic"
-                />
-            </div>
+                    v-for="button in restaurantButtons"
+                    :key="button.key"
+                    class="restaurant-button"
+                    @click="displayMenuOptions(button.key)"
+                >
+                    <img
+                        :src="button.url"
+                        :alt="button.alt"
+                        class="responsive-pic"
+                    />
+                </div>
             </div>
         </div>
         <div v-if="mcDonalds.visible" class="types-of-food-box">
@@ -60,10 +60,36 @@
                 </div>
                 <div class="food-options-box">
                     <button class="btn btn-add">Add to meal</button>
-                    <button class="btn btn-info">More info</button>
+                    <button class="btn btn-info" @click="showMoreInfo">More info</button>
                 </div>
             </div>
         </div>
+        <div v-if="infoBoxVisible" class="food-info">
+                    <span>{{ fakeResult.name }}</span>
+                    <hr>
+                    <table>
+                        <tr>
+                            <td>Carbohydrates:</td>
+                            <td>{{ fakeResult.carbs }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Fat:</td>
+                            <td>{{ fakeResult.fat }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Protein:</td>
+                            <td>{{ fakeResult.protein }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Calories:</td>
+                            <td>900</td>
+                        </tr>
+                    </table>
+                    <div class="food-info-buttons">
+                        <button class="btn btn-abort" @click="close">Close</button>
+                        <button class="btn btn-green">Add to meal</button>
+                    </div>
+                </div>
     </div>
 </template>
 
@@ -174,10 +200,21 @@ export default {
                 fat: 28,
                 carbs: 45,
                 protein: 25
-            }
+            },
+            infoBoxVisible: false
         };
     },
     methods: {
+        showMoreInfo() {
+            if(this.infoBoxVisible === true) {
+                this.infoBoxVisible = false;
+                return;
+            }
+            this.infoBoxVisible = true
+        },
+        close() {
+            this.infoBoxVisible = false
+        },
         displayMenuOptions(restaurant) {
             switch (restaurant) {
                 case "mcdonalds":
@@ -231,6 +268,26 @@ export default {
     width: 80%;
 }
 
+.food-info-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.food-info-buttons button {
+    margin: 10px;
+}
+
+.food-info span {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+td {
+    padding: 2px;
+}
+
 .restaurants-box {
     display: flex;
     flex-direction: column;
@@ -256,7 +313,8 @@ export default {
 }
 
 .food-item-box {
-    margin-left: 15px;
+    margin-left: 7px;
+    margin-right: 7px;
     margin-bottom: 15px;
     border: 1px solid black;
 }
@@ -264,7 +322,7 @@ export default {
 .food-title-box {
     display: flex;
     justify-content: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding: 5px;
     background-color: orange;
 }
@@ -343,6 +401,16 @@ export default {
 
 .icon-small {
     height: 16px;
+}
+
+.food-info {
+    background-color: #808e9b;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 @media screen and (max-width: 670px) {
