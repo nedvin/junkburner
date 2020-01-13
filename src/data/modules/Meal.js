@@ -40,6 +40,17 @@ const mutations = {
 
     removeDish(state, dishId){
         state.currentMeal = state.currentMeal.filter(dish => dish["nix_item_id"] !== dishId);
+    },
+
+    addNutrition(state, dish){
+        state.totalKcal += dish.nf_calories;
+        state.totalFat += dish.nf_total_fat;
+        state.totalCarb += dish.nf_total_carbohydrate;
+        state.totalProt += dish.nf_total_protein;
+    },
+
+    removeNutrition(state, dish){
+
     }
 };
 
