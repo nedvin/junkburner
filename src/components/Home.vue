@@ -40,10 +40,10 @@
                     />
                 </div>
 
+                <button @click="close" class="btn btn-abort">Close</button>
                 <button type="submit" class="btn btn-green" @click="formAction">
                     {{ form.button }}
                 </button>
-                <button @click="close" class="btn btn-abort">Close</button>
             </div>
         </div>
     </div>

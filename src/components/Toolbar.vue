@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
     #toolbar {
-        width: 80%;
+        width: 85%;
         margin-left: auto;
         margin-right: auto;
         padding: 5px;
@@ -45,4 +45,13 @@ export default {
         background-color: #485460;
     }
 
+    @media screen and (max-width: 850px) {
+        #toolbar {
+            width: 100%;
+        }
+
+        .btn-signout {
+            margin-right: 8px;
+        }
+    }
 </style>
