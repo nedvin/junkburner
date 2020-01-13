@@ -30,7 +30,9 @@ const state = {
 /**************  GETTERS ***************************/
 const getters = {
     searchResult : state => state.searchResult,
-    searchQuery : state => state.searchQuery
+    searchQuery : state => state.searchQuery,
+    selectedDish : state => state.selectedDish,
+    dishDetails : state => state.dishDetails
 };
 
 /**************  ACTIONS ***************************/
@@ -72,7 +74,7 @@ const actions = {
                 headers : apiHeader
             }).then(handleHTTPError)
             .then(response => response.json())
-            .then(response => commit("newDishDetails", response));
+            .then(response => commit("newDishDetails", response.foods[0]));
 
     }
 

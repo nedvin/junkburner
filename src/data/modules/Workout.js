@@ -1,7 +1,13 @@
 /**************  STATE ***************************/
 
 const state = {
-
+    exercises : [],
+    totalKcal: 0,
+    totalTime: {
+        sekunder : 0,
+        minuter : 0,
+        timmar : 0
+    }
 };
 
 /**************  GETTERS ***************************/

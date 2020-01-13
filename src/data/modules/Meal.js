@@ -24,10 +24,12 @@ const getters = {
 const actions = {
     addDish({commit}, dish){
         commit("addDish", dish);
+        commit("addNutrition", dish);
     },
 
-    removeDish({commit}, dish){
+    removeDish({commit}, dish){ // Styr upp om denna ska ta ett index eller ngt.
         commit("removeDish", dish["nix_item_id"]);
+        commit("removeNutrition", dish)
     }
 
 };
@@ -35,7 +37,7 @@ const actions = {
 /**************  MUTATIONS ***************************/
 const mutations = {
     addDish(state, dish){
-        state.currentMeal.append(dish);
+        state.currentMeal.push(dish);
     },
 
     removeDish(state, dishId){
@@ -46,11 +48,14 @@ const mutations = {
         state.totalKcal += dish.nf_calories;
         state.totalFat += dish.nf_total_fat;
         state.totalCarb += dish.nf_total_carbohydrate;
-        state.totalProt += dish.nf_total_protein;
+        state.totalProt += dish.nf_protein;
     },
 
     removeNutrition(state, dish){
-
+        state.totalKcal -= dish.nf_calories;
+        state.totalFat -= dish.nf_total_fat;
+        state.totalCarb -= dish.nf_total_carbohydrate;
+        state.totalProt -= dish.nf_protein;
     }
 };
 

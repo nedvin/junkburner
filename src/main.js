@@ -29,12 +29,13 @@ new Vue({
     this.$store.dispatch('INIT_SEARCH');
     this.$store.dispatch('INIT_MEAL');
     this.$store.dispatch('INIT_WORKOUT');
-    // Test för att testa vuexen.
-    /*
+    
     this.$store.dispatch("newQuery", "Subway");
-    this.$store.dispatch("newSearch")
-    .then(() => {this.$store.dispatch("selectDish", 4)})
-    .then(() => {this.$store.dispatch("newSearchDetails")});
-    */
+    await this.$store.dispatch("newSearch")
+    this.$store.dispatch("selectDish", 4);
+    await this.$store.dispatch("newSearchDetails");
+    this.$store.dispatch("addDish", this.$store.getters.dishDetails);
+    this.$store.dispatch("removeDish", this.$store.getters.dishDetails);
+    
  }
 }).$mount("#app");
