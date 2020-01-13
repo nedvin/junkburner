@@ -51,12 +51,12 @@
             </span>
         </div>
         <div class="search-results-box">
-            <div v-for="nr in 10" class="food-item-box">
+            <div v-for="result in this.searchResult" :key="result.nix_item_id" class="food-item-box">
                 <div class="food-picture-box">
-                    <img :src="fakeResult.thumbnail" class="responsive-pic" />
+                    <img :src="result.photo.thumb" class="responsive-pic" />
                 </div>
                 <div class="food-title-box">
-                    {{ fakeResult.name }}
+                    {{ result.food_name }}
                 </div>
                 <div class="food-options-box">
                     <button class="btn btn-add">Add to meal</button>
