@@ -3,8 +3,8 @@
         <div class="sidebar-header">
             <h2>Meal</h2>
             <div class="sidebar-stats-calories">
-                <span class="calories">746</span> /
-                <span class="rdi">560</span> kcal
+                <span>{{ myCalories }}</span> /
+                <span>{{ recommendedCalories }}</span> kcal
             </div>
             <button
                 class="button-visibility btn expand-btn"
@@ -45,7 +45,9 @@ export default {
                 fat: 28,
                 carbs: 45,
                 protein: 25
-            }
+            },
+            myCalories: 900,
+            recommendedCalories: 1900
         };
     },
     methods: {
