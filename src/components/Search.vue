@@ -58,6 +58,10 @@
                 <div class="food-title-box">
                     {{ fakeResult.name }}
                 </div>
+                <div class="food-options-box">
+                    <button class="btn btn-add">Add to meal</button>
+                    <button class="btn btn-info">More info</button>
+                </div>
             </div>
         </div>
     </div>
@@ -248,18 +252,35 @@ export default {
 }
 
 .food-item-box {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-bottom: 15px;
     border: 1px solid black;
 }
 
 .food-title-box {
+    display: flex;
+    justify-content: center;
     text-transform: uppercase;
+    padding: 5px;
+    background-color: orange;
 }
 
-.food-option-row-box {
-    font-size: 0.8em;
-    display: flex;
+.food-options-box {
+    padding: 5px;
+}
+
+.btn {
+    padding: 4px;
+    color: #fff;
+    border: none;
+}
+
+.btn-add {
+    background-color: green;
+}
+
+.btn-info {
+    background-color: blue;
 }
 
 .restaurant-button {
