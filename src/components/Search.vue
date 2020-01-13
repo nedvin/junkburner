@@ -210,9 +210,12 @@ export default {
                     this.subway.visible = true;
                     break;
             }
-        }
+        },
+        ...mapActions(["newQuery", "selectDish", "newSearch", "newSearchDetails"])
     },
-    computed: {}
+    computed: {
+        ...mapGetters(["searchResult", "dishDetails", "selectedDish"])
+    }
 };
 </script>
 
