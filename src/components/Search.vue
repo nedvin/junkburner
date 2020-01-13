@@ -253,7 +253,8 @@ export default {
 }
 
 .food-item-box {
-    margin-left: 15px;
+    margin-left: 7px;
+    margin-right: 7px;
     margin-bottom: 15px;
     border: 1px solid black;
 }

@@ -1,16 +1,30 @@
 <template>
     <div id="sidebar">
-        <div class="sidebar-food-items">
-            <div v-for="count in 4" class="sidebar-food-item">
-                <div>
-                    <img :src="fakeMenu.icon" class="icon" />
-                    <span class="sidebar-food-item-name">{{
-                        fakeMenu.name
-                    }}</span>
-                </div>
-                <div>
-                    <input type="text" class="food-item-amount" value="2" />
-                    <button class="btn delete-btn">X</button>
+        <div class="sidebar-header">
+            <h2>Meal</h2>
+            <div class="sidebar-stats-calories">
+                <span class="calories">746</span> /
+                <span class="rdi">560</span> kcal
+            </div>
+            <button
+                class="button-visibility btn expand-btn"
+                @click="toggleSidebarVisibility">
+                Expand
+            </button>
+        </div>
+        <div id="sidebar-wrapper" class="sidebar-ctrl-visibility">
+            <div class="sidebar-food-items">
+                <div v-for="count in 4" class="sidebar-food-item">
+                    <div>
+                        <img :src="fakeMenu.icon" class="icon" />
+                        <span class="sidebar-food-item-name">{{
+                            fakeMenu.name
+                        }}</span>
+                    </div>
+                    <div>
+                        <input type="text" class="food-item-amount" value="2" />
+                        <button class="btn delete-btn">X</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,6 +48,17 @@ export default {
             }
         };
     },
+    methods: {
+        toggleSidebarVisibility() {
+            let wrapper = document.body.querySelector("#sidebar-wrapper");
+
+            if (wrapper.className === "sidebar-ctrl-visibility") {
+                wrapper.className = "sidebar-visible";
+            } else {
+                wrapper.className = "sidebar-ctrl-visibility";
+            }
+        }
+    },
     computed: {}
 };
 </script>
@@ -44,10 +69,44 @@ export default {
     min-width: 300px;
 }
 
+.button-visibility {
+    display: none;
+}
+
+.expand-btn {
+    background-color: #808e9b;
+    color: #f5f5f5;
+    padding: 5px 10px;
+}
+
+.expand-btn:hover {
+    background-color: #485460;
+}
+
+.sidebar-visible,
+.sidebar-ctrl-visibility {
+    display: block;
+}
+
+.sidebar-visible {
+    display: block;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #808e9b;
+    margin: 10px 8px;
+}
+
 .sidebar-food-items {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .sidebar-food-item-name {
@@ -99,4 +158,13 @@ export default {
     background-color: firebrick;
 }
 
+@media screen and (max-width: 850px) {
+    .button-visibility {
+        display: inline-block;
+    }
+
+    .sidebar-ctrl-visibility {
+        display: none;
+    }
+}
 </style>
