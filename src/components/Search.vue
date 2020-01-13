@@ -18,32 +18,6 @@
                         class="responsive-pic"
                     />
                 </div>
-                <div class="food-info">
-                    <span>{{ fakeResult.name }}</span>
-                    <hr>
-                    <table>
-                        <tr>
-                            <td>Carbohydrates:</td>
-                            <td>{{ fakeResult.carbs }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Fat:</td>
-                            <td>{{ fakeResult.fat }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Protein:</td>
-                            <td>{{ fakeResult.protein }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Calories:</td>
-                            <td>900</td>
-                        </tr>
-                    </table>
-                    <div class="food-info-buttons">
-                        <button class="btn btn-abort">Close</button>
-                        <button class="btn btn-green">Add to meal</button>
-                    </div>
-                </div>
             </div>
         </div>
         <div v-if="mcDonalds.visible" class="types-of-food-box">
@@ -86,10 +60,36 @@
                 </div>
                 <div class="food-options-box">
                     <button class="btn btn-add">Add to meal</button>
-                    <button class="btn btn-info">More info</button>
+                    <button class="btn btn-info" @click="showMoreInfo">More info</button>
                 </div>
             </div>
         </div>
+        <div v-if="infoBoxVisible" class="food-info">
+                    <span>{{ fakeResult.name }}</span>
+                    <hr>
+                    <table>
+                        <tr>
+                            <td>Carbohydrates:</td>
+                            <td>{{ fakeResult.carbs }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Fat:</td>
+                            <td>{{ fakeResult.fat }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Protein:</td>
+                            <td>{{ fakeResult.protein }} grams</td>
+                        </tr>
+                        <tr>
+                            <td>Calories:</td>
+                            <td>900</td>
+                        </tr>
+                    </table>
+                    <div class="food-info-buttons">
+                        <button class="btn btn-abort" @click="close">Close</button>
+                        <button class="btn btn-green">Add to meal</button>
+                    </div>
+                </div>
     </div>
 </template>
 
@@ -200,10 +200,21 @@ export default {
                 fat: 28,
                 carbs: 45,
                 protein: 25
-            }
+            },
+            infoBoxVisible: false
         };
     },
     methods: {
+        showMoreInfo() {
+            if(this.infoBoxVisible === true) {
+                this.infoBoxVisible = false;
+                return;
+            }
+            this.infoBoxVisible = true
+        },
+        close() {
+            this.infoBoxVisible = false
+        },
         displayMenuOptions(restaurant) {
             switch (restaurant) {
                 case "mcdonalds":
@@ -277,7 +288,6 @@ td {
 .restaurants-box {
     display: flex;
     flex-direction: column;
-    position: relative;
     background-color: #f5f5f5;
 }
 
