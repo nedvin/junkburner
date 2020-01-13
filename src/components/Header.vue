@@ -3,13 +3,20 @@
         <div id="header-div">
             <h1>JUNKBURNER</h1>
         </div>
+        <toolbar/>
     </div>
 </template>
 
 
 
 <script>
+import Toolbar from '@/components/Toolbar'
+
 export default {
+    name: 'Header',
+    components: {
+        'toolbar': Toolbar
+    }
 }
 </script>
 
@@ -23,6 +30,7 @@ export default {
 
     #container-header {
         width: 100%;
+        background-color: gainsboro;
     }
 
     #header-div {
@@ -30,7 +38,6 @@ export default {
         height: 15vh;
         justify-content: center;
         align-items: center;
-        background-color: gainsboro;
     }
 
     @media screen and (max-width: 770px) {
