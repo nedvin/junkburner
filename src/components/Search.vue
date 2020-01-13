@@ -261,7 +261,7 @@ export default {
 .food-title-box {
     display: flex;
     justify-content: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding: 5px;
     background-color: orange;
 }
