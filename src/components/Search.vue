@@ -1,9 +1,11 @@
 <template>
-    <div id="search">
-        <div class="box">
+    <div id="search-container">
+        <div class="box-80">
             <h1>Create your meal!</h1>
         </div>
-        <div class="restaurants-box box">
+
+        <!-- CHOOSE RESTAURANT -->
+        <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
             <div class="restaurant-buttons-row">
                 <div
@@ -20,6 +22,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- CHOOSE TYPE OF FOOD -->
         <div v-if="mcDonalds.visible" class="types-of-food-box">
             <span
                 v-for="icon in mcDonalds.icons"
@@ -50,6 +54,8 @@
                 <p>{{ icon.name }}</p>
             </span>
         </div>
+
+        <!-- SEARCH RESULTS -->
         <div class="search-results-box">
             <div v-for="result in this.searchResult" :key="result.nix_item_id" class="food-item-box">
                 <div class="food-picture-box">
@@ -64,6 +70,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- INFO POPUP BOX, REMAKE THIS -->
         <div v-if="infoBoxVisible" class="food-info">
                     <span>{{ fakeResult.name }}</span>
                     <hr>
@@ -89,7 +97,7 @@
                         <button class="btn btn-abort" @click="close">Close</button>
                         <button class="btn btn-green">Add to meal</button>
                     </div>
-                </div>
+        </div>
     </div>
 </template>
 
@@ -257,37 +265,38 @@ export default {
 </script>
 
 <style scoped>
-#search {
+/******* GENERAL / MAIN *******/
+#search-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.box {
+.box-80 {
     width: 80%;
 }
 
-.food-info-buttons {
-    display: flex;
-    justify-content: space-between;
+.btn {
+    padding: 4px;
+    color: #fff;
+    border: none;
 }
 
-.food-info-buttons button {
-    margin: 10px;
+.responsive-pic {
+    max-width: 100%;
+    height: auto;
 }
 
-.food-info span {
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
-    text-transform: capitalize;
+.icon {
+    height: 24px;
 }
 
-td {
-    padding: 2px;
+.icon-small {
+    height: 16px;
 }
 
+/****** CHOOSE RESTAURANT *******/
 .restaurants-box {
     display: flex;
     flex-direction: column;
@@ -303,6 +312,24 @@ td {
     justify-content: space-around;
 }
 
+.restaurant-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #000;
+    background-color: #fff;
+    padding: 10px;
+    width: 120px;
+    margin: 20px;
+}
+
+.restaurant-button:hover {
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+}
+
+/******** SEARCH RESULTS ******/
 .search-results-box {
     width: 80%;
     margin-top: 20px;
@@ -331,12 +358,6 @@ td {
     padding: 5px;
 }
 
-.btn {
-    padding: 4px;
-    color: #fff;
-    border: none;
-}
-
 .btn-add {
     background-color: green;
 }
@@ -345,23 +366,7 @@ td {
     background-color: blue;
 }
 
-.restaurant-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px dashed #000;
-    background-color: #fff;
-    padding: 10px;
-    width: 120px;
-    margin: 20px;
-}
-
-.restaurant-button:hover {
-    background-color: orange;
-    border: none;
-    cursor: pointer;
-}
-
+/****** CHOOSE TYPE OF FOOD *******/
 .types-of-food-box {
     margin-top: 10px;
     display: flex;
@@ -390,17 +395,25 @@ td {
     cursor: pointer;
 }
 
-.responsive-pic {
-    max-width: 100%;
-    height: auto;
+/****** INFO POPUP ******/
+.food-info-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
-.icon {
-    height: 24px;
+.food-info-buttons button {
+    margin: 10px;
 }
 
-.icon-small {
-    height: 16px;
+.food-info span {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+td {
+    padding: 2px;
 }
 
 .food-info {
@@ -413,6 +426,8 @@ td {
     padding-right: 20px;
 }
 
+
+/***** MEDIA QUERIES ******/
 @media screen and (max-width: 670px) {
     .restaurant-button {
         width: 50px;
