@@ -32,12 +32,12 @@ new Vue({
    
     this.$store.dispatch("newQuery", "burger king burger");
     await this.$store.dispatch("newSearch")
-     /*
-    this.$store.dispatch("selectDish", 4);
+    
+  /*  this.$store.dispatch("selectDish", 4);
     await this.$store.dispatch("newSearchDetails");
     this.$store.dispatch("addDish", this.$store.getters.dishDetails);
     this.$store.dispatch("removeDish", this.$store.getters.dishDetails);
-    */
+  */
     
  }
 }).$mount("#app");
