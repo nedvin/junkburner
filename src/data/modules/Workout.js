@@ -25,6 +25,9 @@ const actions = {
     generateSession({commit}, kcal){
         seed1 = Math.floor(Math.random() * 10);
         seed2 = Math.floor(Math.random() * 10);
+        if(seed1){
+            
+        }
     }
 
 };
