@@ -325,7 +325,7 @@ export default {
 
 .restaurant-button:hover {
     background-color: orange;
-    border: none;
+    border-color: orange;
     cursor: pointer;
 }
 
@@ -344,6 +344,7 @@ export default {
     margin-right: 7px;
     margin-bottom: 15px;
     border: 1px solid black;
+   width: 210px;
 }
 
 .food-title-box {
