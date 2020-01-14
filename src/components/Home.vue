@@ -1,7 +1,9 @@
 <template>
     <div>
         <div id="container-home">
-            <div id="home-container">
+
+            <!-- WRAPPER FOR WELCOME TEXT, IMG AND BUTTONS -->
+            <div>
                 <img src="../images/homeHamburger.png" />
                 <p id="home-text">
                     Welcome to Junk Burner! Here you can create fast food meals
@@ -15,11 +17,12 @@
                     Login
                 </button>
             </div>
-            <div v-if="form.visible" class="login-form">
-                <h1>{{ form.title }}</h1>
+
+            <!-- LOGIN FORM -->
+            <div v-if="form.loginVisible" class="login-form">
+                <h1>Login</h1>
                 <div id="message">
-                    Please do not use your real e-mail and password. Just use
-                    some fake adress.
+                    {{ form.message }}
                 </div>
                 <div>
                     <label for="email"><b>E-mail:</b></label>
@@ -41,9 +44,70 @@
                 </div>
 
                 <button @click="close" class="btn btn-abort">Close</button>
-                <button type="submit" class="btn btn-green" @click="formAction">
-                    {{ form.button }}
-                </button>
+                <button type="submit" class="btn btn-green" @click="formAction('login')">Login</button>
+            </div>
+
+            <!-- SIGN UP FORM -->
+            <div v-if="form.signupVisible" class="login-form">
+                <h1>Sign up!</h1>
+                <div id="message">
+                    {{ form.message }}
+                </div>
+                <div>
+                    <label for="email"><b>E-mail:</b></label>
+                    <input
+                        type="text"
+                        placeholder="Enter Email"
+                        name="email"
+                        v-model="email"
+                    />
+                </div>
+                <div>
+                    <label for="psw"><b>Password:</b></label>
+                    <input
+                        type="password"
+                        placeholder="Enter Password"
+                        name="psw"
+                        v-model="password"
+                    />
+                </div>
+                <div>
+                    <label for="age"><b>Age:</b></label>
+                    <input
+                        type="number"
+                        placeholder="Your age"
+                        name="age"
+                        v-model="age"
+                    />
+                </div>
+                <div>
+                    <label for="weight"><b>Weight:</b></label>
+                    <input
+                        type="number"
+                        placeholder="Your weight in kilograms"
+                        name="weight"
+                        v-model="weight"
+                    />
+                </div>
+                <div>
+                    <label for="length"><b>Length:</b></label>
+                    <input
+                        type="number"
+                        placeholder="Your length in centimeters"
+                        name="length"
+                        v-model="length"
+                    />
+                </div>
+                <div>
+                    <label for="gender"><b>Gender:</b></label>
+                    <select name="gender" v-model="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+
+                <button @click="close" class="btn btn-abort">Close</button>
+                <button type="submit" class="btn btn-green" @click="formAction('signup')">Sign up</button>
             </div>
         </div>
     </div>
@@ -56,26 +120,32 @@ export default {
     data() {
         return {
             form: {
-                visible: false,
-                title: "",
-                button: ""
+                loginVisible: false,
+                signupVisible: false,
+                message: 'Please do not use your real e-mail and password. Just use some fake adress.'
             },
             email: "",
-            password: ""
+            password: "",
+            age: 1,
+            weight: 70,
+            length: 170,
+            gender: "Male"
+
         };
     },
     methods: {
         showForm(form) {
-            this.form.visible = true;
             if (form === "login") {
+                this.form.loginVisible = true;
                 (this.form.title = "Login"), (this.form.button = "Login");
             } else if (form === "signup") {
+                this.form.signupVisible = true;
                 (this.form.title = "Sign up"), (this.form.button = "Sign up");
             }
         },
 
-        formAction() {
-            if (this.form.title === "Login") {
+        formAction(form) {
+            if (form === "login") {
                 this.login();
             } else {
                 this.signup();
@@ -83,7 +153,8 @@ export default {
         },
 
         close() {
-            this.form.visible = false;
+            this.form.loginVisible = false;
+            this.form.signupVisible = false;
         },
 
         login() {
@@ -115,6 +186,12 @@ export default {
 </script>
 
 <style scoped>
+/****** GENERAL ******/
+.btn {
+    margin: 10px 5px;
+}
+
+/******  WRAPPER *****/
 img {
     margin-top: 15px;
     max-width: 15%;
@@ -134,6 +211,7 @@ img {
     padding: 20px;
 }
 
+/****** FORMS ******/
 .login-form {
     background-color: #f5f5f5;
     position: absolute;
@@ -156,20 +234,21 @@ img {
     margin-right: 10px;
 }
 
-.btn {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 #message {
-    font-size: 0.7em;
+    font-size: 0.9em;
     color: red;
 }
+
+/******* MEDIA QUERIES *******/
 
 @media screen and (max-width: 800px) {
     #home-text {
         width: 90vw;
         padding: 5px;
+    }
+
+    .btn {
+        padding: 8px 16px;
     }
 }
 </style>

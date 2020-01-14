@@ -17,9 +17,9 @@ let router = new Router({
             path: "/search",
             name: "Search",
             component: SearchScreen,
-            meta: {
-                requiresAuth: true
-              }
+           // meta: {
+           //     requiresAuth: true
+           //   }
         }
     ]
 });
