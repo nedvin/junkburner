@@ -323,7 +323,8 @@ export default {
     margin: 20px;
 }
 
-.restaurant-button:hover {
+.restaurant-button:hover,
+.restaurant-button:active {
     background-color: orange;
     border-color: orange;
     cursor: pointer;
