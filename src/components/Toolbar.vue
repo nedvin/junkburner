@@ -1,6 +1,8 @@
 <template>
     <div id="toolbar">
         <div class="settings-wrapper">
+         
+            <!-- WRAPPER FOR DISPLAYING AND SETTING USER DATA -->
             <div v-if="settingsVisible" class="settings">
                 <div class="input-row">
                     <label for="age">Age:</label>
@@ -34,7 +36,11 @@
                 </div>
                 <div class="input-row">
                     <label for="gender">Gender:</label>
-                    <select name="gender" v-model="fakePerson.gender" class="input">
+                    <select
+                        name="gender"
+                        v-model="fakePerson.gender"
+                        class="input"
+                    >
                         <option>Male</option>
                         <option>Female</option>
                     </select>
@@ -42,12 +48,22 @@
                 <div class="center">
                     <button type="submit" class="btn btn-green">Spara</button>
                 </div>
-        </div>
+            </div>
+
+            <!-- WRAPPER FOR NAVIGATION BUTTONS -->
             <div class="settings-controls">
-                <button class="btn btn-toolbar" @click="showSettings">Create meal</button>
-                <button class="btn btn-toolbar" @click="showSettings">Training</button>
-                <button class="btn btn-toolbar" @click="showSettings">Settings</button>
-                <button @click="signout" class="btn btn-toolbar">Sign out</button>
+                <button class="btn btn-toolbar" @click="showSettings">
+                    Create meal
+                </button>
+                <button class="btn btn-toolbar" @click="showSettings">
+                    Training
+                </button>
+                <button class="btn btn-toolbar" @click="showSettings">
+                    Settings
+                </button>
+                <button @click="signout" class="btn btn-toolbar">
+                    Sign out
+                </button>
             </div>
         </div>
     </div>
@@ -72,10 +88,9 @@ export default {
     },
     methods: {
         showSettings() {
-            if(this.settingsVisible === true) {
+            if (this.settingsVisible === true) {
                 this.settingsVisible = false;
-            }
-            else {
+            } else {
                 this.settingsVisible = true;
             }
         },
@@ -92,6 +107,8 @@ export default {
 </script>
 
 <style scoped>
+/******* "GENERAL" *******/
+
 #toolbar {
     width: 85%;
     margin-left: auto;
@@ -99,22 +116,12 @@ export default {
     padding: 5px;
 }
 
-.settings-controls {
-    float: right;
-}
-
-.settings {
-    float: left;
+.center {
     display: flex;
-    justify-content: space-around;
-    width: 60%;
-    padding-bottom: 5px;
+    justify-content: center;
 }
 
-.input-row {
-    width: 200px;
-    justify-content: space-between;
-}
+/****** NAV COMPONENTS ******/
 
 .btn-toolbar {
     background-color: #1e272e;
@@ -124,6 +131,24 @@ export default {
 
 .btn-toolbar:hover {
     background-color: #485460;
+}
+
+/****** SETTINGS FORM ******/
+.settings {
+    float: left;
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    padding-bottom: 5px;
+}
+
+.settings-controls {
+    float: right;
+}
+
+.input-row {
+    width: 200px;
+    justify-content: space-between;
 }
 
 label {
@@ -139,15 +164,11 @@ label {
     width: 60px;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-}
-
+/******* MEDIA QUERIES ********/
 @media screen and (max-width: 1045px) {
     .settings {
-            flex-direction: column;
-            width: 200px;
+        flex-direction: column;
+        width: 200px;
     }
 
     .input {
@@ -174,7 +195,6 @@ label {
 
     .btn-toolbar {
         margin-right: 8px;
-
     }
 }
 </style>
