@@ -115,6 +115,7 @@
 
 <script>
 import firebase from "firebase";
+import { db } from '@/main';
 
 export default {
     data() {
@@ -173,7 +174,14 @@ export default {
         signup() {
             firebase
                 .auth()
-                .createUserWithEmailAndPassword(this.email, this.password)
+                .createUserWithEmailAndPassword(this.email, this.password).then(cred => {
+                    return db.collection('users').doc(cred.user.uid).set({
+                        age: this.age,
+                        weight: this.weight,
+                        length: this.length,
+                        gender: this.gender
+                    })
+                })
                 .then(() => {
                     this.close();
                 })
