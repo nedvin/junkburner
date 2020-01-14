@@ -66,7 +66,7 @@ const mutations = {
         state.gender = gender;
     },
     calculateKcalRdi(state){ // Revised Harris-Benedict Equation
-        if(state.gender = "F"){
+        if(state.gender === "F"){
             state.kcalRdi = Math.round(88.362 + 13.397*state.weight + 4.799*state.length - 5.677*state.age);
         }
         else{
