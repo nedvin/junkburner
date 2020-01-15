@@ -8,9 +8,8 @@
                     <label for="age">Age:</label>
                     <input
                         type="number"
-                        placeholder="Your age"
                         name="age"
-                        v-model="fakePerson.age"
+                        :value="age"
                         class="input"
                     />
                 </div>
@@ -18,9 +17,8 @@
                     <label for="weight">Weight:</label>
                     <input
                         type="number"
-                        placeholder="Your weight in kilograms"
                         name="weight"
-                        v-model="fakePerson.weight"
+                        :value="weight"
                         class="input"
                     />
                 </div>
@@ -28,9 +26,8 @@
                     <label for="length">Length:</label>
                     <input
                         type="number"
-                        placeholder="Your length in centimeters"
                         name="length"
-                        v-model="fakePerson.length"
+                        :value="length"
                         class="input"
                     />
                 </div>
@@ -38,7 +35,7 @@
                     <label for="gender">Gender:</label>
                     <select
                         name="gender"
-                        v-model="fakePerson.gender"
+                        :value="gender"
                         class="input"
                     >
                         <option>Male</option>
@@ -46,7 +43,7 @@
                     </select>
                 </div>
                 <div class="center">
-                    <button type="submit" class="btn btn-green">Spara</button>
+                    <button class="btn btn-green">Spara</button>
                 </div>
             </div>
 
@@ -71,19 +68,13 @@
 
 <script>
 import firebase from "firebase";
+import { mapGetters } from 'vuex';
 
 export default {
     name: "Toolbar",
     data() {
         return {
             settingsVisible: false,
-            fakePerson: {
-                email: "test@mail.com",
-                age: 31,
-                weight: 100,
-                length: 177,
-                gender: "Male"
-            }
         };
     },
     methods: {
@@ -102,6 +93,9 @@ export default {
                     this.$router.replace("/");
                 });
         }
+    },
+    computed: {
+        ...mapGetters(['age', 'length', 'weight', 'kcalRdi', 'userId', 'gender'])
     }
 };
 </script>

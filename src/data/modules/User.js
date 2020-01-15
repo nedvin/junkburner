@@ -15,7 +15,8 @@ const getters = {
     length : state => state.length,
     weight : state => state.weight,
     kcalRdi : state => state.kcalRdi,
-    userId : state => state.userId
+    userId : state => state.userId,
+    gender : state => state.gender
 };
 
 /**************  ACTIONS ***************************/

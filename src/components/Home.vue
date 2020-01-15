@@ -30,7 +30,7 @@
                         type="text"
                         placeholder="Enter Email"
                         name="email"
-                        v-model="email"
+                        v-model="userData.email"
                     />
                 </div>
                 <div>
@@ -39,75 +39,77 @@
                         type="password"
                         placeholder="Enter Password"
                         name="psw"
-                        v-model="password"
+                        v-model="userData.password"
                     />
                 </div>
 
                 <button @click="close" class="btn btn-abort">Close</button>
-                <button type="submit" class="btn btn-green" @click="formAction('login')">Login</button>
+                <button type="submit" class="btn btn-green" @click="login">Login</button>
             </div>
 
             <!-- SIGN UP FORM -->
             <div v-if="form.signupVisible" class="login-form">
                 <h1>Sign up!</h1>
-                <div id="message">
-                    {{ form.message }}
-                </div>
-                <div>
-                    <label for="email"><b>E-mail:</b></label>
-                    <input
-                        type="text"
-                        placeholder="Enter Email"
-                        name="email"
-                        v-model="email"
-                    />
-                </div>
-                <div>
-                    <label for="psw"><b>Password:</b></label>
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        name="psw"
-                        v-model="password"
-                    />
-                </div>
-                <div>
-                    <label for="age"><b>Age:</b></label>
-                    <input
-                        type="number"
-                        placeholder="Your age"
-                        name="age"
-                        v-model="age"
-                    />
-                </div>
-                <div>
-                    <label for="weight"><b>Weight:</b></label>
-                    <input
-                        type="number"
-                        placeholder="Your weight in kilograms"
-                        name="weight"
-                        v-model="weight"
-                    />
-                </div>
-                <div>
-                    <label for="length"><b>Length:</b></label>
-                    <input
-                        type="number"
-                        placeholder="Your length in centimeters"
-                        name="length"
-                        v-model="length"
-                    />
-                </div>
-                <div>
-                    <label for="gender"><b>Gender:</b></label>
-                    <select name="gender" v-model="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
+                <form>
+                    <div id="message">
+                        {{ form.message }}
+                    </div>
+                    <div>
+                        <label for="email"><b>E-mail:</b></label>
+                        <input
+                            type="text"
+                            placeholder="Enter Email"
+                            name="email"
+                            v-model="userData.email"
+                        />
+                    </div>
+                    <div>
+                        <label for="psw"><b>Password:</b></label>
+                        <input
+                            type="password"
+                            placeholder="Enter Password"
+                            name="psw"
+                            v-model="userData.password"
+                        />
+                    </div>
+                    <div>
+                        <label for="age"><b>Age:</b></label>
+                        <input
+                            type="number"
+                            placeholder="Your age"
+                            name="age"
+                            v-model="userData.age"
+                        />
+                    </div>
+                    <div>
+                        <label for="weight"><b>Weight:</b></label>
+                        <input
+                            type="number"
+                            placeholder="Your weight in kilograms"
+                            name="weight"
+                            v-model="userData.weight"
+                        />
+                    </div>
+                    <div>
+                        <label for="length"><b>Length:</b></label>
+                        <input
+                            type="number"
+                            placeholder="Your length in centimeters"
+                            name="length"
+                            v-model="userData.length"
+                        />
+                    </div>
+                    <div>
+                        <label for="gender"><b>Gender:</b></label>
+                        <select name="gender" v-model="userData.gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                </form>
 
                 <button @click="close" class="btn btn-abort">Close</button>
-                <button type="submit" class="btn btn-green" @click="formAction('signup')">Sign up</button>
+                <button type="submit" class="btn btn-green" @click="signup">Sign up</button>
             </div>
         </div>
     </div>
@@ -116,6 +118,7 @@
 <script>
 import firebase from "firebase";
 import { db } from '@/main';
+import { mapActions } from "vuex";
 
 export default {
     data() {
@@ -125,13 +128,14 @@ export default {
                 signupVisible: false,
                 message: 'Please do not use your real e-mail and password. Just use some fake adress.'
             },
-            email: "",
-            password: "",
-            age: 1,
-            weight: 70,
-            length: 170,
-            gender: "Male"
-
+            userData: {
+                email: "",
+                password: "",
+                age: 0,
+                weight: 0,
+                length: 0,
+                gender: "Male"
+            }
         };
     },
     methods: {
@@ -145,14 +149,6 @@ export default {
             }
         },
 
-        formAction(form) {
-            if (form === "login") {
-                this.login();
-            } else {
-                this.signup();
-            }
-        },
-
         close() {
             this.form.loginVisible = false;
             this.form.signupVisible = false;
@@ -161,8 +157,20 @@ export default {
         login() {
             firebase
                 .auth()
-                .signInWithEmailAndPassword(this.email, this.password)
-                .then(user => {
+                .signInWithEmailAndPassword(this.userData.email, this.userData.password)
+                .then(cred => {
+                    console.log(cred.user.uid)
+                    return db.collection('users').doc(cred.user.uid).get()
+                }).then(doc => {
+                    let user = {
+                        age: doc.data().age,
+                        weight: doc.data().weight,
+                        length: doc.data().length,
+                        gender: doc.data().gender,
+                        userId: doc.data().userID
+                    };
+                    this.loadUser(user);
+                }).then(() => {
                     this.close();
                     this.$router.replace("/search");
                 })
@@ -174,21 +182,23 @@ export default {
         signup() {
             firebase
                 .auth()
-                .createUserWithEmailAndPassword(this.email, this.password).then(cred => {
+                .createUserWithEmailAndPassword(this.userData.email, this.userData.password).then(cred => {
                     return db.collection('users').doc(cred.user.uid).set({
-                        age: this.age,
-                        weight: this.weight,
-                        length: this.length,
-                        gender: this.gender
+                        userID: cred.user.uid,
+                        age: this.userData.age,
+                        weight: this.userData.weight,
+                        length: this.userData.length,
+                        gender: this.userData.gender
                     })
                 })
-                .then(() => {
+                .then(() => {  
                     this.close();
                 })
                 .catch(err => {
                     alert(err.message);
                 });
-        }
+        },
+        ...mapActions(['loadUser'])
     }
 };
 </script>
