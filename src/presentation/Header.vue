@@ -4,8 +4,6 @@
             <img :src="logo" />
             <h1>JUNKFOOD BURNER</h1>
         </div>
-        
-        <!-- THIS SHOULD BE INVISIBLE WHEN NOT LOOGED IN -->
         <toolbar v-if="logInStatus"/>
         
     </div>

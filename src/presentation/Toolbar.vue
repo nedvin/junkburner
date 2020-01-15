@@ -89,32 +89,10 @@ export default {
             } else {
                 this.settingsVisible = true;
             }
-        },
-        signout() {
-            firebase
-                .auth()
-                .signOut()
-                .then(() => {
-                    this.$router.replace("/");
-                });
-        },
-        updateUserSettings() {
-            this.setAge(document.body.querySelector("#age-field").value);
-            this.setLength(document.body.querySelector("#length-field").value);
-            this.setWeight(document.body.querySelector("#weight-field").value);
-            this.setGender(document.body.querySelector("#gender-field").value);
-            db.collection('users').doc(this.userId).update({
-                age: this.age,
-                length: this.length,
-                weight: this.weight,
-                gender: this.gender
-            }).then(() => {console.log('success')}) // Fixa loader och snackbar
-        },
-        ...mapActions(['setAge', 'setWeight', 'setLength', 'setGender'])
+        }
     },
-    computed: {
-        ...mapGetters(['age', 'length', 'weight', 'kcalRdi', 'userId', 'gender'])
-    }
+    props : ["",""]
+
 };
 </script>
 
