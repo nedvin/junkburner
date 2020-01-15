@@ -159,7 +159,6 @@ export default {
                 .auth()
                 .signInWithEmailAndPassword(this.userData.email, this.userData.password)
                 .then(cred => {
-                    console.log(cred.user.uid)
                     return db.collection('users').doc(cred.user.uid).get()
                 }).then(doc => {
                     let user = {
@@ -167,7 +166,8 @@ export default {
                         weight: doc.data().weight,
                         length: doc.data().length,
                         gender: doc.data().gender,
-                        userId: doc.data().userID
+                        userId: doc.data().userID,
+                        signedIn: true
                     };
                     this.loadUser(user);
                 }).then(() => {

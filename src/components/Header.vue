@@ -6,13 +6,14 @@
         </div>
         
         <!-- THIS SHOULD BE INVISIBLE WHEN NOT LOOGED IN -->
-        <toolbar />
+        <toolbar v-if="logInStatus"/>
         
     </div>
 </template>
 
 <script>
 import Toolbar from "@/components/Toolbar";
+import { mapGetters } from 'vuex'
 
 export default {
     name: "Header",
@@ -23,6 +24,9 @@ export default {
         return {
             logo: require("@/images/logo.png")
         };
+    },
+    computed: {
+        ...mapGetters(['logInStatus'])
     }
 };
 </script>

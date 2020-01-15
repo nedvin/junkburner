@@ -108,7 +108,7 @@ export default {
                 length: this.length,
                 weight: this.weight,
                 gender: this.gender
-            }).then(() => {console.log('success')})
+            }).then(() => {console.log('success')}) // Fixa loader och snackbar
         },
         ...mapActions(['setAge', 'setWeight', 'setLength', 'setGender'])
     },
