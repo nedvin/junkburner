@@ -103,6 +103,8 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import * as impIcons from '@/constants/icons';
+
 export default {
     data() {
         return {
@@ -125,81 +127,16 @@ export default {
             ],
             mcDonalds: {
                 visible: false,
-                icons: {
-                    hamburger: {
-                        name: "Hamburgers",
-                        url: require("@/images/001-burger.png")
-                    },
-                    fries: {
-                        name: "Fries",
-                        url: require("@/images/003-fries.png")
-                    },
-                    salad: {
-                        name: "Salads",
-                        url: require("@/images/005-salad.png")
-                    },
-                    coffee: {
-                        name: "Coffees",
-                        url: require("@/images/006-coffee.png")
-                    },
-                    coke: {
-                        name: "Drinks",
-                        url: require("@/images/007-coke.png")
-                    }
-                }
+                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
             },
             burgerKing: {
                 visible: false,
-                icons: {
-                    hamburger: {
-                        name: "Hamburgers",
-                        url: require("@/images/001-burger.png")
-                    },
-                    fries: {
-                        name: "Fries",
-                        url: require("@/images/003-fries.png")
-                    },
-                    salad: {
-                        name: "Salads",
-                        url: require("@/images/005-salad.png")
-                    },
-                    coffee: {
-                        name: "Coffees",
-                        url: require("@/images/006-coffee.png")
-                    },
-                    coke: {
-                        name: "Drinks",
-                        url: require("@/images/007-coke.png")
-                    }
-                }
+                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
             },
             subway: {
                 visible: false,
-                icons: {
-                    sandwich: {
-                        name: "Sandwiches",
-                        url: require("@/images/002-sandwich.png")
-                    },
-                    salad: {
-                        name: "Salads",
-                        url: require("@/images/005-salad.png")
-                    },
-                    coffee: {
-                        name: "Coffees",
-                        url: require("@/images/006-coffee.png")
-                    },
-                    cookie: {
-                        name: "Cookies",
-                        url: require("@/images/008-cookie.png")
-                    },
-                    coke: {
-                        name: "Drinks",
-                        url: require("@/images/007-coke.png")
-                    }
-                }
+                icons: [impIcons.SANDWICH_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.COOKIES_ICON, impIcons.DRINKS_ICON]
             },
-            addIcon: require("@/images/add.png"),
-            infoIcon: require("@/images/brochure.png"),
             fakeResult: {
                 thumbnail:
                     "https://d2xdmhkmkbyw75.cloudfront.net/2583_thumb.jpg",

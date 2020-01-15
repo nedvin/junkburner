@@ -43,7 +43,8 @@ export default {
     max-width: 80px;
     height: auto;
     float: left;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 30px;
 }
 
@@ -53,14 +54,14 @@ export default {
     word-spacing: 4px;
     color: #fff;
     font-size: 200%;
-    margin-top: 40px;
+    margin-top: 35px;
     margin-left: 15px;
 }
 
 @media screen and (max-width: 670px) {
     .header h1 {
         font-size: 1.1em;
-        margin-top: 50px;
+        margin-top: 40px;
     }
 }
 
