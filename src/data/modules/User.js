@@ -6,7 +6,8 @@ const state = {
     weight : 0,
     kcalRdi : 0,
     userId : "",
-    gender : ""
+    gender : "",
+    signedIn : false
 };
 
 /**************  GETTERS ***************************/
@@ -15,7 +16,9 @@ const getters = {
     length : state => state.length,
     weight : state => state.weight,
     kcalRdi : state => state.kcalRdi,
-    userId : state => state.userId
+    userId : state => state.userId,
+    gender : state => state.gender,
+    logInStatus : state => state.signedIn
 };
 
 /**************  ACTIONS ***************************/
@@ -52,6 +55,7 @@ const mutations = {
         state.weight = user.weight;
         state.userId = user.userId;
         state.gender = user.gender;
+        state.signedIn = user.signedIn;
     },
     setAge(state, age){
         state.age = age;

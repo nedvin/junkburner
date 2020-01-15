@@ -8,45 +8,46 @@
                     <label for="age">Age:</label>
                     <input
                         type="number"
-                        placeholder="Your age"
                         name="age"
-                        v-model="fakePerson.age"
+                        :value="age"
                         class="input"
+                        id="age-field"
                     />
                 </div>
                 <div class="input-row">
                     <label for="weight">Weight:</label>
                     <input
                         type="number"
-                        placeholder="Your weight in kilograms"
                         name="weight"
-                        v-model="fakePerson.weight"
+                        :value="weight"
                         class="input"
+                        id="weight-field"
                     />
                 </div>
                 <div class="input-row">
                     <label for="length">Length:</label>
                     <input
                         type="number"
-                        placeholder="Your length in centimeters"
                         name="length"
-                        v-model="fakePerson.length"
+                        :value="length"
                         class="input"
+                        id="length-field"
                     />
                 </div>
                 <div class="input-row">
                     <label for="gender">Gender:</label>
                     <select
                         name="gender"
-                        v-model="fakePerson.gender"
+                        :value="gender"
                         class="input"
+                        id="gender-field"
                     >
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                 </div>
                 <div class="center">
-                    <button type="submit" class="btn btn-green">Spara</button>
+                    <button class="btn btn-green" @click="updateUserSettings">Spara</button>
                 </div>
             </div>
 
@@ -71,19 +72,14 @@
 
 <script>
 import firebase from "firebase";
+import { mapGetters, mapActions } from 'vuex';
+import { db } from '@/main'
 
 export default {
     name: "Toolbar",
     data() {
         return {
             settingsVisible: false,
-            fakePerson: {
-                email: "test@mail.com",
-                age: 31,
-                weight: 100,
-                length: 177,
-                gender: "Male"
-            }
         };
     },
     methods: {
@@ -101,7 +97,23 @@ export default {
                 .then(() => {
                     this.$router.replace("/");
                 });
-        }
+        },
+        updateUserSettings() {
+            this.setAge(document.body.querySelector("#age-field").value);
+            this.setLength(document.body.querySelector("#length-field").value);
+            this.setWeight(document.body.querySelector("#weight-field").value);
+            this.setGender(document.body.querySelector("#gender-field").value);
+            db.collection('users').doc(this.userId).update({
+                age: this.age,
+                length: this.length,
+                weight: this.weight,
+                gender: this.gender
+            }).then(() => {console.log('success')}) // Fixa loader och snackbar
+        },
+        ...mapActions(['setAge', 'setWeight', 'setLength', 'setGender'])
+    },
+    computed: {
+        ...mapGetters(['age', 'length', 'weight', 'kcalRdi', 'userId', 'gender'])
     }
 };
 </script>

@@ -1,39 +1,39 @@
-const HAMBURGER_ICON = {
+export const HAMBURGER_ICON = {
     name: "Hamburgers",
     url: require("@/images/001-burger.png")
 }
 
-const SANDWICH_ICON = {
+export const SANDWICH_ICON = {
     name: "Sandwiches",
     url: require("@/images/002-sandwich.png")
 }
 
-const FRIES_ICON = {
+export const FRIES_ICON = {
     name: "Fries",
     url: require("@/images/003-fries.png")
 }
 
-const MEAL_ICON = {
+export const MEAL_ICON = {
     name: "Meal",
     url: require("@/images/004-meal.png")
 }
 
-const SALAD_ICON = {
+export const SALAD_ICON = {
     name: "Salads",
     url: require("@/images/005-salad.png")
 }
 
-const COFFEE_ICON = {
+export const COFFEE_ICON = {
     name: "Coffees",
     url: require("@/images/006-coffee.png")
 }
 
-const DRINKS_ICON = {
+export const DRINKS_ICON = {
     name: "Drinks",
     url: require("@/images/007-coke.png")
 }
 
-const COOKIES_ICON = {
+export const COOKIES_ICON = {
     name: "Cookies",
     url: require("@/images/008-cookie.png")
 }
