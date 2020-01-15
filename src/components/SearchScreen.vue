@@ -1,19 +1,19 @@
 <template>
   <div>
     <overview/>
-    <search />
+    <searchComponent />
   </div>
 </template>
 
 <script>
   import Overview from '@/components/MealOverview'
-  import Search from '@/components/Search'
+  import SearchComponent from '@/components/SearchComponent'
 
   export default {
     name: 'SearchScreen',
     components: {
       'overview': Overview,
-      'search': Search
+      'searchComponent': SearchComponent
     }
   }
 </script>

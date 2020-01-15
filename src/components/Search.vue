@@ -57,7 +57,7 @@
 
         <!-- SEARCH RESULTS -->
         <div class="search-results-box">
-            <div v-for="result in this.searchResult" :key="result.nix_item_id" class="food-item-box">
+            <div v-for="result in searchResult" :key="result.nix_item_id" class="food-item-box">
                 <div class="food-picture-box">
                     <img :src="result.photo.thumb" class="responsive-pic" />
                 </div>
@@ -193,11 +193,8 @@ export default {
                     break;
             }
         },
-        ...mapActions(["newQuery", "selectDish", "newSearch", "newSearchDetails"])
     },
-    computed: {
-        ...mapGetters(["searchResult", "dishDetails", "selectedDish"])
-    }
+    props : ["searchResult", "dishDetails"]
 };
 </script>
 

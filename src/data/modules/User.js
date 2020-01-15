@@ -28,6 +28,9 @@ const actions = {
         commit("loadUser", user);
         commit("calculateKcalRdi");
     },
+    signOut({commit}){
+        commit("signOut");
+    },
     setAge({commit}, age){
         commit("setAge", age);
         commit("calculateKcalRdi");
@@ -55,7 +58,10 @@ const mutations = {
         state.weight = user.weight;
         state.userId = user.userId;
         state.gender = user.gender;
-        state.signedIn = user.signedIn;
+        state.signedIn = true;
+    },
+    signOut(state){
+        state.signedIn = false;
     },
     setAge(state, age){
         state.age = age;
