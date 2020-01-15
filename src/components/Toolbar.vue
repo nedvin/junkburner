@@ -11,6 +11,7 @@
                         name="age"
                         :value="age"
                         class="input"
+                        id="age-field"
                     />
                 </div>
                 <div class="input-row">
@@ -20,6 +21,7 @@
                         name="weight"
                         :value="weight"
                         class="input"
+                        id="weight-field"
                     />
                 </div>
                 <div class="input-row">
@@ -29,6 +31,7 @@
                         name="length"
                         :value="length"
                         class="input"
+                        id="length-field"
                     />
                 </div>
                 <div class="input-row">
@@ -37,13 +40,14 @@
                         name="gender"
                         :value="gender"
                         class="input"
+                        id="gender-field"
                     >
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                 </div>
                 <div class="center">
-                    <button class="btn btn-green">Spara</button>
+                    <button class="btn btn-green" @click="updateUserSettings">Spara</button>
                 </div>
             </div>
 
@@ -68,7 +72,8 @@
 
 <script>
 import firebase from "firebase";
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { db } from '@/main'
 
 export default {
     name: "Toolbar",
@@ -92,7 +97,20 @@ export default {
                 .then(() => {
                     this.$router.replace("/");
                 });
-        }
+        },
+        updateUserSettings() {
+            this.setAge(document.body.querySelector("#age-field").value);
+            this.setLength(document.body.querySelector("#length-field").value);
+            this.setWeight(document.body.querySelector("#weight-field").value);
+            this.setGender(document.body.querySelector("#gender-field").value);
+            db.collection('users').doc(this.userId).update({
+                age: this.age,
+                length: this.length,
+                weight: this.weight,
+                gender: this.gender
+            }).then(() => {console.log('success')})
+        },
+        ...mapActions(['setAge', 'setWeight', 'setLength', 'setGender'])
     },
     computed: {
         ...mapGetters(['age', 'length', 'weight', 'kcalRdi', 'userId', 'gender'])
