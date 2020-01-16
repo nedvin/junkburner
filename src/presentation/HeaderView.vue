@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-header />
-    <toolbar v-if="signedIn"/>
+    <toolbar v-if="signedIn" />
   </div>
 </template>
 

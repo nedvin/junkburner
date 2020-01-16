@@ -19,7 +19,7 @@ const getters = {
     userId : state => state.userId,
     gender : state => state.gender,
     signedIn : state => state.signedIn,
-    userData : state => { 
+    user : state => { 
         return { "age" : state.age, "length" : state.length, "weight" : state.weight, "gender" : state.gender};
     }
 };
