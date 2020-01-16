@@ -4,7 +4,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import search from "./Search";
+import search from "@/presentation/Search";
 export default {
     data() {
         return {

@@ -18,7 +18,7 @@ const getters = {
     kcalRdi : state => state.kcalRdi,
     userId : state => state.userId,
     gender : state => state.gender,
-    logInStatus : state => state.signedIn,
+    signedIn : state => state.signedIn,
     userData : state => { 
         return { "age" : state.age, "length" : state.length, "weight" : state.weight, "gender" : state.gender};
     }

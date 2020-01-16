@@ -1,19 +1,23 @@
 <template>
   <div>
-    <header/>
-    <toolbar />
+    <v-header />
+    <toolbar v-if="signedIn"/>
   </div>
 </template>
 
 <script>
   import header from '@/presentation/Header'
-  import toolbar from '@/presentation/Toolbar'
+  import toolbar from '@/container/ToolbarContainer'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'HeaderView',
     components: {
-      'header': header,
+      'v-header': header,
       'toolbar': toolbar
+    },
+    computed: {
+        ...mapGetters(['signedIn'])
     }
   }
 </script>

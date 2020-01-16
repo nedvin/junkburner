@@ -4,27 +4,16 @@
             <img :src="logo" />
             <h1>JUNKFOOD BURNER</h1>
         </div>
-        <toolbar v-if="logInStatus"/>
-        
     </div>
 </template>
 
 <script>
-import Toolbar from "@/components/Toolbar";
-import { mapGetters } from 'vuex'
-
 export default {
     name: "Header",
-    components: {
-        toolbar: Toolbar
-    },
     data() {
         return {
             logo: require("@/images/logo.png")
         };
-    },
-    computed: {
-        ...mapGetters(['logInStatus'])
     }
 };
 </script>

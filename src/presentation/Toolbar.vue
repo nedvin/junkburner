@@ -9,7 +9,7 @@
                     <input
                         type="number"
                         name="age"
-                        :value="age"
+                        :value="user.age"
                         class="input"
                         id="age-field"
                     />
@@ -19,7 +19,7 @@
                     <input
                         type="number"
                         name="weight"
-                        :value="weight"
+                        :value="user.weight"
                         class="input"
                         id="weight-field"
                     />
@@ -29,7 +29,7 @@
                     <input
                         type="number"
                         name="length"
-                        :value="length"
+                        :value="user.length"
                         class="input"
                         id="length-field"
                     />
@@ -38,7 +38,7 @@
                     <label for="gender">Gender:</label>
                     <select
                         name="gender"
-                        :value="gender"
+                        :value="user.gender"
                         class="input"
                         id="gender-field"
                     >
@@ -47,7 +47,7 @@
                     </select>
                 </div>
                 <div class="center">
-                    <button class="btn btn-green" @click="updateUserSettings">Spara</button>
+                    <button class="btn btn-green" @click="$emit('updateUserSettings')">Spara</button>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                 <button class="btn btn-toolbar" @click="showSettings">
                     Settings
                 </button>
-                <button @click="signout" class="btn btn-toolbar">
+                <button @click="$emit('signout')" class="btn btn-toolbar">
                     Sign out
                 </button>
             </div>
@@ -71,9 +71,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import { mapGetters, mapActions } from 'vuex';
-import { db } from '@/main'
 
 export default {
     name: "Toolbar",
@@ -91,7 +88,7 @@ export default {
             }
         }
     },
-    props : ["",""]
+    props : ["user"]
 
 };
 </script>

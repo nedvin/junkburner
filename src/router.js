@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/components/Home";
-import SearchScreen from "@/components/SearchScreen";
+import HomeView from "@/presentation/HomeView";
+import SearchView from "@/presentation/SearchView";
 import firebase from 'firebase'
 
 Vue.use(Router);
@@ -11,12 +11,12 @@ let router = new Router({
         {
             path: "/",
             name: "Home",
-            component: Home
+            component: HomeView
         },
         {
             path: "/search",
             name: "Search",
-            component: SearchScreen,
+            component: SearchView,
            // meta: {
            //     requiresAuth: true
            //   }

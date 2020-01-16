@@ -1,5 +1,5 @@
 <template>
-    <toolbar />
+    <toolbar :user="this.user" @updateUserSettings="this.updateUserSettings" @signout="this.signout"/>
 </template>
 
 <script>
@@ -35,7 +35,7 @@ export default {
         ...mapActions(['setAge', 'setWeight', 'setLength', 'setGender'])
     },
     computed: {
-        ...mapGetters(['age', 'length', 'weight', 'kcalRdi', 'userId', 'gender'])
+        ...mapGetters(['user', 'kcalRdi', 'userId'])
     },
     components: {
         'toolbar' : toolbar

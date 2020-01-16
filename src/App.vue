@@ -1,19 +1,19 @@
 <template>
     <div id="app" class="container wrapper">
-        <header-view />
+        <v-header />
         <router-view id="container-main" />
-        <footer-view />
+        <v-footer />
     </div>
 </template>
 
 <script>
-import footer from "./components/Footer.vue";
-import header from "./components/Header.vue";
+import footer from "./presentation/Footer";
+import header from "./presentation/HeaderView";
 export default {
     name: "App",
     components: {
-        "header-view": header,
-        "footer-view": footer
+        "v-header": header,
+        "v-footer": footer
     }
 };
 </script>
