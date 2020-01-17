@@ -19,13 +19,7 @@ export default {
 </script>
 
 <style scoped>
-#container-header {
-    width: 100%;
-    background-color: #1e272e;
-    display: flex;
-    flex-direction: column;
-}
-
+  
 .header img {
     max-width: 80px;
     height: auto;

@@ -1,23 +1,30 @@
 <template>
-  <div>
+  <div id="container-header">
     <v-header />
-    <toolbar v-if="signedIn" />
+    <v-navbar />
   </div>
 </template>
 
 <script>
   import header from '@/presentation/Header'
-  import toolbar from '@/container/ToolbarContainer'
-  import { mapGetters } from 'vuex'
+  import navbar from '@/container/NavBarContainer'
 
   export default {
     name: 'HeaderView',
     components: {
       'v-header': header,
-      'toolbar': toolbar
-    },
-    computed: {
-        ...mapGetters(['signedIn'])
+      'v-navbar': navbar
     }
   }
 </script>
+
+<style scoped>
+
+#container-header {
+      width: 100%;
+      background-color: #1e272e;
+      display: flex;
+      flex-direction: column;
+  }
+
+</style>

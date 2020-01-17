@@ -25,6 +25,7 @@ const getters = {
 };
 
 /**************  ACTIONS ***************************/
+import firebase from "firebase";
 
 const actions = {
     loadUser({commit}, user){
@@ -49,7 +50,50 @@ const actions = {
     setGender({commit}, gender){
         commit("setGender", gender);
         commit("calculateKcalRdi");
-    }
+    },
+    loginUser({commit}, userMail, password){
+        firebase
+                .auth()
+                .signInWithEmailAndPassword(userMail, password)
+                .then(cred => {
+                    return db.collection('users').doc(cred.user.uid).get()
+                }).then(doc => {
+                    let user = {
+                        age: doc.data().age,
+                        weight: doc.data().weight,
+                        length: doc.data().length,
+                        gender: doc.data().gender,
+                        userId: doc.data().userID,
+                    };
+                    this.$store.dispatch('loadUser', user);
+                }).then(() => {
+                    this.$router.replace("/search"); // TODO:Flytta navigeringen härifrån
+                })
+                .catch(err => {
+                    alert(err.message);
+                });
+    },
+    signOutUser({commit}){
+        firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                    this.$router.replace("/"); // TODO:Flytta navigeringen härifrån
+                    this.commit('signOut');
+                });
+    },
+    updateUserSettings({commit}, userInfo) {
+        this.$store.dispatch('setAge', userInfo.age)
+        this.$store.dispatch('setLength', userInfo.length)
+        this.$store.dispatch('setWeight', userInfo.weight)
+        this.$store.dispatch('setGender', userInfo.gender)
+        db.collection('users').doc(state.userId).update({
+            age: userInfo.age,
+            length: userInfoe.length,
+            weight: userInfo.weight,
+            gender: userInfo.gender
+        }).then(() => {console.log('success')}) // Fixa loader och snackbar
+    },
 
 };
 
