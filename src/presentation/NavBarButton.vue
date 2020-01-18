@@ -1,9 +1,7 @@
 <template>
     <div
         class="nav-bar-button"
-        :class="{active : isActive, hover : isHovered}"
-        @mouseenter="this.setHover"
-        @mouseleave="this.removeHover"
+        :class="{active : isActive}"
     >
         <p>
             {{text}}
@@ -18,22 +16,23 @@ export default {
         }
     },
     props: ["text", "isActive"],
-    methods: {
-        setHover : () => {data.isHovered = true;},
-        removeHover : () => {data.isHovered = false;}
-    },
-    computed : {
-         isHovered : false
-    }
 }
 </script>
 
 <style scoped>
 
 .nav-bar-button{
-    height:100%
+    height:100%;
+    float: right;
+    background-color: #1e272e;
+    color: #fff;
+
 }
 
+.nav-bar-button:hover{
+    background-color: #485460;
+
+}
 
 
 </style>
