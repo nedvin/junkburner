@@ -40,7 +40,7 @@ export default {
     margin-left: 15px;
 }
 
-@media screen and (max-width: 885px) {
+@media screen and (max-width: 1065px) {
     .header h1 {
         font-size: 1.1em;
         margin-top: 40px;

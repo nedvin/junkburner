@@ -1,7 +1,7 @@
 <template>
     <div
         class="nav-bar-button"
-        :class="{active : isActive, isSignUp : this.isSignup, isLogin : this.isLogin}"
+        :class="{active : this.isActive, isSignUp : this.isSignup, isLogin : this.isLogin}"
     >
         <p>
             {{text}}
@@ -17,18 +17,23 @@ export default {
             isLogin: this.text === "Login"
         }
     },
-    props: ["text", "isActive"],
+    props: {
+        text : String,
+        isActive : Boolean
+    },
     computed: {
-        
     }
 }
 </script>
 
 <style scoped>
 
-.isActive {
-    background-color: #fff;
-    color: #1e272e;
+.active {
+    background-color: #fff !important; 
+    color: #1e272e !important;
+    border-bottom-style: solid;
+    border-bottom-color: orange !important;
+    border-bottom-width: 5px; 
 }
 
 .nav-bar-button{
@@ -36,6 +41,10 @@ export default {
     background-color: #1e272e;
     color: #fff;
     display: inline-block;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: black;
+    border-width: 5px;
 }
 
 .nav-bar-button:hover{
