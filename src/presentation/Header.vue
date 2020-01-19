@@ -1,9 +1,7 @@
 <template>
-    <div id="container-header">
-        <div class="header">
-            <img :src="logo" />
-            <h1>JUNKFOOD BURNER</h1>
-        </div>
+    <div class="header">
+        <img :src="logo" />
+        <h1>JUNKFOOD BURNER</h1>
     </div>
 </template>
 
@@ -19,7 +17,10 @@ export default {
 </script>
 
 <style scoped>
-  
+
+.header {
+    width : 500px;
+}
 .header img {
     max-width: 80px;
     height: auto;
@@ -39,7 +40,7 @@ export default {
     margin-left: 15px;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 885px) {
     .header h1 {
         font-size: 1.1em;
         margin-top: 40px;

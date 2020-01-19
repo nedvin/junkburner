@@ -1,7 +1,13 @@
 <template>
-  <div id="container-header">
+  <div 
+    id="container-header"
+  >
     <v-header />
-    <v-navbar />
+    <div 
+      class="navbar-container"
+    >
+      <v-navbar />
+    </div>
   </div>
 </template>
 
@@ -20,11 +26,18 @@
 
 <style scoped>
 
+.navbar-container{
+  position:absolute;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+}
 #container-header {
       width: 100%;
+      height:100px;
       background-color: #1e272e;
       display: flex;
-      flex-direction: column;
-  }
+      flex-direction: row;
+}
 
 </style>
