@@ -1,15 +1,11 @@
 <template>
     <div>
-        <navbutton v-for="button in buttonsToRender" :text="button" :isActive="isActivePage(button)" :key="button"/>
-        <!--
-        <navbutton v-if="!this.signedIn" text="Sign up!" :isActive="false"/>
-        <navbutton text="Home" :isActive="true" />
-        <navbutton text="Search" :isActive="false"/>
-        <navbutton text="Meal" :isActive="false"/>
-        <navbutton text="Workout" :isActive="false"/>
-        <navbutton v-if="this.signedIn" text="Profile" :isActive="false"/>
-        <navbutton v-if="!this.signedIn" text="Login" :isActive="false"/>
-        -->
+        <navbutton
+            v-for="button in buttonsToRender" 
+            :text="button" 
+            :isActive="isActivePage(button)" 
+            :key="button"
+            @navBtnClicked="handleBtnPress"/>
     </div>
 </template>
 
@@ -28,10 +24,24 @@ export default {
     methods: {
         isActivePage(page){
             return this.$router.currentRoute.name === page;
+        },
+        handleBtnPress(event){
+            if(event==="Sign up!"){
+                //hantera firebase
+            }
+            else if(event === "Login"){
+                //hantera firebase
+            }
+            else if(event === "Profile"){
+                //hantera firebase(profil)
+            }
+            else{
+                this.$router.push(event);
+            }
         }
     },
     computed: {
-        buttonsToRender(allButtons){
+        buttonsToRender: function(allButtons){
             let render = this.buttons.slice();
             if(this.signedIn){
                 render = render.filter((element) => element !== "Sign up!" || element !== "Login");
@@ -40,8 +50,6 @@ export default {
                 render = render.filter((element) => element !== "Profile");
             }
             return render;
-            console.log(render);
-            //console.log(this.$router.currentRoute) TODO: ta bort när allt funkar!
         },
        
         ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn'])

@@ -1,7 +1,8 @@
 <template>
     <div
         class="nav-bar-button"
-        :class="{active : this.isActive, isSignUp : this.isSignup, isLogin : this.isLogin}"
+        :class="{active : this.isActive, signUp : this.isSignup, login : this.isLogin}"
+        @click="$emit('navBtnClicked', text)"
     >
         <p>
             {{text}}
@@ -29,39 +30,50 @@ export default {
 <style scoped>
 
 .active {
-    background-color: #fff !important; 
-    color: #1e272e !important;
     border-bottom-style: solid;
     border-bottom-color: orange !important;
     border-bottom-width: 5px; 
+    color: orange !important;
+}
+
+.signUp{
+    background-color: orange !important; 
+    color: #1e272e !important;
+}
+
+.login {
+    background-color: green !important; 
 }
 
 .nav-bar-button{
-    height: 100px;
+    height: 70px;
     background-color: #1e272e;
     color: #fff;
     display: inline-block;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-color: black;
-    border-width: 5px;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    width:70px;
 }
 
 .nav-bar-button:hover{
     background-color: #485460;
 }
 
-p {
-    text-align: center;
-    padding-top: 30px;
-    padding-left: 5px;
-    padding-right: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    width:70px;
+.nav-bar-button:active{
+    font-size: 11px;
+    padding-bottom: 3px;
+    background-color: #1e272e !important;
+    height: 50px;
+    color: #fff !important;
+    border-style: none !important;
 }
+
 @media screen and (max-width: 1020px){
-    p {
+    .nav-bar-button {
         font-size: 12px;
         width:50px;
     }

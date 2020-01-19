@@ -20,6 +20,11 @@ let router = new Router({
            // meta: {
            //     requiresAuth: true
            //   }
+        },
+        {
+            path: "*",
+            name: "404",
+            redirect: "/"
         }
     ]
 });
