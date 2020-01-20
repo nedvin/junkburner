@@ -31,9 +31,9 @@ export default {
 
 .active {
     border-bottom-style: solid;
-    border-bottom-color: orange !important;
+    border-bottom-color: orange;
     border-bottom-width: 5px; 
-    color: orange !important;
+    color: orange;
 }
 
 .signUp{

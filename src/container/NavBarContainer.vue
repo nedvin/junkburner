@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="reRender">
         <navbutton
             v-for="button in buttonsToRender" 
             :text="button" 
@@ -18,7 +18,8 @@ export default {
     name: "Toolbar",
     data() {
         return{
-            buttons : ["Sign up!", "Home", "Search", "Meal", "Workout", "Profile", "Login"]
+            buttons : ["Sign up!", "Home", "Search", "Meal", "Workout", "Profile", "Login"],
+            reRender : true
         }
     },
     methods: {
@@ -38,13 +39,20 @@ export default {
             else{
                 this.$router.push(event);
             }
+            this.forceReRender();
+        },
+        forceReRender(){ // Hack för att rerendra inte att rekommendera https://michaelnthiessen.com/force-re-render/
+            this.reRender = false;
+            this.$nextTick(() => {this.reRender = true;})
         }
     },
     computed: {
         buttonsToRender: function(allButtons){
             let render = this.buttons.slice();
             if(this.signedIn){
-                render = render.filter((element) => element !== "Sign up!" || element !== "Login");
+                render = 
+                    render.filter((element) => element !== "Sign up!")
+                    .filter((element) => element !== "Login");
             }
             else{
                 render = render.filter((element) => element !== "Profile");
