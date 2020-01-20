@@ -8,11 +8,11 @@
 
             <!-- LOGIN FORM -->
 
-            <logincontainer v-if="form.loginVisible"/>
+            <logincontainer />
 
             <!-- SIGN UP FORM -->
 
-            <signupcontainer v-if="form.signupVisible"/>
+            <signupcontainer />
             
         </div>
     </div>
@@ -31,36 +31,10 @@ export default {
     },
     data() {
         return {
-            form: {
-                loginVisible: false,
-                signupVisible: false,
-                message: 'Please do not use your real e-mail and password. Just use some fake adress.'
-            },
-            userData: {
-                email: "",
-                password: "",
-                age: 0,
-                weight: 0,
-                length: 0,
-                gender: "Male"
-            }
         };
     },
     methods: {
-        showForm(form) {
-            if (form === "login") {
-                this.form.loginVisible = true;
-                (this.form.title = "Login"), (this.form.button = "Login");
-            } else if (form === "signup") {
-                this.form.signupVisible = true;
-                (this.form.title = "Sign up"), (this.form.button = "Sign up");
-            }
-        },
 
-        close() {
-            this.form.loginVisible = false;
-            this.form.signupVisible = false;
-        }
     }
 };
 </script>

@@ -4,7 +4,7 @@ import meal from "./modules/Meal";
 import workout from "./modules/Workout";
 import search from "./modules/Search";
 import user from "./modules/User";
-
+import formVisibility from "./modules/FormVisibility"
 
 Vue.use(Vuex);
 
@@ -13,6 +13,7 @@ export default new Vuex.Store({
    meal,
    workout,
    search,
-   user
+   user,
+   formVisibility
   }
 });

@@ -16,7 +16,7 @@ const getters = {
     totalKcal: state => state.totalKcal,
     totalTime: state => state.totalTime,
     sessions: state => state.sessions,
-    totalExercise: state => state.slice()
+    totalExercise: state => JSON.parse(JSON.stringify(state))
 };
 
 /**************  ACTIONS ***************************/
