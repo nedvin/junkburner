@@ -29,11 +29,12 @@ export default {
 
 <style scoped>
 
+/**STYLES */
 .active {
     border-bottom-style: solid;
     border-bottom-color: orange;
     border-bottom-width: 5px; 
-    color: orange;
+    color: orange !important;
 }
 
 .signUp{
@@ -59,8 +60,10 @@ export default {
     width:70px;
 }
 
+/** EVENTS */
 .nav-bar-button:hover{
     background-color: #485460;
+    cursor: pointer;
 }
 
 .nav-bar-button:active{
@@ -72,6 +75,7 @@ export default {
     border-style: none !important;
 }
 
+/** QUERIES */
 @media screen and (max-width: 1020px){
     .nav-bar-button {
         font-size: 12px;

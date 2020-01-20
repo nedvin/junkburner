@@ -3,20 +3,8 @@
         <div id="container-home">
 
             <!-- WRAPPER FOR WELCOME TEXT, IMG AND BUTTONS -->
-            <div>
-                <img src="../images/homeHamburger.png" />
-                <p id="home-text">
-                    Welcome to Junk Burner! Here you can create fast food meals
-                    and figure out how much you need to workout to burn it off!
-                    Click on the button below to create a free account.
-                </p>
-                <button @click="showForm('signup')" class="btn btn-orange">
-                    Sign up!
-                </button>
-                <button @click="showForm('login')" class="btn btn-green">
-                    Login
-                </button>
-            </div>
+
+            <homecontainer />
 
             <!-- LOGIN FORM -->
             <div v-if="form.loginVisible" class="login-form">
@@ -119,8 +107,12 @@
 import firebase from "firebase";
 import { db } from '@/main';
 import { mapActions } from "vuex";
+import homecontainer from "@/container/HomeContainer";
 
 export default {
+    components: {
+        homecontainer: homecontainer
+    },
     data() {
         return {
             form: {

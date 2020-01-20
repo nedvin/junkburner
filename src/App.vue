@@ -58,27 +58,6 @@ body {
     border: 1px solid Black;
 }
 
-.btn {
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-.btn:hover {
-    cursor: pointer;
-}
-
-.btn-green {
-    background-color: #05c46b;
-}
-
-.btn-orange {
-    background-color: #ffa801;
-}
-
 .btn-abort {
     background-color: #ff3f34;
 }
