@@ -60,7 +60,7 @@ export default {
             return render;
         },
        
-        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn'])
+        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn']) // TODO: Får se om det behövs ngn mer getter än signedIn 
         
     },
     components: {
