@@ -35,16 +35,16 @@ export default {
     border-bottom-color: orange;
     border-bottom-width: 5px; 
     color: orange !important;*/
-    border-bottom: 5px solid orange;
+    border-bottom: 5px solid #ffa801;
 }
 
 .signUp{
-    background-color: orange !important; 
+    background-color: #ffa801 !important; 
     color: #1e272e !important;
 }
 
 .login {
-    background-color: green !important; 
+    background-color: #05c46b !important; 
 }
 
 .nav-bar-button{
@@ -94,7 +94,7 @@ export default {
 
     .active {
     border: none;
-    color: orange;
+    color: #ffa801;
 }
 }
 
