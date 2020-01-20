@@ -31,10 +31,11 @@ export default {
 
 /**STYLES */
 .active {
-    border-bottom-style: solid;
+    /*border-bottom-style: solid;
     border-bottom-color: orange;
     border-bottom-width: 5px; 
-    color: orange !important;
+    color: orange !important;*/
+    border-bottom: 5px solid orange;
 }
 
 .signUp{
@@ -81,6 +82,20 @@ export default {
         font-size: 12px;
         width:50px;
     }
+}
+
+@media screen and (max-width: 850px){
+    .nav-bar-button {
+        font-size: 12px;
+        width:50px;
+        height: 37px;
+        padding-top: 2px;
+    }
+
+    .active {
+    border: none;
+    color: orange;
+}
 }
 
 
