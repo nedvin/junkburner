@@ -51,13 +51,6 @@ body {
     width: 100%;
 }
 
-.old-button {
-    background-color: coral;
-    padding: 10px;
-    font-weight: bold;
-    border: 1px solid Black;
-}
-
 .btn-abort {
     background-color: #ff3f34;
 }
