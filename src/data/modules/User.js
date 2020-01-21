@@ -96,20 +96,17 @@ const actions = {
             gender: userInfo.gender
         }).then(() => {console.log('success')}) 
     },
-    signup({commit}, user) {
+    signUpUser({commit}, user) {
         firebase
             .auth()
-            .createUserWithEmailAndPassword(this.userData.email, this.userData.password).then(cred => {
+            .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
                 return db.collection('users').doc(cred.user.uid).set({
                     userID: cred.user.uid,
-                    age: this.userData.age,
-                    weight: this.userData.weight,
-                    length: this.userData.length,
-                    gender: this.userData.gender
+                    age: user.age,
+                    weight: user.weight,
+                    length: user.length,
+                    gender: user.gender
                 })
-            })
-            .then(() => {  
-                this.close();
             })
             .catch(err => {
                 alert(err.message);

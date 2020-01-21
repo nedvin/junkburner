@@ -22,10 +22,14 @@
             ...mapActions([
                 "setSignUpVisible", 
                 "setSignUpNotVisible", 
-                "toggleSignUpVisible"
+                "toggleSignUpVisible",
+                "signUpUser",
+                "loginUser"
             ]),
-            signUp(userData){
-                console.log(userData);
+            async signUp(userData){
+                await this.signUpUser(userData);
+                this.close();
+                this.loginUser(userData);
             }
         },
         components: {
