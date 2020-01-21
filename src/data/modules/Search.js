@@ -23,6 +23,7 @@ const handleHTTPError = (response)  => {
 const state = {
     searchResult : [],
     searchQuery : "",
+    restaurant: "",
     selectedDish : {},
     dishDetails : {},
     apiNutrientData: []
@@ -34,6 +35,7 @@ const getters = {
     searchQuery : state => state.searchQuery,
     selectedDish : state => state.selectedDish,
     dishDetails : state => state.dishDetails,
+    restaurant : state => state.restaurant
     apiNutrientData : state => state.apiNutrientData
 };
 
@@ -80,6 +82,15 @@ const actions = {
             .then(response => commit("newDishDetails", response.foods[0]));
 
     },
+
+    selectRestaurant({commit}, restaurant) {
+        commit("changeQuery", "")
+        commit("selectRestaurant", restaurant)
+    },
+
+    changeQuery({commit}, query) {
+        commit("changeQuery", query)
+
     INIT_SEARCH({commit}){
         let url = "https://trackapi.nutritionix.com/v2/utils/nutrients";
         return fetch(url)
@@ -119,19 +130,12 @@ const mutations = {
     newDishDetails(state, dish){
         state.dishDetails = dish;
     },
+
+    selectRestaurant(state, restaurant) {
+        state.restaurant = restaurant;
+
     addApiData(state, data){
         state.apiNutrientData = data;
-    },
-    blaj(state,result){
-        result = result.map(dish => {
-            dish.full_nutrients.array.forEach(dishNutrient => {
-                state.apiNutrientData.forEach(nutrient => {
-                    if(dishNutrient.attr_id === nutrient.id){
-                        dishNutrient.name = nutrient.api_name;
-                    }
-                })
-            });
-        });
     }
 
 };

@@ -7,53 +7,11 @@
         <!-- CHOOSE RESTAURANT -->
         <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
-            <div class="restaurant-buttons-row">
-                <div
-                    v-for="button in restaurantButtons"
-                    :key="button.key"
-                    class="restaurant-button"
-                    @click="displayMenuOptions(button.key)"
-                >
-                    <img
-                        :src="button.url"
-                        :alt="button.alt"
-                        class="responsive-pic"
-                    />
-                </div>
-            </div>
+            <v-restaurant-btn-container/>
         </div>
 
         <!-- CHOOSE TYPE OF FOOD -->
-        <div v-if="mcDonalds.visible" class="types-of-food-box">
-            <span
-                v-for="icon in mcDonalds.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
-        <div v-if="burgerKing.visible" class="types-of-food-box">
-            <span
-                v-for="icon in burgerKing.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
-        <div v-if="subway.visible" class="types-of-food-box">
-            <span
-                v-for="icon in subway.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
+        <v-food-options-container/>        
 
         <!-- SEARCH RESULTS -->
         <div class="search-results-box">
@@ -73,89 +31,15 @@
 import { mapGetters, mapActions } from "vuex";
 import * as impIcons from '@/constants/icons';
 import foodCard from '@/presentation/FoodCard'
+import restaurantButtonContainer from '@/container/RestaurantButtonContainer'
+import foodOptionsContainer from '@/container/FoodOptionsContainer'
 
-export default {
-    data() {
-        return {
-            restaurantButtons: [
-                {
-                    url: require("@/images/mcdonalds_logo.png"),
-                    alt: "McDonalds logo",
-                    key: "mcdonalds"
-                },
-                {
-                    url: require("@/images/bk_logo.png"),
-                    alt: "Burger King logo",
-                    key: "burgerking"
-                },
-                {
-                    url: require("@/images/subway_logo.png"),
-                    alt: "Subway logo",
-                    key: "subway"
-                }
-            ],
-            mcDonalds: {
-                visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
-            },
-            burgerKing: {
-                visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
-            },
-            subway: {
-                visible: false,
-                icons: [impIcons.SANDWICH_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.COOKIES_ICON, impIcons.DRINKS_ICON]
-            }
-        };
-    },
-    methods: {
-        showMoreInfo() {
-            if(this.infoBoxVisible === true) {
-                this.infoBoxVisible = false;
-                return;
-            }
-            this.infoBoxVisible = true
-        },
-        close() {
-            this.infoBoxVisible = false
-        },
-        displayMenuOptions(restaurant) {
-            switch (restaurant) {
-                case "mcdonalds":
-                    if (this.mcDonalds.visible === true) {
-                        this.mcDonalds.visible = false;
-                        return;
-                    }
-
-                    this.mcDonalds.visible = true;
-                    this.burgerKing.visible = false;
-                    this.subway.visible = false;
-                    break;
-                case "burgerking":
-                    if (this.burgerKing.visible === true) {
-                        this.burgerKing.visible = false;
-                        return;
-                    }
-
-                    this.mcDonalds.visible = false;
-                    this.burgerKing.visible = true;
-                    this.subway.visible = false;
-                    break;
-                case "subway":
-                    if (this.subway.visible === true) {
-                        this.subway.visible = false;
-                        return;
-                    }
-                    this.mcDonalds.visible = false;
-                    this.burgerKing.visible = false;
-                    this.subway.visible = true;
-                    break;
-            }
-        },
-    },
+export default { 
     props : ["searchResult", "dishDetails"],
     components: {
-        'v-food-card': foodCard
+        'v-food-card': foodCard,
+        'v-restaurant-btn-container': restaurantButtonContainer,
+        'v-food-options-container': foodOptionsContainer
     }
 };
 </script>
@@ -202,24 +86,6 @@ export default {
     justify-content: space-around;
 }
 
-.restaurant-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px dashed #000;
-    background-color: #fff;
-    padding: 10px;
-    width: 120px;
-    margin: 20px;
-}
-
-.restaurant-button:hover,
-.restaurant-button:active {
-    background-color: orange;
-    border-color: orange;
-    cursor: pointer;
-}
-
 /******** SEARCH RESULTS ******/
 .search-results-box {
     width: 80%;
@@ -229,35 +95,6 @@ export default {
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-}
-
-/****** CHOOSE TYPE OF FOOD *******/
-.types-of-food-box {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.type-button {
-    display: flex;
-    justify-content: center;
-    border: 1px solid #696969;
-    border-radius: 50px;
-    align-items: center;
-    padding: 4px 15px;
-    margin-left: 5px;
-    margin-top: 10px;
-}
-
-.type-button p {
-    margin-left: 5px;
-}
-
-.type-button:hover {
-    background-color: orange;
-    color: #fff;
-    cursor: pointer;
 }
 
 /***** MEDIA QUERIES ******/

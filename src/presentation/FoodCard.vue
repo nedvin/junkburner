@@ -7,6 +7,9 @@
             <button class="btn btn-add">Add to meal</button>
             <button class="btn btn-info" @click="displayInfo">More info</button>
         </div>
+        <div class="spinner-div" v-if="loading">
+            <v-spinner/>
+        </div>
         <div class="info-table" v-if="showInfo">
             <table>
                 <tr>
@@ -31,14 +34,19 @@
 </template>
 
 <script>
+import loadingSpinner from '@/presentation/LoadingSpinner'
+
 export default {
     data() {
         return {
-            showInfo: false
+            showInfo: false,
+            loading: false
         };
     },
     methods: {
         displayInfo() {
+            this.loading = true;
+            setTimeout(() => {this.loading = false}, 3000)
             if(this.showInfo === true) {
                 this.showInfo = false;
                 return;
@@ -53,7 +61,10 @@ export default {
         fat: Number,
         kcal: Number
     },
-    computed: {}
+    computed: {},
+    components: {
+        'v-spinner': loadingSpinner
+    }
 };
 </script>
 
@@ -77,6 +88,12 @@ export default {
     text-transform: capitalize;
     padding: 5px;
     background-color: orange;
+}
+
+.spinner-div {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 .food-options-box {
