@@ -11,36 +11,7 @@
         </div>
 
         <!-- CHOOSE TYPE OF FOOD -->
-        <div v-if="mcDonalds.visible" class="types-of-food-box">
-            <span
-                v-for="icon in mcDonalds.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
-        <div v-if="burgerKing.visible" class="types-of-food-box">
-            <span
-                v-for="icon in burgerKing.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
-        <div v-if="subway.visible" class="types-of-food-box">
-            <span
-                v-for="icon in subway.icons"
-                :key="icon.name"
-                class="type-button"
-            >
-                <img :src="icon.url" class="icon" />
-                <p>{{ icon.name }}</p>
-            </span>
-        </div>
+        <v-food-options-container/>        
 
         <!-- SEARCH RESULTS -->
         <div class="search-results-box">
@@ -61,24 +32,9 @@ import { mapGetters, mapActions } from "vuex";
 import * as impIcons from '@/constants/icons';
 import foodCard from '@/presentation/FoodCard'
 import restaurantButtonContainer from '@/container/RestaurantButtonContainer'
+import foodOptionsContainer from '@/container/FoodOptionsContainer'
 
 export default {
-    data() {
-        return {
-            mcDonalds: {
-                visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
-            },
-            burgerKing: {
-                visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
-            },
-            subway: {
-                visible: false,
-                icons: [impIcons.SANDWICH_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.COOKIES_ICON, impIcons.DRINKS_ICON]
-            }
-        };
-    },
     methods: {
         showMoreInfo() {
             if(this.infoBoxVisible === true) {
@@ -127,7 +83,8 @@ export default {
     props : ["searchResult", "dishDetails"],
     components: {
         'v-food-card': foodCard,
-        'v-restaurant-btn-container': restaurantButtonContainer
+        'v-restaurant-btn-container': restaurantButtonContainer,
+        'v-food-options-container': foodOptionsContainer
     }
 };
 </script>
@@ -204,7 +161,7 @@ export default {
 }
 
 /****** CHOOSE TYPE OF FOOD *******/
-.types-of-food-box {
+/*.types-of-food-box {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -230,7 +187,7 @@ export default {
     background-color: orange;
     color: #fff;
     cursor: pointer;
-}
+}*/
 
 /***** MEDIA QUERIES ******/
 @media screen and (max-width: 670px) {
