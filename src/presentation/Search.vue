@@ -57,46 +57,14 @@
 
         <!-- SEARCH RESULTS -->
         <div class="search-results-box">
-            <div v-for="result in searchResult" :key="result.nix_item_id" class="food-item-box">
-                <div class="food-picture-box">
-                    <img :src="result.photo.thumb" class="responsive-pic" />
-                </div>
-                <div class="food-title-box">
-                    {{ result.food_name }}
-                </div>
-                <div class="food-options-box">
-                    <button class="btn btn-add">Add to meal</button>
-                    <button class="btn btn-info" @click="showMoreInfo">More info</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- INFO POPUP BOX, REMAKE THIS -->
-        <div v-if="infoBoxVisible" class="food-info">
-                    <span>{{ fakeResult.name }}</span>
-                    <hr>
-                    <table>
-                        <tr>
-                            <td>Carbohydrates:</td>
-                            <td>{{ fakeResult.carbs }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Fat:</td>
-                            <td>{{ fakeResult.fat }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Protein:</td>
-                            <td>{{ fakeResult.protein }} grams</td>
-                        </tr>
-                        <tr>
-                            <td>Calories:</td>
-                            <td>900</td>
-                        </tr>
-                    </table>
-                    <div class="food-info-buttons">
-                        <button class="btn btn-abort" @click="close">Close</button>
-                        <button class="btn btn-green">Add to meal</button>
-                    </div>
+            <v-food-card v-for="result in searchResult" 
+                :key="result.nix_item_id"
+                :kcal="result.nf_calories"
+                :carbs="result.nf_total_carbohydrate"
+                :protein="result.nf_protein"
+                :fat="result.nf_total_fat"
+                :name="result.food_name"
+            />
         </div>
     </div>
 </template>
@@ -104,6 +72,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import * as impIcons from '@/constants/icons';
+import foodCard from '@/presentation/FoodCard'
 
 export default {
     data() {
@@ -136,17 +105,7 @@ export default {
             subway: {
                 visible: false,
                 icons: [impIcons.SANDWICH_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.COOKIES_ICON, impIcons.DRINKS_ICON]
-            },
-            fakeResult: {
-                thumbnail:
-                    "https://d2xdmhkmkbyw75.cloudfront.net/2583_thumb.jpg",
-                name: "big mac",
-                calories: 540,
-                fat: 28,
-                carbs: 45,
-                protein: 25
-            },
-            infoBoxVisible: false
+            }
         };
     },
     methods: {
@@ -194,7 +153,10 @@ export default {
             }
         },
     },
-    props : ["searchResult", "dishDetails"]
+    props : ["searchResult", "dishDetails"],
+    components: {
+        'v-food-card': foodCard
+    }
 };
 </script>
 
@@ -209,12 +171,6 @@ export default {
 
 .box-80 {
     width: 80%;
-}
-
-.btn {
-    padding: 4px;
-    color: #fff;
-    border: none;
 }
 
 .responsive-pic {
@@ -271,35 +227,8 @@ export default {
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-}
-
-.food-item-box {
-    margin-left: 7px;
-    margin-right: 7px;
-    margin-bottom: 15px;
-    border: 1px solid black;
-   width: 210px;
-}
-
-.food-title-box {
-    display: flex;
-    justify-content: center;
-    text-transform: capitalize;
-    padding: 5px;
-    background-color: orange;
-}
-
-.food-options-box {
-    padding: 5px;
-}
-
-.btn-add {
-    background-color: green;
-}
-
-.btn-info {
-    background-color: blue;
 }
 
 /****** CHOOSE TYPE OF FOOD *******/
@@ -330,38 +259,6 @@ export default {
     color: #fff;
     cursor: pointer;
 }
-
-/****** INFO POPUP ******/
-.food-info-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.food-info-buttons button {
-    margin: 10px;
-}
-
-.food-info span {
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-td {
-    padding: 2px;
-}
-
-.food-info {
-    background-color: #808e9b;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 
 /***** MEDIA QUERIES ******/
 @media screen and (max-width: 670px) {
