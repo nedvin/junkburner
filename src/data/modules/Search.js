@@ -78,6 +78,10 @@ const actions = {
             .then(response => response.json())
             .then(response => commit("newDishDetails", response.foods[0]));
 
+    },
+
+    selectRestaurant({commit}, restaurant) {
+        commit("selectRestaurant", restaurant)
     }
 
 };
@@ -98,6 +102,10 @@ const mutations = {
 
     newDishDetails(state, dish){
         state.dishDetails = dish;
+    },
+
+    selectRestaurant(state, restaurant) {
+        state.restaurant = restaurant;
     }
 
 };

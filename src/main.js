@@ -33,7 +33,7 @@ new Vue({
     this.$store.dispatch('INIT_WORKOUT');
 
 
-    this.$store.dispatch("newQuery", "mcdonalds burger");
+ /*   this.$store.dispatch("newQuery", "mcdonalds burger");
     await this.$store.dispatch("newSearch");
     this.$store.dispatch("selectDish", 4);
     await this.$store.dispatch("newSearchDetails");

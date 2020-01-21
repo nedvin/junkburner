@@ -7,9 +7,7 @@
         <!-- CHOOSE RESTAURANT -->
         <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
-            <div class="restaurant-buttons-row">
-                <v-restaurant-button v-for="button in restaurantButtons" :isActive="activeRestaurant(button.key)" :key="button.key" :url="button.url" :alt="button.alt"/>
-            </div>
+            <v-restaurant-btn-container/>
         </div>
 
         <!-- CHOOSE TYPE OF FOOD -->
@@ -62,28 +60,11 @@
 import { mapGetters, mapActions } from "vuex";
 import * as impIcons from '@/constants/icons';
 import foodCard from '@/presentation/FoodCard'
-import restaurantButton from '@/presentation/RestaurantButton'
+import restaurantButtonContainer from '@/container/RestaurantButtonContainer'
 
 export default {
     data() {
         return {
-            restaurantButtons: [
-                {
-                    url: require("@/images/mcdonalds_logo.png"),
-                    alt: "McDonalds logo",
-                    key: "McDonalds"
-                },
-                {
-                    url: require("@/images/bk_logo.png"),
-                    alt: "Burger King logo",
-                    key: "Burger King"
-                },
-                {
-                    url: require("@/images/subway_logo.png"),
-                    alt: "Subway logo",
-                    key: "Subway"
-                }
-            ],
             mcDonalds: {
                 visible: false,
                 icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
@@ -99,9 +80,6 @@ export default {
         };
     },
     methods: {
-        activeRestaurant(name) {
-            return name === this.restaurant;
-        },
         showMoreInfo() {
             if(this.infoBoxVisible === true) {
                 this.infoBoxVisible = false;
@@ -149,10 +127,7 @@ export default {
     props : ["searchResult", "dishDetails"],
     components: {
         'v-food-card': foodCard,
-        'v-restaurant-button': restaurantButton
-    },
-    computed: {
-        ...mapGetters(['restaurant'])
+        'v-restaurant-btn-container': restaurantButtonContainer
     }
 };
 </script>

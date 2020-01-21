@@ -1,5 +1,5 @@
 <template>
-    <div class="restaurant-button" :class="{active: isActive}">
+    <div class="restaurant-button" :class="{active: isActive}" @click="$emit('click')">
         <img :src="url" :alt="alt" class="responsive-pic" />
     </div>
 </template>
