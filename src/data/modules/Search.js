@@ -81,7 +81,12 @@ const actions = {
     },
 
     selectRestaurant({commit}, restaurant) {
+        commit("changeQuery", "")
         commit("selectRestaurant", restaurant)
+    },
+
+    changeQuery({commit}, query) {
+        commit("changeQuery", query)
     }
 
 };

@@ -34,52 +34,7 @@ import foodCard from '@/presentation/FoodCard'
 import restaurantButtonContainer from '@/container/RestaurantButtonContainer'
 import foodOptionsContainer from '@/container/FoodOptionsContainer'
 
-export default {
-    methods: {
-        showMoreInfo() {
-            if(this.infoBoxVisible === true) {
-                this.infoBoxVisible = false;
-                return;
-            }
-            this.infoBoxVisible = true
-        },
-        close() {
-            this.infoBoxVisible = false
-        },
-        displayMenuOptions(restaurant) {
-            switch (restaurant) {
-                case "mcdonalds":
-                    if (this.mcDonalds.visible === true) {
-                        this.mcDonalds.visible = false;
-                        return;
-                    }
-
-                    this.mcDonalds.visible = true;
-                    this.burgerKing.visible = false;
-                    this.subway.visible = false;
-                    break;
-                case "burgerking":
-                    if (this.burgerKing.visible === true) {
-                        this.burgerKing.visible = false;
-                        return;
-                    }
-
-                    this.mcDonalds.visible = false;
-                    this.burgerKing.visible = true;
-                    this.subway.visible = false;
-                    break;
-                case "subway":
-                    if (this.subway.visible === true) {
-                        this.subway.visible = false;
-                        return;
-                    }
-                    this.mcDonalds.visible = false;
-                    this.burgerKing.visible = false;
-                    this.subway.visible = true;
-                    break;
-            }
-        },
-    },
+export default { 
     props : ["searchResult", "dishDetails"],
     components: {
         'v-food-card': foodCard,
@@ -131,24 +86,6 @@ export default {
     justify-content: space-around;
 }
 
-/*.restaurant-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px dashed #000;
-    background-color: #fff;
-    padding: 10px;
-    width: 120px;
-    margin: 20px;
-}
-
-.restaurant-button:hover,
-.restaurant-button:active {
-    background-color: orange;
-    border-color: orange;
-    cursor: pointer;
-}*/
-
 /******** SEARCH RESULTS ******/
 .search-results-box {
     width: 80%;
@@ -159,35 +96,6 @@ export default {
     align-items: flex-start;
     flex-wrap: wrap;
 }
-
-/****** CHOOSE TYPE OF FOOD *******/
-/*.types-of-food-box {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.type-button {
-    display: flex;
-    justify-content: center;
-    border: 1px solid #696969;
-    border-radius: 50px;
-    align-items: center;
-    padding: 4px 15px;
-    margin-left: 5px;
-    margin-top: 10px;
-}
-
-.type-button p {
-    margin-left: 5px;
-}
-
-.type-button:hover {
-    background-color: orange;
-    color: #fff;
-    cursor: pointer;
-}*/
 
 /***** MEDIA QUERIES ******/
 @media screen and (max-width: 670px) {

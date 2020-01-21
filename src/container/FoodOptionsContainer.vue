@@ -1,15 +1,15 @@
 <template>
     <div>
-        <v-food-options v-if="isSelected(mcDonalds.name)" :icons="mcDonalds.icons" :key="mcDonalds.name" :restaurant="mcDonalds.name"/>
-        <v-food-options v-if="isSelected(burgerKing.name)" :icons="burgerKing.icons" :key="burgerKing.name" :restaurant="burgerKing.name"/>
-        <v-food-options v-if="isSelected(subway.name)" :icons="subway.icons" :key="subway.name" :restaurant="subway.name"/>
+        <v-food-options @click="changeQuery" v-if="isSelected(mcDonalds.name)" :icons="mcDonalds.icons" :key="mcDonalds.name" :restaurant="mcDonalds.name"/>
+        <v-food-options @click="changeQuery" v-if="isSelected(burgerKing.name)" :icons="burgerKing.icons" :key="burgerKing.name" :restaurant="burgerKing.name"/>
+        <v-food-options @click="changeQuery" v-if="isSelected(subway.name)" :icons="subway.icons" :key="subway.name" :restaurant="subway.name"/>
     </div>
 </template>
 
 <script>
 import FoodOptions from '@/presentation/FoodOptions'
 import * as impIcons from '@/constants/icons'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
     name: 'FoodOptionsContainer',
@@ -35,7 +35,8 @@ export default {
     methods: {
         isSelected(name) {
             return name === this.restaurant;
-        }
+        },
+        ...mapActions(['changeQuery'])
     },
     computed: {
         ...mapGetters(['restaurant'])

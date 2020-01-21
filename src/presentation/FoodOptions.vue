@@ -1,6 +1,6 @@
 <template>
     <div class="types-of-food-box">
-        <span v-for="icon in icons" :key="icon.name" class="type-button">
+        <span v-for="icon in icons" :key="icon.name" class="type-button" :class="{active: isActive(icon.query)}" @click="$emit('click', icon.query)">
             <img :src="icon.url" class="icon" />
             <p>{{ icon.name }}</p>
         </span>
@@ -12,8 +12,16 @@ import {mapGetters} from 'vuex'
 
 export default {
     name: "FoodOptions",
+    methods: {
+        isActive(query) {
+            return query === this.searchQuery
+        }
+    },
     props: {
         icons: Array
+    },
+    computed: {
+        ...mapGetters(['searchQuery'])
     }
 };
 </script>
@@ -41,7 +49,7 @@ export default {
     margin-left: 5px;
 }
 
-.type-button:hover {
+.type-button:hover, .active {
     background-color: orange;
     color: #fff;
     cursor: pointer;
