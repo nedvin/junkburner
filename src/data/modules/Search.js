@@ -25,7 +25,8 @@ const state = {
     searchQuery : "",
     restaurant: "",
     selectedDish : {},
-    dishDetails : {}
+    dishDetails : {},
+    apiNutrientData: []
 };
 
 /**************  GETTERS ***************************/
@@ -35,6 +36,7 @@ const getters = {
     selectedDish : state => state.selectedDish,
     dishDetails : state => state.dishDetails,
     restaurant : state => state.restaurant
+    apiNutrientData : state => state.apiNutrientData
 };
 
 /**************  ACTIONS ***************************/
@@ -46,7 +48,8 @@ const actions = {
         let apiHeader = new Headers(apiHeaderTemplate);
         apiHeader.append("Content-Type", "application/json");
         let apiBody = JSON.stringify({
-            "query" : state.searchQuery
+            "query" : state.searchQuery,
+            "detailed": true
         })
         return fetch(url, {
             method : "POST",
@@ -87,6 +90,15 @@ const actions = {
 
     changeQuery({commit}, query) {
         commit("changeQuery", query)
+
+    INIT_SEARCH({commit}){
+        let url = "https://trackapi.nutritionix.com/v2/utils/nutrients";
+        return fetch(url)
+            .then(handleHTTPError)
+            .then(response => response.json())
+            .then(response => response.filter(
+                element => element.api_name === "nf_protein" || element.api_name === "nf_total_fat" || element.api_name === "nf_total_carbohydrate" || element.api_name === "nf_calories"
+            )).then(response => commit("addApiData", response));
     }
 
 };
@@ -98,6 +110,16 @@ const mutations = {
     },
 
     newSearchResult(state, result){
+        result = result.map(dish => {
+            dish.full_nutrients.forEach(dishNutrient => {
+                state.apiNutrientData.forEach(nutrient => {
+                    if(dishNutrient.attr_id === nutrient.attr_id){
+                        dishNutrient.name = nutrient.api_name;
+                    }
+                })
+            });
+            return dish;
+        });
         state.searchResult = result;
     },
 
@@ -111,6 +133,9 @@ const mutations = {
 
     selectRestaurant(state, restaurant) {
         state.restaurant = restaurant;
+
+    addApiData(state, data){
+        state.apiNutrientData = data;
     }
 
 };

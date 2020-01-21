@@ -28,10 +28,10 @@ export default {
         },
         handleBtnPress(event){
             if(event==="Sign up!"){
-                //hantera firebase
+                this.toggleSignUpVisible();
             }
             else if(event === "Login"){
-                //hantera firebase
+                this.toggleLoginVisible();
             }
             else if(event === "Profile"){
                 //hantera firebase(profil)
@@ -44,7 +44,11 @@ export default {
         forceReRender(){ // Hack för att rerendra inte att rekommendera https://michaelnthiessen.com/force-re-render/
             this.reRender = false;
             this.$nextTick(() => {this.reRender = true;})
-        }
+        },
+        ...mapActions([
+            "toggleLoginVisible",
+            "toggleSignUpVisible"
+        ])
     },
     computed: {
         buttonsToRender: function(allButtons){
