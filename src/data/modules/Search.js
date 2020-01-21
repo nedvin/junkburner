@@ -35,7 +35,7 @@ const getters = {
     searchQuery : state => state.searchQuery,
     selectedDish : state => state.selectedDish,
     dishDetails : state => state.dishDetails,
-    restaurant : state => state.restaurant
+    restaurant : state => state.restaurant,
     apiNutrientData : state => state.apiNutrientData
 };
 
@@ -90,6 +90,7 @@ const actions = {
 
     changeQuery({commit}, query) {
         commit("changeQuery", query)
+    },
 
     INIT_SEARCH({commit}){
         let url = "https://trackapi.nutritionix.com/v2/utils/nutrients";
@@ -133,6 +134,7 @@ const mutations = {
 
     selectRestaurant(state, restaurant) {
         state.restaurant = restaurant;
+    },
 
     addApiData(state, data){
         state.apiNutrientData = data;
