@@ -31,10 +31,7 @@ export default {
 
 /**STYLES */
 .active {
-    /*border-bottom-style: solid;
-    border-bottom-color: orange;
-    border-bottom-width: 5px; 
-    color: orange !important;*/
+    color: orange !important;
     border-bottom: 5px solid #ffa801;
 }
 

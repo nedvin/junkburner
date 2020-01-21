@@ -2,6 +2,8 @@
     <div id="app" class="container wrapper">
         <v-header />
         <router-view id="container-main" />
+        <signupcontainer />
+        <logincontainer />
         <v-footer />
     </div>
 </template>
@@ -9,11 +11,15 @@
 <script>
 import footer from "./presentation/Footer";
 import header from "./presentation/HeaderView";
+import logincontainer from "@/container/LoginContainer";
+import signupcontainer from "@/container/SignUpContainer";
 export default {
     name: "App",
     components: {
         "v-header": header,
-        "v-footer": footer
+        "v-footer": footer,
+        "logincontainer" : logincontainer,
+        "signupcontainer" : signupcontainer 
     }
 };
 </script>

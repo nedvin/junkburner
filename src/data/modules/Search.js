@@ -121,19 +121,7 @@ const mutations = {
     },
     addApiData(state, data){
         state.apiNutrientData = data;
-    },
-    blaj(state,result){
-        result = result.map(dish => {
-            dish.full_nutrients.array.forEach(dishNutrient => {
-                state.apiNutrientData.forEach(nutrient => {
-                    if(dishNutrient.attr_id === nutrient.id){
-                        dishNutrient.name = nutrient.api_name;
-                    }
-                })
-            });
-        });
     }
-
 };
 
 export default {

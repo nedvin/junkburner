@@ -1,5 +1,5 @@
 <template>
-    <loginform v-if="this.loginVisibility" @closeForm="close"/>
+    <loginform v-if="this.loginVisibility" @closeForm="close" @login="login" />
 </template>
 
 <script>
@@ -22,8 +22,13 @@
             ...mapActions([
                 "setLoginVisible", 
                 "setLoginNotVisible", 
-                "toggleLoginVisible"
-            ])
+                "toggleLoginVisible",
+                "loginUser"
+            ]),
+            login(userData){
+                this.loginUser(userData);
+                this.close();
+            }
         },
         components: {
             loginform: loginform

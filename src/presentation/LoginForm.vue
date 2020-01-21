@@ -53,6 +53,8 @@ export default {
     transform: translate(-50%, -50%);
     padding-left: 20px;
     padding-right: 20px;
+    border: 1px solid black;
+    text-align: center;
 }
 
 .login-form div {

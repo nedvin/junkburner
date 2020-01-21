@@ -38,21 +38,31 @@ const actions = {
 /**************  MUTATIONS ***************************/
 const mutations = {
     setLoginVisible(state){
-        state.loginVisibility = true;
+        if(!state.signUpVisibility){
+            state.loginVisibility = true;
+        } 
     },
     setLoginNotVisible(state){
         state.loginVisibility = false;
     },
     toggleLoginVisible(state){
+        if(state.signUpVisibility && !state.loginVisibility){
+            state.signUpVisibility = false;
+        }
         state.loginVisibility = !state.loginVisibility;
     },
     setSignUpVisible(state){
-        state.signUpVisibility = true;
+        if(!state.loginVisibility){
+            state.signUpVisibility = true;
+        }
     },
     setSignUpNotVisible(state){
         state.signUpVisibility = false;
     },
     toggleSignUpVisible(state){
+        if(!state.signUpVisibility && state.loginVisibility){
+            state.loginVisibility = false;
+        }
         state.signUpVisibility = !state.signUpVisibility;
     }
 };
