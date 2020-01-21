@@ -139,7 +139,6 @@ const mutations = {
     addApiData(state, data){
         state.apiNutrientData = data;
     }
-
 };
 
 export default {

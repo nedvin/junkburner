@@ -1,5 +1,5 @@
 <template>
-    <signupform v-if="this.signUpVisibility" @closeForm="close"/>
+    <signupform v-if="this.signUpVisibility" @closeForm="close" @signUp="signUp" />
 </template>
 
 <script>
@@ -23,7 +23,10 @@
                 "setSignUpVisible", 
                 "setSignUpNotVisible", 
                 "toggleSignUpVisible"
-            ])
+            ]),
+            signUp(userData){
+                console.log(userData);
+            }
         },
         components: {
             signupform: signupform

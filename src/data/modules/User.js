@@ -26,6 +26,7 @@ const getters = {
 
 /**************  ACTIONS ***************************/
 import firebase from "firebase";
+import {db} from "@/main";
 
 const actions = {
     loadUser({commit}, user){
@@ -51,7 +52,10 @@ const actions = {
         commit("setGender", gender);
         commit("calculateKcalRdi");
     },
-    loginUser({commit}, userMail, password){
+    loginUser({commit}, user){
+        let userMail = user.email;
+        let password = user.password;
+        
         firebase
                 .auth()
                 .signInWithEmailAndPassword(userMail, password)
@@ -65,9 +69,8 @@ const actions = {
                         gender: doc.data().gender,
                         userId: doc.data().userID,
                     };
-                    this.$store.dispatch('loadUser', user);
-                }).then(() => {
-                    this.$router.replace("/search"); // TODO:Flytta navigeringen härifrån
+                    commit('loadUser', user);
+                    commit('calculateKcalRdi');
                 })
                 .catch(err => {
                     alert(err.message);
@@ -78,8 +81,7 @@ const actions = {
                 .auth()
                 .signOut()
                 .then(() => {
-                    this.$router.replace("/"); // TODO:Flytta navigeringen härifrån
-                    this.commit('signOut');
+                    commit('signOut');
                 });
     },
     updateUserSettings({commit}, userInfo) {
@@ -92,8 +94,27 @@ const actions = {
             length: userInfoe.length,
             weight: userInfo.weight,
             gender: userInfo.gender
-        }).then(() => {console.log('success')}) // Fixa loader och snackbar
+        }).then(() => {console.log('success')}) 
     },
+    signup({commit}, user) {
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.userData.email, this.userData.password).then(cred => {
+                return db.collection('users').doc(cred.user.uid).set({
+                    userID: cred.user.uid,
+                    age: this.userData.age,
+                    weight: this.userData.weight,
+                    length: this.userData.length,
+                    gender: this.userData.gender
+                })
+            })
+            .then(() => {  
+                this.close();
+            })
+            .catch(err => {
+                alert(err.message);
+            });
+    }
 
 };
 

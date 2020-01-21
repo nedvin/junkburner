@@ -2,17 +2,7 @@
     <div>
         <div id="container-home">
 
-            <!-- WRAPPER FOR WELCOME TEXT, IMG AND BUTTONS -->
-
             <homecontainer />
-
-            <!-- LOGIN FORM -->
-
-            <logincontainer />
-
-            <!-- SIGN UP FORM -->
-
-            <signupcontainer />
             
         </div>
     </div>
@@ -20,14 +10,10 @@
 
 <script>
 import homecontainer from "@/container/HomeContainer";
-import logincontainer from "@/container/LoginContainer";
-import signupcontainer from "@/container/SignUpContainer";
 
 export default {
     components: {
-        homecontainer: homecontainer,
-        logincontainer: logincontainer,
-        signupcontainer: signupcontainer
+        homecontainer: homecontainer
     },
     data() {
         return {

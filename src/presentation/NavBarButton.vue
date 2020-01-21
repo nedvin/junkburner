@@ -31,6 +31,7 @@ export default {
 
 /**STYLES */
 .active {
+    color: orange !important;
     border-bottom: 5px solid #ffa801;
 }
 
@@ -91,7 +92,7 @@ export default {
     .active {
     border: none;
     color: #ffa801;
-}
+    }
 }
 
 
