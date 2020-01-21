@@ -1,5 +1,5 @@
 <template>
-    <div class="restaurant-button">
+    <div class="restaurant-button" :class="{active: isActive}">
         <img :src="url" :alt="alt" class="responsive-pic" />
     </div>
 </template>
@@ -8,7 +8,8 @@
 export default {
     props: {
         url: String,
-        alt: String
+        alt: String,
+        isActive: Boolean
     }
 }
 </script>
@@ -25,8 +26,7 @@ export default {
     margin: 20px;
 }
 
-.restaurant-button:hover,
-.restaurant-button:active {
+.restaurant-button:hover, .active {
     background-color: orange;
     border-color: orange;
     cursor: pointer;

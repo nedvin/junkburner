@@ -23,6 +23,7 @@ const handleHTTPError = (response)  => {
 const state = {
     searchResult : [],
     searchQuery : "",
+    restaurant: "",
     selectedDish : {},
     dishDetails : {}
 };
@@ -32,7 +33,8 @@ const getters = {
     searchResult : state => state.searchResult,
     searchQuery : state => state.searchQuery,
     selectedDish : state => state.selectedDish,
-    dishDetails : state => state.dishDetails
+    dishDetails : state => state.dishDetails,
+    restaurant : state => state.restaurant
 };
 
 /**************  ACTIONS ***************************/

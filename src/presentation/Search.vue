@@ -8,7 +8,7 @@
         <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
             <div class="restaurant-buttons-row">
-                <v-restaurant-button v-for="button in restaurantButtons" :key="button.key" :url="button.url" :alt="button.alt"/>
+                <v-restaurant-button v-for="button in restaurantButtons" :isActive="activeRestaurant(button.key)" :key="button.key" :url="button.url" :alt="button.alt"/>
             </div>
         </div>
 
@@ -71,17 +71,17 @@ export default {
                 {
                     url: require("@/images/mcdonalds_logo.png"),
                     alt: "McDonalds logo",
-                    key: "mcdonalds"
+                    key: "McDonalds"
                 },
                 {
                     url: require("@/images/bk_logo.png"),
                     alt: "Burger King logo",
-                    key: "burgerking"
+                    key: "Burger King"
                 },
                 {
                     url: require("@/images/subway_logo.png"),
                     alt: "Subway logo",
-                    key: "subway"
+                    key: "Subway"
                 }
             ],
             mcDonalds: {
@@ -99,6 +99,9 @@ export default {
         };
     },
     methods: {
+        activeRestaurant(name) {
+            return name === this.restaurant;
+        },
         showMoreInfo() {
             if(this.infoBoxVisible === true) {
                 this.infoBoxVisible = false;
@@ -147,6 +150,9 @@ export default {
     components: {
         'v-food-card': foodCard,
         'v-restaurant-button': restaurantButton
+    },
+    computed: {
+        ...mapGetters(['restaurant'])
     }
 };
 </script>
