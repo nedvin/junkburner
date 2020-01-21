@@ -24,7 +24,8 @@ const state = {
     searchResult : [],
     searchQuery : "",
     selectedDish : {},
-    dishDetails : {}
+    dishDetails : {},
+    apiNutrientData: []
 };
 
 /**************  GETTERS ***************************/
@@ -32,7 +33,8 @@ const getters = {
     searchResult : state => state.searchResult,
     searchQuery : state => state.searchQuery,
     selectedDish : state => state.selectedDish,
-    dishDetails : state => state.dishDetails
+    dishDetails : state => state.dishDetails,
+    apiNutrientData : state => state.apiNutrientData
 };
 
 /**************  ACTIONS ***************************/
@@ -44,7 +46,8 @@ const actions = {
         let apiHeader = new Headers(apiHeaderTemplate);
         apiHeader.append("Content-Type", "application/json");
         let apiBody = JSON.stringify({
-            "query" : state.searchQuery
+            "query" : state.searchQuery,
+            "detailed": true
         })
         return fetch(url, {
             method : "POST",
@@ -76,6 +79,15 @@ const actions = {
             .then(response => response.json())
             .then(response => commit("newDishDetails", response.foods[0]));
 
+    },
+    INIT_SEARCH({commit}){
+        let url = "https://trackapi.nutritionix.com/v2/utils/nutrients";
+        return fetch(url)
+            .then(handleHTTPError)
+            .then(response => response.json())
+            .then(response => response.filter(
+                element => element.api_name === "nf_protein" || element.api_name === "nf_total_fat" || element.api_name === "nf_total_carbohydrate" || element.api_name === "nf_calories"
+            )).then(response => commit("addApiData", response));
     }
 
 };
@@ -87,6 +99,16 @@ const mutations = {
     },
 
     newSearchResult(state, result){
+        result = result.map(dish => {
+            dish.full_nutrients.forEach(dishNutrient => {
+                state.apiNutrientData.forEach(nutrient => {
+                    if(dishNutrient.attr_id === nutrient.attr_id){
+                        dishNutrient.name = nutrient.api_name;
+                    }
+                })
+            });
+            return dish;
+        });
         state.searchResult = result;
     },
 
@@ -96,6 +118,20 @@ const mutations = {
 
     newDishDetails(state, dish){
         state.dishDetails = dish;
+    },
+    addApiData(state, data){
+        state.apiNutrientData = data;
+    },
+    blaj(state,result){
+        result = result.map(dish => {
+            dish.full_nutrients.array.forEach(dishNutrient => {
+                state.apiNutrientData.forEach(nutrient => {
+                    if(dishNutrient.attr_id === nutrient.id){
+                        dishNutrient.name = nutrient.api_name;
+                    }
+                })
+            });
+        });
     }
 
 };
