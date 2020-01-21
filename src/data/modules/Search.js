@@ -48,7 +48,7 @@ const actions = {
         let apiHeader = new Headers(apiHeaderTemplate);
         apiHeader.append("Content-Type", "application/json");
         let apiBody = JSON.stringify({
-            "query" : state.searchQuery,
+            "query" : state.restaurant + " " + state.searchQuery,
             "detailed": true
         })
         return fetch(url, {

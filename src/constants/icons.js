@@ -1,13 +1,13 @@
 export const HAMBURGER_ICON = {
     name: "Hamburgers",
     url: require("@/images/001-burger.png"),
-    query: 'hamburger'
+    query: 'burger'
 }
 
 export const SANDWICH_ICON = {
     name: "Sandwiches",
     url: require("@/images/002-sandwich.png"),
-    query: 'sub'
+    query: 'sandwich'
 }
 
 export const FRIES_ICON = {
@@ -37,7 +37,7 @@ export const COFFEE_ICON = {
 export const DRINKS_ICON = {
     name: "Drinks",
     url: require("@/images/007-coke.png"),
-    query: 'drinks'
+    query: 'soft drink'
 }
 
 export const COOKIES_ICON = {

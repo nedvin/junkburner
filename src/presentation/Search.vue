@@ -17,10 +17,10 @@
         <div class="search-results-box">
             <v-food-card v-for="result in searchResult" 
                 :key="result.nix_item_id"
-                :kcal="result.nf_calories"
-                :carbs="result.nf_total_carbohydrate"
-                :protein="result.nf_protein"
-                :fat="result.nf_total_fat"
+                :kcal="result.full_nutrients[3].value"
+                :carbs="result.full_nutrients[2].value"
+                :protein="result.full_nutrients[0].value"
+                :fat="result.full_nutrients[1].value"
                 :name="result.food_name"
             />
         </div>
