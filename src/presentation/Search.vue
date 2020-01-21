@@ -8,18 +8,7 @@
         <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
             <div class="restaurant-buttons-row">
-                <div
-                    v-for="button in restaurantButtons"
-                    :key="button.key"
-                    class="restaurant-button"
-                    @click="displayMenuOptions(button.key)"
-                >
-                    <img
-                        :src="button.url"
-                        :alt="button.alt"
-                        class="responsive-pic"
-                    />
-                </div>
+                <v-restaurant-button v-for="button in restaurantButtons" :key="button.key" :url="button.url" :alt="button.alt"/>
             </div>
         </div>
 
@@ -73,6 +62,7 @@
 import { mapGetters, mapActions } from "vuex";
 import * as impIcons from '@/constants/icons';
 import foodCard from '@/presentation/FoodCard'
+import restaurantButton from '@/presentation/RestaurantButton'
 
 export default {
     data() {
@@ -155,7 +145,8 @@ export default {
     },
     props : ["searchResult", "dishDetails"],
     components: {
-        'v-food-card': foodCard
+        'v-food-card': foodCard,
+        'v-restaurant-button': restaurantButton
     }
 };
 </script>
@@ -202,7 +193,7 @@ export default {
     justify-content: space-around;
 }
 
-.restaurant-button {
+/*.restaurant-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,7 +209,7 @@ export default {
     background-color: orange;
     border-color: orange;
     cursor: pointer;
-}
+}*/
 
 /******** SEARCH RESULTS ******/
 .search-results-box {
