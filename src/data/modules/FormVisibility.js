@@ -50,7 +50,7 @@ const mutations = {
         state.signUpVisibility = true;
     },
     setSignUpNotVisible(state){
-        state.SignUpVisibility = false;
+        state.signUpVisibility = false;
     },
     toggleSignUpVisible(state){
         state.signUpVisibility = !state.signUpVisibility;

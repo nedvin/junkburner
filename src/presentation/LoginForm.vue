@@ -1,8 +1,8 @@
 <template>
-    <div v-if="form.loginVisible" class="login-form">
+    <div class="login-form">
         <h1>Login</h1>
         <div id="message">
-            {{ form.message }}
+            {{ message }}
         </div>
         <div>
             <label for="email"><b>E-mail:</b></label>
@@ -10,7 +10,7 @@
                 type="text"
                 placeholder="Enter Email"
                 name="email"
-                v-model="userData.email"
+                v-model="email"
             />
         </div>
         <div>
@@ -19,19 +19,25 @@
                 type="password"
                 placeholder="Enter Password"
                 name="psw"
-                v-model="userData.password"
+                v-model="password"
             />
         </div>
 
-        <button @click="close" class="btn btn-abort">Close</button>
-        <button type="submit" class="btn btn-green" @click="login">Login</button>
+        <button @click="$emit('closeForm')" class="btn btn-abort">Close</button>
+        <button type="submit" class="btn btn-green" @click="$emit('login', {'email' : email, 'password': password})">Login</button>
     </div>
 
 </template>
 
 <script>
 export default {
-    
+    data(){
+        return {
+            message: "Please do not use your real e-mail or password, we have no control over what firebase does with them.",
+            email: "",
+            password: ""
+        }
+    }
 }
 </script>
 
