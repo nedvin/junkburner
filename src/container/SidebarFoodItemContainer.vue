@@ -1,6 +1,8 @@
 <template>
     <div>
-        <v-sidebar-food-item v-for="dishItem in currentMeal" :key="n"/>
+        <v-sidebar-food-item v-for="dishItem in currentMeal" 
+            :key="dishItem.nix_item_id"
+            />
     </div>
 </template>
 
