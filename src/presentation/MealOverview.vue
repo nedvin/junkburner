@@ -15,6 +15,27 @@
         </div>
         <div id="sidebar-wrapper" class="sidebar-ctrl-visibility">
             <v-sidebar-food-item-container class="sidebar-food-items"/>
+            <div id="sidebar-table-container">
+            <h2>Meal summary</h2>
+            <table>
+            <tr class="dark">
+                <td>Calories:</td>
+                <td>{{totalKcal}} kcal</td>
+            </tr>
+            <tr class="light">
+                <td>Carbohydrates:</td>
+                <td>{{totalCarb}} grams</td>
+            </tr>
+            <tr class="dark">
+                <td>Protein:</td>
+                <td>{{totalProt}} grams</td>
+            </tr>
+            <tr class="light">
+                <td>Fat:</td>
+                <td>{{totalFat}} grams</td>
+            </tr>
+        </table>
+        </div>
         </div>
     </div>
 </template>
@@ -24,11 +45,6 @@ import { mapGetters } from "vuex";
 import sidebarFoodItemContainer from '@/container/SidebarFoodItemContainer'
 
 export default {
-    data() {
-        return {
-            myCalories: 900
-        };
-    },
     methods: {
         toggleSidebarVisibility() {
             let wrapper = document.body.querySelector("#sidebar-wrapper");
@@ -41,7 +57,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['signedIn', 'kcalRdi', 'totalKcal'])
+        ...mapGetters(['signedIn', 'kcalRdi', 'totalKcal', 'totalFat', 'totalCarb', 'totalProt'])
     },
     components: {
         'v-sidebar-food-item-container': sidebarFoodItemContainer
@@ -50,6 +66,23 @@ export default {
 </script>
 
 <style scoped>
+.dark {
+    background-color: #808e9b;
+}
+
+.light {
+    background-color: #9a9898;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+td {
+    padding: 5px;
+}
+
 .sidebar-food-items {
     display: flex;
     flex-direction: column;
@@ -95,6 +128,11 @@ export default {
     margin: 10px 8px;
 }
 
+#sidebar-table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 @media screen and (max-width: 850px) {
     .button-visibility {
