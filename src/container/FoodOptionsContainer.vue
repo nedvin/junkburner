@@ -1,8 +1,26 @@
 <template>
     <div>
-        <v-food-options @click="search" v-if="isSelected(mcDonalds.name)" :icons="mcDonalds.icons" :key="mcDonalds.name" :restaurant="mcDonalds.name"/>
-        <v-food-options @click="search" v-if="isSelected(burgerKing.name)" :icons="burgerKing.icons" :key="burgerKing.name" :restaurant="burgerKing.name"/>
-        <v-food-options @click="search" v-if="isSelected(subway.name)" :icons="subway.icons" :key="subway.name" :restaurant="subway.name"/>
+        <v-food-options 
+            @click="search" 
+            v-if="isSelected(mcDonalds.name)" 
+            :icons="mcDonalds.icons" 
+            :key="mcDonalds.name" 
+            :restaurant="mcDonalds.name"
+        />
+        <v-food-options 
+            @click="search" 
+            v-if="isSelected(burgerKing.name)" 
+            :icons="burgerKing.icons" 
+            :key="burgerKing.name" 
+            :restaurant="burgerKing.name"
+        />
+        <v-food-options 
+            @click="search" 
+            v-if="isSelected(subway.name)" 
+            :icons="subway.icons" 
+            :key="subway.name" 
+            :restaurant="subway.name"
+        />
     </div>
 </template>
 
