@@ -12,7 +12,6 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
-import { db } from '@/main'
 import button from "@/presentation/NavBarButton"
 export default {
     name: "Toolbar",
@@ -52,7 +51,7 @@ export default {
         ])
     },
     computed: {
-        buttonsToRender: function(allButtons){
+        buttonsToRender: function(){
             let render = this.buttons.slice();
             if(this.signedIn){
                 render = 

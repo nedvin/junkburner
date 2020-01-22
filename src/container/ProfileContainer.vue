@@ -24,7 +24,7 @@
                 "signOutUser",
                 "updateUserSettings"
             ]),
-            async signOut(userData){
+            async signOut(){
                 await this.signOutUser();
                 this.toggle();
             },
