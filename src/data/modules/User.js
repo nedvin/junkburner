@@ -57,24 +57,24 @@ const actions = {
         let password = user.password;
         
         firebase
-                .auth()
-                .signInWithEmailAndPassword(userMail, password)
-                .then(cred => {
-                    return db.collection('users').doc(cred.user.uid).get()
-                }).then(doc => {
-                    let user = {
-                        age: doc.data().age,
-                        weight: doc.data().weight,
-                        length: doc.data().length,
-                        gender: doc.data().gender,
-                        userId: doc.data().userID,
-                    };
-                    commit('loadUser', user);
-                    commit('calculateKcalRdi');
-                })
-                .catch(err => {
-                    alert(err.message);
-                });
+            .auth()
+            .signInWithEmailAndPassword(userMail, password)
+            .then(cred => {
+                return db.collection('users').doc(cred.user.uid).get()
+            }).then(doc => {
+                let user = {
+                    age: doc.data().age,
+                    weight: doc.data().weight,
+                    length: doc.data().length,
+                    gender: doc.data().gender,
+                    userId: doc.data().userID,
+                };
+                commit('loadUser', user);
+                commit('calculateKcalRdi');
+            })
+            .catch(err => {
+                alert(err.message);
+            });
     },
     signOutUser({commit}){
         firebase
@@ -85,13 +85,13 @@ const actions = {
                 });
     },
     updateUserSettings({commit}, userInfo) {
-        this.$store.dispatch('setAge', userInfo.age)
-        this.$store.dispatch('setLength', userInfo.length)
-        this.$store.dispatch('setWeight', userInfo.weight)
-        this.$store.dispatch('setGender', userInfo.gender)
+        commit('setAge', userInfo.age)
+        commit('setLength', userInfo.length)
+        commit('setWeight', userInfo.weight)
+        commit('setGender', userInfo.gender)
         db.collection('users').doc(state.userId).update({
             age: userInfo.age,
-            length: userInfoe.length,
+            length: userInfo.length,
             weight: userInfo.weight,
             gender: userInfo.gender
         }).then(() => {console.log('success')}) 

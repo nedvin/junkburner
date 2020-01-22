@@ -2,8 +2,9 @@
     <div id="app" class="container wrapper">
         <v-header />
         <router-view id="container-main" />
-        <signupcontainer />
-        <logincontainer />
+        <signup-container />
+        <login-container />
+        <profile-container />
         <v-footer />
     </div>
 </template>
@@ -13,13 +14,15 @@ import footer from "./presentation/Footer";
 import header from "./presentation/HeaderView";
 import logincontainer from "@/container/LoginContainer";
 import signupcontainer from "@/container/SignUpContainer";
+import profilecontainer from "@/container/ProfileContainer"
 export default {
     name: "App",
     components: {
         "v-header": header,
         "v-footer": footer,
-        "logincontainer" : logincontainer,
-        "signupcontainer" : signupcontainer 
+        "login-container" : logincontainer,
+        "signup-container" : signupcontainer ,
+        "profile-container" : profilecontainer
     }
 };
 </script>
@@ -59,6 +62,10 @@ body {
 
 .btn-abort {
     background-color: #ff3f34;
+}
+
+.btn-green {
+    background-color: green;
 }
 
 .wrapper {

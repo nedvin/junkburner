@@ -34,7 +34,7 @@ export default {
                 this.toggleLoginVisible();
             }
             else if(event === "Profile"){
-                //hantera firebase(profil)
+                this.toggleProfileVisible();
             }
             else{
                 this.$router.push(event);
@@ -47,7 +47,8 @@ export default {
         },
         ...mapActions([
             "toggleLoginVisible",
-            "toggleSignUpVisible"
+            "toggleSignUpVisible",
+            "toggleProfileVisible"
         ])
     },
     computed: {

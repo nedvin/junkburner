@@ -2,13 +2,15 @@
 
 const state = {
     loginVisibility: false,
-    signUpVisibility: false
+    signUpVisibility: false,
+    profileVisibility: false
 };
 
 /**************  GETTERS ***************************/
 const getters = {
     loginVisibility : state => state.loginVisibility,
-    signUpVisibility : state => state.signUpVisibility
+    signUpVisibility : state => state.signUpVisibility,
+    profileVisibility : state => state.profileVisibility
 };
 
 /**************  ACTIONS ***************************/
@@ -31,6 +33,9 @@ const actions = {
     },
     toggleSignUpVisible({commit}){
         commit('toggleSignUpVisible');
+    },
+    toggleProfileVisible({commit}){
+        commit('toggleProfileVisible');
     }
 
 };
@@ -64,6 +69,9 @@ const mutations = {
             state.loginVisibility = false;
         }
         state.signUpVisibility = !state.signUpVisibility;
+    },
+    toggleProfileVisible(state){
+        state.profileVisibility = !state.profileVisibility;
     }
 };
 

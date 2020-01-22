@@ -1,6 +1,8 @@
 <template>
     <div class="login-form">
-        <h1>Sign up!</h1>
+        <h1>
+            Sign up!
+        </h1>
         <form>
             <div id="message">
                 {{ message }}
@@ -23,6 +25,8 @@
                     v-model="password"
                 />
             </div>
+        </form>
+        <form>
             <div>
                 <label for="age"><b>Age:</b></label>
                 <input
@@ -87,35 +91,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-    .login-form {
-        background-color: #f5f5f5;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        min-height: 400px;
-        width: 60%;
-        transform: translate(-50%, -50%);
-        padding-left: 20px;
-        padding-right: 20px;
-        border: 1px solid black;
-        text-align: center;
-    }
-
-    .login-form div {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    .login-form label {
-        margin-right: 10px;
-    }
-
-    #message {
-        font-size: 0.9em;
-        color: red;
-    }
-
-</style>
+<style scoped src="@/constants/FormStyle.css" />

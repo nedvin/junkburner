@@ -41,35 +41,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.login-form {
-    background-color: #f5f5f5;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    min-height: 400px;
-    width: 60%;
-    transform: translate(-50%, -50%);
-    padding-left: 20px;
-    padding-right: 20px;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.login-form div {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.login-form label {
-    margin-right: 10px;
-}
-
-#message {
-    font-size: 0.9em;
-    color: red;
-}
-
-</style>
+<style scoped src="@/constants/FormStyle.css" />
