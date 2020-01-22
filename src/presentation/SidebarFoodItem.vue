@@ -1,35 +1,33 @@
 <template>
     <div class="sidebar-food-item">
         <div>
-            <img :src="fakeMenu.icon" class="icon" />
-            <span class="sidebar-food-item-name">{{ fakeMenu.name }}</span>
+            <img :src="icon" class="icon" />
+            <span class="sidebar-food-item-name">{{ name }}</span>
         </div>
         <div>
-            <input type="text" class="food-item-amount" value="2" />
-            <button class="btn delete-btn">X</button>
+            <input type="text" class="food-item-amount" :value="amount" />
+            <button class="btn delete-btn" @click="$emit('delete')">X</button>
         </div>
     </div>
 </template>
 
 <script>
+import * as impIcons from '@/constants/icons';
+
 export default {
     name: 'SidebarFoodItem',
     data() {
         return {
-            fakeMenu: {
-                type: "hamburger",
-                icon: require("@/images/001-burger.png"),
-                name: "big mac",
-                amount: 2,
-                calories: 540,
-                fat: 28,
-                carbs: 45,
-                protein: 25
-            },
-            myCalories: 900,
-            recommendedCalories: 1900
+            icons: [impIcons.HAMBURGER_ICON, impIcons.SANDWICH_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON, impIcons.COOKIES_ICON]
         };
-    }
+    },
+    computed: {
+        icon() {
+            let foodItemIcon = this.icons.find(icon => icon.query === this.type)
+            return foodItemIcon.url
+        }
+    },
+    props: ['name', 'amount', 'type']
 }
 </script>
 
