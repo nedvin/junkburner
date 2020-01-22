@@ -21,26 +21,52 @@ const getters = {
 /**************  ACTIONS ***************************/
 
 const actions = {
-    addDish({commit}, dish){
-        commit("addDish", dish);
-        commit("addNutrition", dish);
+    addDish({commit, dispatch}, dish){
+        let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === dish.id);
+        if(!dishInMeal){
+            commit("addDish", dish);
+            commit("addNutrition", dish);
+        }
+        else{
+            dispatch('setAmount', {id: dish.id, amount: (dishInMeal.amount + 1)})
+        }
     },
 
-    removeDish({commit}, dish){ // Styr upp om denna ska ta ett index eller ngt.
+    removeDish({commit}, dish){ 
         commit("removeDish", dish.id);
-        commit("removeNutrition", dish)
+        commit("removeNutrition", dish);
     },
 
-    setAmount({commit}, dishId, newAmount) {
-        commit('setAmount', dishId, newAmount)
-    }
+    setAmount({commit, dispatch}, payload) {
+        let dishToChange = state.currentMeal.find(dish => payload.id === dish.id);
+        let newAmount = payload.amount;
+        if(dishToChange.amount > newAmount){
+            dispatch('removeNutritionWithAmount', {dish: dishToChange, amount: (dishToChange.amount - newAmount)});
+        }
+        else{
+            dispatch('addNutritionWithAmount', {dish: dishToChange, amount: (newAmount - dishToChange.amount)});
+        }
+        commit('setAmount', {dish: dishToChange, amount: newAmount});
+    },
+
+    removeNutritionWithAmount({commit}, payload){
+        for(let i=0; i < payload.amount; i++){
+            commit('removeNutrition', payload.dish);
+        }
+    },
+    
+    addNutritionWithAmount({commit}, payload){
+        for(let i=0; i < payload.amount; i++){
+            commit('addNutrition', payload.dish);
+        }
+    },
 
 };
 
 /**************  MUTATIONS ***************************/
 const mutations = {
     addDish(state, dish){
-        state.currentMeal.push(dish);
+        state.currentMeal.push(dish);  
     },
 
     removeDish(state, dishId){
@@ -61,9 +87,8 @@ const mutations = {
         state.totalProt -= dish.protein;
     },
 
-    setAmount(state, dishId, newAmount) {
-        let dishToChange = state.currentMeal.find(dish => dish.id === dishId)
-        dishToChange.amount = newAmount
+    setAmount(state, payload) {
+        payload.dish.amount = payload.amount;
     }
 };
 

@@ -8,7 +8,7 @@
             :itemId="dishItem.id"
             @delete="removeDish(dishItem)"
             @changeAmount="changeAmount"
-            />
+        />
     </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
     name: 'SidebarFoodItemContainer',
     methods: {
         changeAmount(event, id) {
-            let newAmount = event.target.value
-            this.setAmount(id, newAmount)
+            let newAmount = event.target.value;
+            this.setAmount({id: id, amount: newAmount});
         },
         ...mapActions(['removeDish', 'setAmount'])
     },
