@@ -28,7 +28,7 @@ const actions = {
     },
 
     removeDish({commit}, dish){ // Styr upp om denna ska ta ett index eller ngt.
-        commit("removeDish", dish["nix_item_id"]);
+        commit("removeDish", dish.id);
         commit("removeNutrition", dish)
     }
 
@@ -41,21 +41,21 @@ const mutations = {
     },
 
     removeDish(state, dishId){
-        state.currentMeal = state.currentMeal.filter(dish => dish["nix_item_id"] !== dishId);
+        state.currentMeal = state.currentMeal.filter(dish => dish.id !== dishId);
     },
 
     addNutrition(state, dish){
-        state.totalKcal += dish.nf_calories;
-        state.totalFat += dish.nf_total_fat;
-        state.totalCarb += dish.nf_total_carbohydrate;
-        state.totalProt += dish.nf_protein;
+        state.totalKcal += dish.kcal;
+        state.totalFat += dish.fat;
+        state.totalCarb += dish.carbs;
+        state.totalProt += dish.protein;
     },
 
     removeNutrition(state, dish){
-        state.totalKcal -= dish.nf_calories;
-        state.totalFat -= dish.nf_total_fat;
-        state.totalCarb -= dish.nf_total_carbohydrate;
-        state.totalProt -= dish.nf_protein;
+        state.totalKcal -= dish.kcal;
+        state.totalFat -= dish.fat;
+        state.totalCarb -= dish.carbs;
+        state.totalProt -= dish.protein;
     }
 };
 

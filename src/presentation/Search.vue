@@ -15,13 +15,16 @@
 
         <!-- SEARCH RESULTS -->
         <div class="search-results-box">
-            <v-food-card v-for="result in searchResult" 
+            <v-food-card 
+                v-for="result in searchResult" 
                 :key="result.nix_item_id"
                 :kcal="result.full_nutrients[3].value"
                 :carbs="result.full_nutrients[2].value"
                 :protein="result.full_nutrients[0].value"
                 :fat="result.full_nutrients[1].value"
                 :name="result.food_name"
+                :id="result.nix_item_id"
+                @addDishToMeal="bubbleEvent"
             />
         </div>
     </div>
@@ -40,7 +43,13 @@ export default {
         'v-food-card': foodCard,
         'v-restaurant-btn-container': restaurantButtonContainer,
         'v-food-options-container': foodOptionsContainer
+    },
+    methods: {
+        bubbleEvent(event){
+            this.$emit('addDishToMeal', event);
+        }
     }
+    
 };
 </script>
 
