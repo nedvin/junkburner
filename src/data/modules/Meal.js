@@ -16,7 +16,6 @@ const getters = {
     totalFat : state => state.totalFat,
     totalCarb : state => state.totalCarb,
     totalProt : state => state.totalProt,
-
 };
 
 /**************  ACTIONS ***************************/
@@ -30,6 +29,10 @@ const actions = {
     removeDish({commit}, dish){ // Styr upp om denna ska ta ett index eller ngt.
         commit("removeDish", dish.id);
         commit("removeNutrition", dish)
+    },
+
+    setAmount({commit}, dishId, newAmount) {
+        commit('setAmount', dishId, newAmount)
     }
 
 };
@@ -56,6 +59,11 @@ const mutations = {
         state.totalFat -= dish.fat;
         state.totalCarb -= dish.carbs;
         state.totalProt -= dish.protein;
+    },
+
+    setAmount(state, dishId, newAmount) {
+        let dishToChange = state.currentMeal.find(dish => dish.id === dishId)
+        dishToChange.amount = newAmount
     }
 };
 

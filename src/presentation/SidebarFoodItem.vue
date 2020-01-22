@@ -5,7 +5,10 @@
             <span class="sidebar-food-item-name">{{ name }}</span>
         </div>
         <div>
-            <input type="text" class="food-item-amount" :value="amount" />
+            <select @change="$emit('changeAmount', $event, itemId)" :value="amount">
+                    <option v-for="number in 5" :key="number" :value="number">{{ number }}</option>
+            </select>
+           <!-- <input type="text" class="food-item-amount" :value="amount" /> -->
             <button class="btn delete-btn" @click="$emit('delete')">X</button>
         </div>
     </div>
@@ -27,7 +30,7 @@ export default {
             return foodItemIcon.url
         }
     },
-    props: ['name', 'amount', 'type']
+    props: ['name', 'amount', 'type', 'itemId']
 }
 </script>
 
