@@ -65,7 +65,7 @@ body {
 }
 
 .btn-green {
-    background-color: green;
+    background-color: #05c46b;
 }
 
 .wrapper {
