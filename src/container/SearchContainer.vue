@@ -1,5 +1,5 @@
 <template>
-    <search :searchResult="this.searchResult" :dishDetails="this.dishDetails" />
+    <search :searchResult="this.searchResult" :dishDetails="this.dishDetails" @addDishToMeal="addDishToMeal"/>
 </template>
 
 <script>
@@ -11,10 +11,21 @@ export default {
         };
     },
     methods: {
-        ...mapActions(["newQuery", "selectDish", "newSearch", "newSearchDetails"])
+        ...mapActions([
+            "newQuery", 
+            "selectDish", 
+            "newSearch", 
+            "newSearchDetails",
+            "addDish",
+            "removeDish"
+            ]),
+        addDishToMeal(event){
+            event.type = this.searchQuery;
+            this.addDish(event);
+        }
     },
     computed: {
-        ...mapGetters(["searchResult", "dishDetails", "selectedDish"])
+        ...mapGetters(["searchResult", "dishDetails", "selectedDish", "searchQuery"])
     },
     components : {
         "search" : search

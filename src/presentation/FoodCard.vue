@@ -4,7 +4,20 @@
             {{ name }}
         </div>
         <div class="food-options-box">
-            <button class="btn btn-add">Add to meal</button>
+            <button 
+                class="btn btn-add" 
+                @click="$emit('addDishToMeal', {
+                    id: itemId,
+                    name: name,
+                    kcal: kcal,
+                    carbs: carbs,
+                    fat: fat,
+                    protein: protein,
+                    amount: 1
+                    })"
+            >
+                Add to meal
+            </button>
             <button class="btn btn-info" @click="displayInfo">More info</button>
         </div>
         <div class="info-table" v-if="showInfo">
@@ -34,7 +47,8 @@
 export default {
     data() {
         return {
-            showInfo: false
+            showInfo: false,
+            itemId: this.id
         };
     },
     methods: {
@@ -51,7 +65,8 @@ export default {
         carbs: Number,
         protein: Number,
         fat: Number,
-        kcal: Number
+        kcal: Number,
+        id: String
     }
 };
 </script>
