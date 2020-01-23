@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="container wrapper">
-        <v-header />
+        <v-header class="v-header"/>
         <router-view id="container-main" />
         <signup-container />
         <login-container />
@@ -40,6 +40,11 @@ body {
     font-family: "Arial";
 }
 
+.v-header {
+    position: fixed;
+    z-index: 1;
+}
+
 .responsive-pic {
     max-width: 100%;
     height: auto;
@@ -58,6 +63,7 @@ body {
     flex: 1;
     flex-direction: row;
     width: 100%;
+    margin-top: 100px;
 }
 
 .btn-abort {
@@ -76,6 +82,7 @@ body {
 @media screen and (max-width: 850px) {
     #container-main {
         flex-direction: column;
+        margin-top: 138px;
     }
 
     button {
