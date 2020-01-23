@@ -71,10 +71,17 @@ const actions = {
                 };
                 commit('loadUser', user);
                 commit('calculateKcalRdi');
+                commit('setSnackbarMessage', 'Successfully logged in');
+                commit('setSuccessVisible');
             })
-            .catch(err => {
-                alert(err.message);
-            });
+            .catch(() => {
+                commit('setSnackbarMessage', 'Something went wrong when trying to log in. Please check your e-mail and password.')
+                commit('setAlertVisible');
+            })
+            .finally(
+                setTimeout(() => commit('setAlertNotVisible'), 2500),
+                setTimeout(() => commit('setSuccessNotVisible'), 2500)
+            );
     },
     signOutUser({commit}){
         firebase
@@ -82,7 +89,17 @@ const actions = {
                 .signOut()
                 .then(() => {
                     commit('signOut');
-                });
+                    commit('setSnackbarMessage', 'Successfully signed out');
+                    commit('setSuccessVisible');
+                })
+                .catch(() => {
+                    commit('setSnackbarMessage', 'Something went wrong when signing out. You are stuck!')
+                    commit('setAlertVisible');
+                })
+                .finally(
+                    setTimeout(() => commit('setAlertNotVisible'), 2500),
+                    setTimeout(() => commit('setSuccessNotVisible'), 2500)
+                );
     },
     updateUserSettings({commit}, userInfo) {
         commit('setAge', userInfo.age)
@@ -94,7 +111,19 @@ const actions = {
             length: userInfo.length,
             weight: userInfo.weight,
             gender: userInfo.gender
-        }).then(() => {console.log('success')}) 
+        })
+        .then(() => {
+            commit('setSnackbarMessage', 'Successfully updated profile settings in database');
+            commit('setSuccessVisible');
+        })
+        .catch(() => {
+            commit('setSnackbarMessage', 'Could not update profile settings in database')
+            commit('setAlertVisible');
+        })
+        .finally(
+            setTimeout(() => commit('setAlertNotVisible'), 2500),
+            setTimeout(() => commit('setSuccessNotVisible'), 2500)
+        ); 
     },
     signUpUser({commit}, user) {
         firebase
@@ -108,9 +137,18 @@ const actions = {
                     gender: user.gender
                 })
             })
-            .catch(err => {
-                alert(err.message);
-            });
+            .then(() => {
+                commit('setSnackbarMessage', 'Successfully created a new user');
+                commit('setSuccessVisible');
+            })
+            .catch((err) => {
+                commit('setSnackbarMessage', err.message)
+                commit('setAlertVisible');
+            })
+            .finally(
+                setTimeout(() => commit('setAlertNotVisible'), 2500),
+                setTimeout(() => commit('setSuccessNotVisible'), 2500)
+            );
     }
 
 };
