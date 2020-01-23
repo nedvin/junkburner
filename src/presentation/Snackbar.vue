@@ -18,6 +18,7 @@ export default {
         color: #fff;
         padding: 10px;
         text-align: center;
+        border: 1px dotted #fff;
     }
 
     .alert {

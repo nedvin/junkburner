@@ -74,12 +74,11 @@ const actions = {
                 commit('setSnackbarMessage', 'Successfully logged in');
                 commit('setSuccessVisible');
             })
-            .catch(() => {
-                commit('setSnackbarMessage', 'Something went wrong when trying to log in. Please check your e-mail and password.')
+            .catch((err) => {
+                commit('setSnackbarMessage', err.message)
                 commit('setAlertVisible');
             })
             .finally(
-                commit('setNotLoggingIn'),
                 setTimeout(() => commit('setAlertNotVisible'), 2500),
                 setTimeout(() => commit('setSuccessNotVisible'), 2500)
             );
