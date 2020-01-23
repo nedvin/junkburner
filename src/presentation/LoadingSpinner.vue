@@ -19,7 +19,7 @@ export default {
 .sk-chase {
   width: 25px;
   height: 25px;
-  position: relative;
+  position: absolute;
   animation: sk-chase 2.5s infinite linear both;
 }
 
@@ -37,7 +37,7 @@ export default {
   display: block;
   width: 25%;
   height: 25%;
-  background-color: rgb(58, 58, 58);
+  background-color: #fff;
   border-radius: 100%;
   animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
 }

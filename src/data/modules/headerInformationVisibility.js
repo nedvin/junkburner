@@ -3,14 +3,16 @@
 const state = {
     alertVisibility: false,
     successVisibility: false,
-    snackbarMessage: ''
+    snackbarMessage: '',
+    loggingIn: false
 };
 
 /**************  GETTERS ***************************/
 const getters = {
     alertVisibility: state => state.alertVisibility,
     successVisibility: state => state.successVisibility,
-    snackbarMessage: state => state.snackbarMessage
+    snackbarMessage: state => state.snackbarMessage,
+    loggingIn: state => state.loggingIn
 };
 
 /**************  ACTIONS ***************************/
@@ -21,6 +23,12 @@ const actions = {
     },
     setAlertNotVisible({commit}){
         commit('setAlertNotVisible');
+    },
+    setLoggingIn({commit}){
+        commit('setLoggingIn');
+    },
+    setNotLoggingIn({commit}){
+        commit('setNotLoggingIn');
     },
     setSuccessVisible({commit}){
         commit('setSuccessVisible');
@@ -49,6 +57,12 @@ const mutations = {
     },
     setSnackbarMessage(state, msg) {
         state.snackbarMessage = msg;
+    },
+    setLoggingIn(state) {
+        state.loggingIn = true;
+    },
+    setNotLoggingIn(state) {
+        state.loggingIn = false;
     }
 };
 

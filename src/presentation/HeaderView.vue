@@ -6,6 +6,7 @@
         </div>
         <v-snackbar v-if="alertVisibility" :type="alert" :msg="snackbarMessage" class="center"/>
         <v-snackbar v-if="successVisibility" :type="success" :msg="snackbarMessage" class="center"/>
+        <v-spinner v-if="loggingIn" class="center spinner"/>
     </div>
 </template>
 
@@ -13,6 +14,7 @@
 import header from "@/presentation/Header";
 import navbar from "@/container/NavBarContainer";
 import snackbar from "@/presentation/Snackbar";
+import loadingSpinner from "@/presentation/LoadingSpinner"
 import {mapGetters} from 'vuex'
 
 export default {
@@ -24,12 +26,13 @@ export default {
       }
     },
     computed: {
-      ...mapGetters(['alertVisibility', 'successVisibility', 'snackbarMessage'])
+      ...mapGetters(['alertVisibility', 'successVisibility', 'snackbarMessage', 'loggingIn'])
     },
     components: {
         "v-header": header,
         "v-navbar": navbar,
-        "v-snackbar": snackbar
+        "v-snackbar": snackbar,
+        "v-spinner": loadingSpinner
     }
 };
 </script>
@@ -68,6 +71,12 @@ export default {
         flex-direction: row;
         background-color: #1e272e;
         justify-content: flex-end;
+    }
+
+    .spinner {
+        left: 80%;
+        top: 25%;
+        transform: translate(-80%, -25%);
     }
 }
 </style>

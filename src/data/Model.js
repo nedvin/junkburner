@@ -5,7 +5,7 @@ import workout from "./modules/Workout";
 import search from "./modules/Search";
 import user from "./modules/User";
 import formVisibility from "./modules/FormVisibility";
-import snackbarVisibility from "./modules/snackbarVisibility"
+import headerInformationVisibility from "./modules/headerInformationVisibility"
 
 Vue.use(Vuex);
 
@@ -16,6 +16,6 @@ export default new Vuex.Store({
    search,
    user,
    formVisibility,
-   snackbarVisibility
+   headerInformationVisibility
   }
 });

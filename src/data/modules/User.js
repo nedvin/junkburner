@@ -79,6 +79,7 @@ const actions = {
                 commit('setAlertVisible');
             })
             .finally(
+                commit('setNotLoggingIn'),
                 setTimeout(() => commit('setAlertNotVisible'), 2500),
                 setTimeout(() => commit('setSuccessNotVisible'), 2500)
             );
