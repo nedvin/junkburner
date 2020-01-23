@@ -29,7 +29,6 @@
             async signUp(userData){
                 await this.signUpUser(userData);
                 this.close();
-                this.loginUser(userData);
             }
         },
         components: {
