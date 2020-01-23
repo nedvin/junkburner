@@ -66,12 +66,43 @@ body {
     margin-top: 100px;
 }
 
+.btn {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    color: #fff;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn-abort {
     background-color: #ff3f34;
 }
 
+.btn-abort:hover {
+    background-color: firebrick;
+}
+
 .btn-green {
+    background-color: #0be881;
+}
+
+.btn-green:hover {
     background-color: #05c46b;
+}
+
+.btn-orange {
+    background-color: orange;
+}
+
+.btn-orange:hover {
+    background-color: #e58e26;
 }
 
 .wrapper {

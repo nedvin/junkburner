@@ -31,28 +31,6 @@ export default {
         max-height: 15%;
     }
 
-    .btn {
-        border: none;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 5px;
-    }
-
-    .btn:hover {
-        cursor: pointer;
-    }
-
-    .btn-green {
-        background-color: #05c46b;
-    }
-
-    .btn-orange {
-        background-color: #ffa801;
-    }
-
     #home-text {
         width: 20vw;
         padding: 20px;

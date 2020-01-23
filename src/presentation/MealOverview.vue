@@ -9,40 +9,42 @@
             </div>
             <button
                 class="button-visibility btn expand-btn"
-                @click="toggleSidebarVisibility">
+                @click="toggleSidebarVisibility"
+            >
                 Expand
             </button>
         </div>
         <div id="sidebar-wrapper" class="sidebar-ctrl-visibility">
-            <v-sidebar-food-item-container class="sidebar-food-items"/>
+            <v-sidebar-food-item-container class="sidebar-food-items" />
             <div id="sidebar-table-container">
-            <h2>Meal summary</h2>
-            <table>
-            <tr class="dark">
-                <td>Calories:</td>
-                <td>{{totalKcal}} kcal</td>
-            </tr>
-            <tr class="light">
-                <td>Carbohydrates:</td>
-                <td>{{totalCarb}} grams</td>
-            </tr>
-            <tr class="dark">
-                <td>Protein:</td>
-                <td>{{totalProt}} grams</td>
-            </tr>
-            <tr class="light">
-                <td>Fat:</td>
-                <td>{{totalFat}} grams</td>
-            </tr>
-        </table>
-        </div>
+                <h2>Meal summary</h2>
+                <table>
+                    <tr class="dark">
+                        <td>Calories:</td>
+                        <td>{{ totalKcal }} kcal</td>
+                    </tr>
+                    <tr class="light">
+                        <td>Carbohydrates:</td>
+                        <td>{{ totalCarb }} grams</td>
+                    </tr>
+                    <tr class="dark">
+                        <td>Protein:</td>
+                        <td>{{ totalProt }} grams</td>
+                    </tr>
+                    <tr class="light">
+                        <td>Fat:</td>
+                        <td>{{ totalFat }} grams</td>
+                    </tr>
+                </table>
+                <button class="btn btn-abort">Punish me</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import sidebarFoodItemContainer from '@/container/SidebarFoodItemContainer'
+import sidebarFoodItemContainer from "@/container/SidebarFoodItemContainer";
 
 export default {
     methods: {
@@ -57,10 +59,17 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['signedIn', 'kcalRdi', 'totalKcal', 'totalFat', 'totalCarb', 'totalProt'])
+        ...mapGetters([
+            "signedIn",
+            "kcalRdi",
+            "totalKcal",
+            "totalFat",
+            "totalCarb",
+            "totalProt"
+        ])
     },
     components: {
-        'v-sidebar-food-item-container': sidebarFoodItemContainer
+        "v-sidebar-food-item-container": sidebarFoodItemContainer
     }
 };
 </script>

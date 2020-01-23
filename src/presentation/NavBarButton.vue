@@ -32,7 +32,7 @@ export default {
 /**STYLES */
 .active {
     color: orange !important;
-    border-bottom: 5px solid #ffa801;
+    border-bottom: 5px solid orange;
 }
 
 .signUp{
