@@ -37,29 +37,13 @@ const actions = {
         commit("removeNutrition", dish);
     },
 
-    setAmount({commit, dispatch}, payload) {
+    setAmount({commit}, payload) {
         let dishToChange = state.currentMeal.find(dish => payload.id === dish.id);
         let newAmount = payload.amount;
-        if(dishToChange.amount > newAmount){
-            dispatch('removeNutritionWithAmount', {dish: dishToChange, amount: (dishToChange.amount - newAmount)});
-        }
-        else{
-            dispatch('addNutritionWithAmount', {dish: dishToChange, amount: (newAmount - dishToChange.amount)});
-        }
+        commit('removeNutrition', dishToChange);
         commit('setAmount', {dish: dishToChange, amount: newAmount});
-    },
-
-    removeNutritionWithAmount({commit}, payload){
-        for(let i=0; i < payload.amount; i++){
-            commit('removeNutrition', payload.dish);
-        }
-    },
-    
-    addNutritionWithAmount({commit}, payload){
-        for(let i=0; i < payload.amount; i++){
-            commit('addNutrition', payload.dish);
-        }
-    },
+        commit('addNutrition', dishToChange)
+    }
 
 };
 
@@ -74,17 +58,17 @@ const mutations = {
     },
 
     addNutrition(state, dish){
-        state.totalKcal += dish.kcal;
-        state.totalFat += dish.fat;
-        state.totalCarb += dish.carbs;
-        state.totalProt += dish.protein;
+        state.totalKcal += dish.kcal * dish.amount;
+        state.totalFat += dish.fat * dish.amount;
+        state.totalCarb += dish.carbs * dish.amount;
+        state.totalProt += dish.protein * dish.amount;
     },
 
     removeNutrition(state, dish){
-        state.totalKcal -= dish.kcal;
-        state.totalFat -= dish.fat;
-        state.totalCarb -= dish.carbs;
-        state.totalProt -= dish.protein;
+        state.totalKcal -= dish.kcal * dish.amount;
+        state.totalFat -= dish.fat * dish.amount;
+        state.totalCarb -= dish.carbs * dish.amount;
+        state.totalProt -= dish.protein * dish.amount;
     },
 
     setAmount(state, payload) {
