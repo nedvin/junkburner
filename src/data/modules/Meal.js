@@ -12,10 +12,10 @@ const state = {
 /**************  GETTERS ***************************/
 const getters = {
     currentMeal : state => state.currentMeal,
-    totalKcal : state => state.totalKcal,
-    totalFat : state => state.totalFat,
-    totalCarb : state => state.totalCarb,
-    totalProt : state => state.totalProt,
+    totalKcal : state => Math.round(state.totalKcal),
+    totalFat : state => Math.round(state.totalFat),
+    totalCarb : state => Math.round(state.totalCarb),
+    totalProt : state => Math.round(state.totalProt),
 };
 
 /**************  ACTIONS ***************************/

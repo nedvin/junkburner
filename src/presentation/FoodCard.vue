@@ -78,7 +78,8 @@ export default {
     margin-bottom: 15px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
     transition: 0.3s;
-    width: 210px;
+    min-width: 210px;
+    max-width: 210px;
 }
 
 .food-item-box:hover {
@@ -117,6 +118,7 @@ export default {
     padding: 4px;
     color: #fff;
     border: none;
+    font-size: 12px;
 }
 
 .btn:hover {
