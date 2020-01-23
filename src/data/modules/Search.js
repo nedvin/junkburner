@@ -85,6 +85,7 @@ const actions = {
 
     selectRestaurant({commit}, restaurant) {
         commit("changeQuery", "")
+        commit('newSearchResult', [])
         commit("selectRestaurant", restaurant)
     },
 
