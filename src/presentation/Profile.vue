@@ -72,10 +72,10 @@
 export default {
     data(){
         return {
-            age: 0,
-            weight: 0,
-            length: 0,
-            gender: "Male"
+            age: this.user.age,
+            weight: this.user.weight,
+            length: this.user.length,
+            gender: this.user.gender
         }
     },
     props: {

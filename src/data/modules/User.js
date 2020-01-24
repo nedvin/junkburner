@@ -27,6 +27,7 @@ const getters = {
 /**************  ACTIONS ***************************/
 import firebase from "firebase";
 import {db} from "@/main";
+import router from '@/router'
 
 const actions = {
     loadUser({commit}, user){
@@ -73,6 +74,7 @@ const actions = {
                 commit('calculateKcalRdi');
                 commit('setSnackbarMessage', 'Successfully logged in');
                 commit('setSuccessVisible');
+                router.push('/search')
             })
             .catch((err) => {
                 commit('setSnackbarMessage', err.message)
