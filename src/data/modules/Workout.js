@@ -1,7 +1,7 @@
 /**************  STATE ***************************/
 
 const state = {
-    exercises : [],
+    workout : [],
     totalKcal: 0,
     totalTime: {
         minuter : 0,
@@ -20,14 +20,12 @@ const getters = {
 };
 
 /**************  ACTIONS ***************************/
+import workoutInfo from '@/data/modules/exerciseInfo';
 
 const actions = {
     generateSession({commit}, kcal){
         seed1 = Math.floor(Math.random() * 10);
-        seed2 = Math.floor(Math.random() * 10);
-        if(seed1){
-            
-        }
+        
     }
 
 };
