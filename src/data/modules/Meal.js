@@ -12,10 +12,10 @@ const state = {
 /**************  GETTERS ***************************/
 const getters = {
     currentMeal : state => state.currentMeal,
-    totalKcal : state => Math.round(state.totalKcal),
-    totalFat : state => Math.round(state.totalFat),
-    totalCarb : state => Math.round(state.totalCarb),
-    totalProt : state => Math.round(state.totalProt),
+    totalKcal : state => state.totalKcal,
+    totalFat : state => state.totalFat,
+    totalCarb : state => state.totalCarb,
+    totalProt : state => state.totalProt,
 };
 
 /**************  ACTIONS ***************************/
@@ -58,17 +58,17 @@ const mutations = {
     },
 
     addNutrition(state, dish){
-        state.totalKcal += dish.kcal * dish.amount;
-        state.totalFat += dish.fat * dish.amount;
-        state.totalCarb += dish.carbs * dish.amount;
-        state.totalProt += dish.protein * dish.amount;
+        state.totalKcal += Math.round(dish.kcal * dish.amount);
+        state.totalFat += Math.round(dish.fat * dish.amount);
+        state.totalCarb += Math.round(dish.carbs * dish.amount);
+        state.totalProt += Math.round(dish.protein * dish.amount);
     },
 
     removeNutrition(state, dish){
-        state.totalKcal -= dish.kcal * dish.amount;
-        state.totalFat -= dish.fat * dish.amount;
-        state.totalCarb -= dish.carbs * dish.amount;
-        state.totalProt -= dish.protein * dish.amount;
+        state.totalKcal -= Math.round(dish.kcal * dish.amount);
+        state.totalFat -= Math.round(dish.fat * dish.amount);
+        state.totalCarb -= Math.round(dish.carbs * dish.amount);
+        state.totalProt -= Math.round(dish.protein * dish.amount);
     },
 
     setAmount(state, payload) {
