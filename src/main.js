@@ -2,12 +2,12 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 import store from "./data/Model.js";
-import VueFire from 'vuefire';
+import Vuelidate from 'vuelidate'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 Vue.config.productionTip = false;
-//Vue.use(VueFire);
+Vue.use(Vuelidate);
 
 firebase.initializeApp({
   apiKey: "AIzaSyAoxKTWM8Pz78VaZZCK54ZJ8sJFZ8fEgTo",
