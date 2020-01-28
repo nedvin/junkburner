@@ -3,42 +3,61 @@
         <h1>
             Update user profile
         </h1>
-        <form>
+    
+            <div class="input-row">
             <div>
                 <label for="age"><b>Age:</b></label>
                 <input
                     type="number"
-                    :placeholder="user.age"
+                    placeholder="Your age"
                     name="age"
+                    @input="$v.age.$touch()"
                     v-model="age"
                 />
             </div>
+            <p class="error-msg" v-if="$v.age.$error">
+                Age has to be between 10 and 120
+            </p>
+        </div>
+        <div class="input-row">
             <div>
                 <label for="weight"><b>Weight:</b></label>
                 <input
                     type="number"
-                    :placeholder="user.weight"
+                    placeholder="Your weight in kilograms"
                     name="weight"
+                    @input="$v.weight.$touch()"
                     v-model="weight"
                 />
             </div>
+            <p class="error-msg" v-if="$v.weight.$error">
+                Weight has to be a positive number (not larger than 450)!
+            </p>
+        </div>
+        <div class="input-row">
             <div>
                 <label for="length"><b>Length:</b></label>
                 <input
                     type="number"
-                    :placeholder="user.length"
+                    placeholder="Your length in centimeters"
                     name="length"
-                    v-model="length"
+                    @input="$v.length.$touch()"
+                    v-model="user.length"
                 />
             </div>
+            <p class="error-msg" v-if="$v.length.$error">
+                Length has to be between 50 and 250 cm!
+            </p>
+        </div>
+        <div class="input-row">
             <div>
                 <label for="gender"><b>Gender:</b></label>
-                <select name="gender" v-model="gender" :value="user.gender">
+                <select name="gender" v-model="gender">
                     <option>Male</option>
                     <option>Female</option>
                 </select>
             </div>
-        </form>
+        </div>
         <button 
             @click="$emit('closeForm')" 
             class="btn btn-abort"
@@ -47,7 +66,8 @@
         </button>
         <button 
             type="submit" 
-            class="btn btn-green" 
+            class="btn btn-green"
+            :disabled="$v.$invalid" 
             @click="$emit('updateProfile', {
                 'age' : age,
                 'weight' : weight,
@@ -69,6 +89,15 @@
 </template>
 
 <script>
+import {
+    required,
+    between,
+    integer,
+    numeric,
+    minValue,
+    maxValue
+} from "vuelidate/lib/validators";
+
 export default {
     data(){
         return {
@@ -76,6 +105,25 @@ export default {
             weight: this.user.weight,
             length: this.user.length,
             gender: this.user.gender
+        }
+    },
+    validations: {
+        age: {
+            required,
+            between: between(10, 120),
+            integer
+        },
+        weight: {
+            required,
+            numeric,
+            minValue: minValue(1),
+            maxValue: maxValue(400)
+        },
+        length: {
+            required,
+            numeric,
+            minValue: minValue(50),
+            maxValue: maxValue(250)
         }
     },
     props: {

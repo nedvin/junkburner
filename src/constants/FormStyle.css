@@ -15,7 +15,6 @@
 .login-form div {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
 }
 
 .login-form label {
@@ -39,6 +38,23 @@
 
 #message {
     font-size: 0.9em;
+    color: red;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.input-error {
+    color: red;
+}
+
+.error-msg {
+    margin-top: 0px;
+    font-size: 0.8em;
     color: red;
 }
 

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import HomeView from "@/presentation/HomeView";
 import SearchView from "@/presentation/SearchView";
+import WorkoutView from "@/presentation/WorkoutView";
 import firebase from 'firebase'
 
 Vue.use(Router);
@@ -20,6 +21,11 @@ let router = new Router({
            // meta: {
            //     requiresAuth: true
            //   }
+        },
+        {
+            path: "/workout",
+            name: "Workout",
+            component: WorkoutView
         },
         {
             path: "*",
