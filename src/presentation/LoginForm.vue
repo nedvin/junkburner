@@ -4,23 +4,27 @@
         <div id="message">
             {{ message }}
         </div>
-        <div>
-            <label for="email"><b>E-mail:</b></label>
-            <input
-                type="text"
-                placeholder="Enter Email"
-                name="email"
-                v-model="email"
-            />
+        <div class="input-row">
+            <div>
+                <label for="email"><b>E-mail:</b></label>
+                <input
+                    type="text"
+                    placeholder="Enter Email"
+                    name="email"
+                    v-model="email"
+                />
+            </div>
         </div>
-        <div>
-            <label for="psw"><b>Password:</b></label>
-            <input
-                type="password"
-                placeholder="Enter Password"
-                name="psw"
-                v-model="password"
-            />
+        <div class="input-row">
+            <div>
+                <label for="psw"><b>Password:</b></label>
+                <input
+                    type="password"
+                    placeholder="Enter Password"
+                    name="psw"
+                    v-model="password"
+                />
+            </div>
         </div>
 
         <button @click="$emit('closeForm')" class="btn btn-abort">Close</button>
@@ -30,6 +34,7 @@
 </template>
 
 <script>
+
 export default {
     data(){
         return {
