@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import Overview from '@/presentation/MealOverview'
+  import Overview from '@/container/MealContainer'
   import SearchContainer from '@/container/SearchContainer'
 
   export default {

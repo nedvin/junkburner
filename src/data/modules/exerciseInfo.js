@@ -6,7 +6,7 @@ export default {
         {name : "Bicycling", kcalPerMin : 10.4, type : ["Indoors", "Outdoors"]},
         {name : "Running", kcalPerMin : 14.8, type : ["Indoors", "Outdoors"]},
         {name : "Football", kcalPerMin : 10.4, type : ["Sport"]},
-        {name : "Basketball", kcalPerMin : 0, type : ["Sport"]},
+        {name : "Basketball", kcalPerMin : 10.4, type : ["Sport"]},
         {name : "Swimming", kcalPerMin : 14.8, type : ["Indoors"]},
         {name : "Martial Arts", kcalPerMin : 14.8, type : ["Sport"]},
         {name : "Rock Climbing", kcalPerMin : 16.3, type : ["Sport"]},
