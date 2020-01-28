@@ -47,6 +47,7 @@ const actions = {
         else{
             dispatch('setAmount', {id: payload.dish.id, amount: (dishInMeal.amount + 1)})
         }
+        dispatch('updateMealStateFirebase', payload.userId);
     },
 
     removeDish({commit}, dish){ 
@@ -60,6 +61,18 @@ const actions = {
         commit('removeNutrition', dishToChange);
         commit('setAmount', {dish: dishToChange, amount: newAmount});
         commit('addNutrition', dishToChange)
+    },
+
+    updateMealStateFirebase({commit}, userId) {
+        db.collection('users').doc(userId).update({
+            mealState: {
+                currentMeal: state.currentMeal,
+                totalCarb: state.totalCarb,
+                totalFat: state.totalFat,
+                totalKcal: state.totalKcal,
+                totalProt: state.totalProt
+            }
+        });
     }
 
 };
