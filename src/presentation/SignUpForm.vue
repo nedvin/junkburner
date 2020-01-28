@@ -143,11 +143,13 @@ export default {
             integer
         },
         weight: {
+            required,
             numeric,
             minValue: minValue(1),
             maxValue: maxValue(400)
         },
         length: {
+            required,
             numeric,
             minValue: minValue(50),
             maxValue: maxValue(250)
