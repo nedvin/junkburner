@@ -1,6 +1,6 @@
 <template>
     <div>
-        <homedisplay @showFormLogin="showLogin" @showFormSignup="showSignUp"/>
+        <homedisplay @createMeal="goToSearch" @showFormLogin="showLogin" @showFormSignup="showSignUp"/>
     </div>
 </template>
 
@@ -14,6 +14,9 @@ export default {
     methods: {
         showLogin(){
             this.setLoginVisible();
+        },
+        goToSearch() {
+            this.$router.push('/search');
         },
         showSignUp(){
             this.setSignUpVisible();

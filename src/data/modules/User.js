@@ -95,7 +95,6 @@ const actions = {
                 commit('calculateKcalRdi');
                 commit('setSnackbarMessage', 'Successfully logged in');
                 commit('setSuccessVisible');
-                router.push('/search')
             })
             .catch((err) => {
                 commit('setSnackbarMessage', err.message)
