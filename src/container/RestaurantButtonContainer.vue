@@ -6,7 +6,7 @@
             :key="button.key"
             :url="button.url"
             :alt="button.alt"
-            @click="selectRestaurant(button.key)"
+            @click="chooseRestaurant(button.key)"
         />
     </div>
 </template>
@@ -39,13 +39,16 @@ export default {
         };
     },
     methods: {
+        chooseRestaurant(restaurant) {
+            this.selectRestaurant({restaurant: restaurant, userId: this.userId})
+        },
         activeRestaurant(name) {
             return name === this.restaurant;
         },
         ...mapActions(['selectRestaurant'])
     },
     computed: {
-        ...mapGetters(['restaurant'])
+        ...mapGetters(['restaurant', 'userId'])
     },
     components: {
         "v-restaurant-button": restaurantButton

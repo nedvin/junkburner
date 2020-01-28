@@ -7,7 +7,7 @@
         <div>
             <select 
                 @change="$emit('changeAmount', $event, itemId)"
-                :selected="amount"
+                :value="amount"
             >
                 <option 
                     v-for="number in 5" 

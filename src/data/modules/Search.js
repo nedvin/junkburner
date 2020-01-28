@@ -35,18 +35,30 @@ const getters = {
     selectedDish : state => state.selectedDish,
     dishDetails : state => state.dishDetails,
     restaurant : state => state.restaurant,
-    apiNutrientData : state => state.apiNutrientData,
-    searchState: state => {state.searchResult,
-                            state.searchQuery,
-                            state.restaurant,
-                            state.selectedDish,
-                            state.apiNutrientData}
+    apiNutrientData : state => state.apiNutrientData
 };
 
 /**************  ACTIONS ***************************/
+import {db} from '@/main'
 
 const actions = {
-
+    initSearchState({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        searchResult: doc.data().searchState.searchResult,
+                        searchQuery: doc.data().searchState.searchQuery,
+                        restaurant: doc.data().searchState.restaurant,
+                        selectedDish: doc.data().searchState.selectedDish,
+                        apiNutrientData: doc.data().searchState.apiNutrientData,
+                    }
+            }
+        }).then(searchState => {
+            commit('initSearchStateFirebase', searchState);
+            }
+        )
+    },
     newSearch({commit}){
         let url = "https://trackapi.nutritionix.com/v2/search/instant";
         let apiHeader = new Headers(apiHeaderTemplate);
@@ -87,14 +99,27 @@ const actions = {
 
     },
 
-    selectRestaurant({commit}, restaurant) {
+    selectRestaurant({commit, dispatch}, payload) {
         commit("changeQuery", "")
         commit('newSearchResult', [])
-        commit("selectRestaurant", restaurant)
+        commit("selectRestaurant", payload.restaurant)
+        dispatch('updateSearchStateFirebase', payload.userId);
     },
 
     changeQuery({commit}, query) {
         commit("changeQuery", query)
+    },
+
+    updateSearchStateFirebase({commit}, userId) {
+        db.collection('users').doc(userId).update({
+            searchState: {
+                searchResult: state.searchResult,
+                searchQuery: state.searchQuery,
+                restaurant: state.restaurant,
+                selectedDish: state.selectedDish,
+                apiNutrientData: state.apiNutrientData
+            }
+        });
     },
 
     INIT_SEARCH({commit}){
@@ -143,7 +168,15 @@ const mutations = {
 
     addApiData(state, data){
         state.apiNutrientData = data;
-    }
+    },
+
+    initSearchStateFirebase(state, searchState) {
+        state.searchResult = searchState.searchResult,
+        state.searchQuery = searchState.searchQuery,
+        state.restaurant = searchState.restaurant,
+        state.selectedDish = searchState.selectedDish,
+        state.apiNutrientData = searchState.apiNutrientData
+    },
 };
 
 export default {

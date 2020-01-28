@@ -6,7 +6,7 @@
             :amount="dishItem.amount"
             :type="dishItem.type"
             :itemId="dishItem.id"
-            @delete="removeDish(dishItem)"
+            @delete="deleteDish(dishItem)"
             @changeAmount="changeAmount"
         />
     </div>
@@ -20,13 +20,20 @@ export default {
     name: 'SidebarFoodItemContainer',
     methods: {
         changeAmount(event, id) {
-            let newAmount = event.target.value;
-            this.setAmount({id: id, amount: newAmount});
+            let newAmount = Number(event.target.value);
+            this.setAmount({id: id, amount: newAmount, userId: this.userId});
+        },
+        deleteDish(dishItem) {
+            let payload = {
+                dish: dishItem,
+                userId: this.userId
+            }
+            this.removeDish(payload)
         },
         ...mapActions(['removeDish', 'setAmount'])
     },
     computed: {
-        ...mapGetters(['currentMeal'])
+        ...mapGetters(['currentMeal', 'userId'])
     },
     components: {
         'v-sidebar-food-item': sidebarFoodItem

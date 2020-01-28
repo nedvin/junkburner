@@ -34,6 +34,7 @@ new Vue({
         store.dispatch('setSignedIn');
         store.dispatch('initUser', user);
         store.dispatch('initMealState', user);
+        store.dispatch('initSearchState', user);
       }
   })
   },

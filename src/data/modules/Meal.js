@@ -50,17 +50,19 @@ const actions = {
         dispatch('updateMealStateFirebase', payload.userId);
     },
 
-    removeDish({commit}, dish){ 
-        commit("removeDish", dish.id);
-        commit("removeNutrition", dish);
+    removeDish({commit, dispatch}, payload){ 
+        commit("removeDish", payload.dish.id);
+        commit("removeNutrition", payload.dish);
+        dispatch('updateMealStateFirebase', payload.userId)
     },
 
-    setAmount({commit}, payload) {
+    setAmount({commit, dispatch}, payload) {
         let dishToChange = state.currentMeal.find(dish => payload.id === dish.id);
         let newAmount = payload.amount;
         commit('removeNutrition', dishToChange);
         commit('setAmount', {dish: dishToChange, amount: newAmount});
         commit('addNutrition', dishToChange)
+        dispatch('updateMealStateFirebase', payload.userId)
     },
 
     updateMealStateFirebase({commit}, userId) {
