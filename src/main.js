@@ -19,6 +19,8 @@ firebase.initializeApp({
   appId: "1:787171612727:web:6d951b7b717e95fbfa47b2",
 });
 
+
+
 export const db = firebase.firestore()
 
 new Vue({
@@ -26,7 +28,18 @@ new Vue({
   store,
   render: h => h(App),
 
+ beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        store.dispatch('setSignedIn');
+        store.dispatch('initUser', user);
+        store.dispatch('initMealState', user);
+      }
+  })
+  },
+
   async created(){
+
     //initialize store data structure by submitting action.
   /*  await this.$store.dispatch('INIT_SEARCH');
     this.$store.dispatch('INIT_MEAL');

@@ -5,8 +5,7 @@ const state = {
     totalKcal : 0,
     totalFat : 0,
     totalCarb : 0,
-    totalProt : 0,
-
+    totalProt : 0
 };
 
 /**************  GETTERS ***************************/
@@ -19,8 +18,26 @@ const getters = {
 };
 
 /**************  ACTIONS ***************************/
+import {db} from "@/main";
 
 const actions = {
+    initMealState({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        currentMeal: doc.data().mealState.currentMeal,
+                        totalKcal: doc.data().mealState.totalKcal,
+                        totalFat: doc.data().mealState.totalFat,
+                        totalCarb: doc.data().mealState.totalCarb,
+                        totalProt: doc.data().mealState.totalProt,
+                    }
+            }
+        }).then(mealState => {
+            commit('initMealStateFirebase', mealState);
+            }
+        )
+    },
     addDish({commit, dispatch}, dish){
         let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === dish.id);
         if(!dishInMeal){
@@ -49,6 +66,13 @@ const actions = {
 
 /**************  MUTATIONS ***************************/
 const mutations = {
+    initMealStateFirebase(state, mealState) {
+        state.currentMeal = mealState.currentMeal,
+        state.totalKcal = mealState.totalKcal,
+        state.totalCarb = mealState.totalCarb,
+        state.totalFat = mealState.totalFat,
+        state.totalProt = mealState.totalProt
+    },
     addDish(state, dish){
         state.currentMeal.push(dish);  
     },

@@ -30,6 +30,27 @@ import {db} from "@/main";
 import router from '@/router'
 
 const actions = {
+    initUser({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        age: doc.data().age,
+                        weight: doc.data().weight,
+                        length: doc.data().length,
+                        gender: doc.data().gender,
+                        userId: doc.data().userID,
+                    }
+            }
+        }).then(user => {
+            commit('loadUser', user);
+            commit('calculateKcalRdi');
+            }
+        )
+    },
+    setSignedIn({commit}) {
+        commit('setSignedIn');
+    },
     loadUser({commit}, user){
         commit("loadUser", user);
         commit("calculateKcalRdi");
@@ -128,7 +149,7 @@ const actions = {
         ); 
     },
     signUpUser({commit}, user) {
-        firebase
+         firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
                 return db.collection('users').doc(cred.user.uid).set({
@@ -136,7 +157,21 @@ const actions = {
                     age: user.age,
                     weight: user.weight,
                     length: user.length,
-                    gender: user.gender
+                    gender: user.gender,
+                    mealState: {
+                        currentMeal : [],
+                        totalKcal : 0,
+                        totalFat : 0,
+                        totalCarb : 0,
+                        totalProt : 0,
+                    },
+                    searchState: {
+                        searchResult : [],
+                        searchQuery : "",
+                        restaurant: "",
+                        selectedDish : {},
+                        apiNutrientData: []
+                    }
                 })
             })
             .then(() => {
@@ -163,6 +198,9 @@ const mutations = {
         state.weight = user.weight;
         state.userId = user.userId;
         state.gender = user.gender;
+        state.signedIn = true;
+    },
+    setSignedIn(state) {
         state.signedIn = true;
     },
     signOut(state){

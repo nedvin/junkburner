@@ -25,7 +25,6 @@ const state = {
     searchQuery : "",
     restaurant: "",
     selectedDish : {},
-    dishDetails : {},
     apiNutrientData: []
 };
 
@@ -36,7 +35,12 @@ const getters = {
     selectedDish : state => state.selectedDish,
     dishDetails : state => state.dishDetails,
     restaurant : state => state.restaurant,
-    apiNutrientData : state => state.apiNutrientData
+    apiNutrientData : state => state.apiNutrientData,
+    searchState: state => {state.searchResult,
+                            state.searchQuery,
+                            state.restaurant,
+                            state.selectedDish,
+                            state.apiNutrientData}
 };
 
 /**************  ACTIONS ***************************/
