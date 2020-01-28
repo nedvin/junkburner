@@ -110,6 +110,14 @@ const mutations = {
 
     setAmount(state, payload) {
         payload.dish.amount = payload.amount;
+    },
+
+    clearMealState(state) {
+        state.currentMeal = [];
+        state.totalKcal = 0,
+        state.totalFat = 0,
+        state.totalCarb = 0,
+        state.totalProt = 0
     }
 };
 

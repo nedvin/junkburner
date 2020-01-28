@@ -121,7 +121,10 @@ const actions = {
                 })
                 .finally(
                     setTimeout(() => commit('setAlertNotVisible'), 2500),
-                    setTimeout(() => commit('setSuccessNotVisible'), 2500)
+                    setTimeout(() => commit('setSuccessNotVisible'), 2500),
+                    commit('clearMealState'),
+                    commit('clearUserState'),
+                    commit('clearWorkoutState')
                 );
     },
     updateUserSettings({commit}, userInfo) {
@@ -225,6 +228,16 @@ const mutations = {
         else{
             state.kcalRdi = Math.round(447.593 + 9.247*state.weight + 3.098*state.length - 4.33*state.age);
         }
+    },
+
+    clearUserState(state) {
+        state.age = 0,
+        state.length = 0,
+        state.weight = 0,
+        state.kcalRdi = 0,
+        state.userId = "",
+        state.gender = "",
+        state.signedIn = false
     }
 };
 

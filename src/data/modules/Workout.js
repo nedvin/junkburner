@@ -4,8 +4,8 @@ const state = {
     exercises : [],
     totalKcal: 0,
     totalTime: {
-        minuter : 0,
-        timmar : 0
+        minutes : 0,
+        hours : 0
     },
     sessions : 0
 };
@@ -39,6 +39,16 @@ const mutations = {
         state.totalKcal = totalExercise.totalKcal;
         state.totalTime = totalExercise.totalTime;
         state.sessions = totalExercise.sessions;
+    },
+
+    clearWorkoutState(state) {
+        state.exercises = [],
+        state.totalKcal = 0,
+        state.totalTime = {
+            minutes: 0,
+            hours: 0
+        },
+        state.sessions = 0
     }
 };
 
