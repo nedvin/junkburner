@@ -101,8 +101,8 @@ const actions = {
                 commit('setAlertVisible');
             })
             .finally(
-                setTimeout(() => commit('setAlertNotVisible'), 2500),
-                setTimeout(() => commit('setSuccessNotVisible'), 2500)
+                setTimeout(() => commit('setAlertNotVisible'), 5000),
+                setTimeout(() => commit('setSuccessNotVisible'), 5000)
             );
     },
     signOutUser({commit}){
@@ -119,8 +119,8 @@ const actions = {
                     commit('setAlertVisible');
                 })
                 .finally(
-                    setTimeout(() => commit('setAlertNotVisible'), 2500),
-                    setTimeout(() => commit('setSuccessNotVisible'), 2500),
+                    setTimeout(() => commit('setAlertNotVisible'), 5000),
+                    setTimeout(() => commit('setSuccessNotVisible'), 5000),
                     commit('clearMealState'),
                     commit('clearUserState'),
                     commit('clearWorkoutState')
@@ -146,8 +146,8 @@ const actions = {
             commit('setAlertVisible');
         })
         .finally(
-            setTimeout(() => commit('setAlertNotVisible'), 2500),
-            setTimeout(() => commit('setSuccessNotVisible'), 2500)
+            setTimeout(() => commit('setAlertNotVisible'), 5000),
+            setTimeout(() => commit('setSuccessNotVisible'), 5000)
         ); 
     },
     signUpUser({commit}, user) {
@@ -185,8 +185,8 @@ const actions = {
                 commit('setAlertVisible');
             })
             .finally(
-                setTimeout(() => commit('setAlertNotVisible'), 2500),
-                setTimeout(() => commit('setSuccessNotVisible'), 2500)
+                setTimeout(() => commit('setAlertNotVisible'), 5000),
+                setTimeout(() => commit('setSuccessNotVisible'), 5000)
             );
     }
 
