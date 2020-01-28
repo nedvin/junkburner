@@ -41,9 +41,6 @@ new Vue({
     await this.$store.dispatch("newSearchDetails");
     this.$store.dispatch("addDish", this.$store.getters.dishDetails);
     //this.$store.dispatch("removeDish", this.$store.getters.dishDetails); */
-    console.log("starta generate workout");
-    this.$store.dispatch('generateWorkoutSession');
-    console.log("avsluta generate workout");
     
  }
 }).$mount("#app");
