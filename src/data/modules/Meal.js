@@ -38,14 +38,14 @@ const actions = {
             }
         )
     },
-    addDish({commit, dispatch}, dish){
-        let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === dish.id);
+    addDish({commit, dispatch}, payload){
+        let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === payload.dish.id);
         if(!dishInMeal){
-            commit("addDish", dish);
-            commit("addNutrition", dish);
+            commit("addDish", payload.dish);
+            commit("addNutrition", payload.dish);
         }
         else{
-            dispatch('setAmount', {id: dish.id, amount: (dishInMeal.amount + 1)})
+            dispatch('setAmount', {id: payload.dish.id, amount: (dishInMeal.amount + 1)})
         }
     },
 
