@@ -89,27 +89,22 @@
             </div>
         </div>
         <button @click="$emit('closeForm')" class="btn btn-abort">Close</button>
-        <button
-            type="submit"
-            class="btn btn-green"
-            @click="
-                $emit('signUp', {
-                    email: email,
-                    password: password,
-                    age: age,
-                    weight: weight,
-                    length: length,
-                    gender: gender
-                })
-            "
-        >
+        <button type="submit" class="btn btn-green" :disabled="$v.$invalid" @click="signUp">
             Sign up
         </button>
     </div>
 </template>
 
 <script>
-import {required, email, between, integer, numeric, minValue, maxValue } from 'vuelidate/lib/validators'
+import {
+    required,
+    email,
+    between,
+    integer,
+    numeric,
+    minValue,
+    maxValue
+} from "vuelidate/lib/validators";
 
 export default {
     data() {
@@ -124,6 +119,18 @@ export default {
             gender: "Male",
             submitStatus: null
         };
+    },
+    methods: {
+        signUp() {  
+               this.$emit("signUp", {
+                email: this.email,
+                password: this.password,
+                age: this.age,
+                weight: this.weight,
+                length: this.length,
+                gender: this.gender
+                });   
+        }
     },
     validations: {
         email: {
