@@ -29,7 +29,7 @@ const state = {
 /**************  GETTERS ***************************/
 const getters = {
     exercises : state => state.exercises,
-    totalKcal: state => state.totalKcal,
+    workoutTotalKcal: state => state.totalKcal,
     totalTime: state => state.totalTime,
     sessions: state => state.sessions,
     totalExercise: state => JSON.parse(JSON.stringify(state))

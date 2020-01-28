@@ -36,14 +36,14 @@
                         <td>{{ totalFat }} grams</td>
                     </tr>
                 </table>
-                <button class="btn btn-abort">Punish me</button>
+                <button class="btn btn-abort" @click="punishUser">Punish me</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import sidebarFoodItemContainer from "@/container/SidebarFoodItemContainer";
 
 export default {
@@ -56,6 +56,9 @@ export default {
             } else {
                 wrapper.className = "sidebar-ctrl-visibility";
             }
+        },
+        punishUser(event){
+            this.$emit('punishMe');
         }
     },
     computed: {

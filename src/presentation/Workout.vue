@@ -3,45 +3,63 @@
         <div class="box-80">
             <h1>Calculated training</h1>
         </div>
-        <div class="exercise-div">
-            <table>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+        <div class="exercises-container">
+          <v-workout-container />
+        </div>
+        <p></p>
+        <div class="box-80 centered">
+          <span>
+            {{"Perform for " + totalExercise.sessions + " x sessions spending a total of " + totalExercise.totalTime.hours + " hours and " + 
+            totalExercise.totalTime.minutes + " minutes for a total of " + totalExercise.totalKcal + " amount of kcal burned."}}
+          </span>
         </div>
         <div class="box-80 centered">
-            <button class="btn btn-abort">Punish me</button>
+            <button class="btn btn-abort" @click="punishUser">Different punishment please</button>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
-export default {
-    name: "Workout",
-    data() {
-        return {};
+  import {mapGetters} from "vuex";
+    import exercisecontainer from "@/container/ExerciseContainer"
+  export default {
+    name: 'WorkoutView',
+    components: {
+      'v-exercise-container': exercisecontainer
     },
-    methods: {},
-    computed: {}
-};
+    computed: {
+      ...mapGetters(["totalExercise"])
+    },
+    methods: {
+        punishUser(){
+            this.$emit('punishUser');
+        }
+    }
+  }
 </script>
 
 <style scoped>
-#workout-container {
+  #workout-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
+
+  .centered {
+      display: flex;
+      justify-content: center;
+  }
+
+  .box-80 {
+      width: 80%;
+  }
+
+  .exercises-container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     width: 100%;
-}
-
-.centered {
-    display: flex;
-    justify-content: center;
-}
-
-.box-80 {
-    width: 80%;
-}
+    justify-content: space-evenly;
+  }
 </style>

@@ -28,7 +28,9 @@ new Vue({
 
   async created(){
     //initialize store data structure by submitting action.
-  /*  await this.$store.dispatch('INIT_SEARCH');
+    
+    await this.$store.dispatch('INIT_SEARCH');
+    /*
     this.$store.dispatch('INIT_MEAL');
     this.$store.dispatch('INIT_WORKOUT');
 
@@ -41,6 +43,8 @@ new Vue({
     await this.$store.dispatch("newSearchDetails");
     this.$store.dispatch("addDish", this.$store.getters.dishDetails);
     //this.$store.dispatch("removeDish", this.$store.getters.dishDetails); */
+
+    //this.$store.dispatch('generateWorkoutSession', 999);
     
  }
 }).$mount("#app");

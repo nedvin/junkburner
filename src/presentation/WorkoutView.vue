@@ -6,14 +6,19 @@
 </template>
 
 <script>
-  import Overview from '@/presentation/MealOverview'
-  import workoutContainer from '@/container/WorkoutContainer'
+  import Overview from '@/container/MealContainer';
+  import workoutcontainer from '@/container/WorkoutContainer';
+  import {mapGetters} from "vuex";
 
   export default {
     name: 'WorkoutView',
     components: {
       'overview': Overview,
-      'v-workout-container': workoutContainer
+      'v-workout-container': workoutcontainer
+    },
+    computed: {
+      ...mapGetters(["totalExercise"])
     }
   }
 </script>
+
