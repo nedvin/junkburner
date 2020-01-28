@@ -3,7 +3,6 @@
         <navbutton
             v-for="button in buttonsToRender" 
             :text="button" 
-            :isActive="isActivePage(button)" 
             :key="button"
             @navBtnClicked="handleBtnPress"/>
     </div>
@@ -14,16 +13,16 @@
 import { mapGetters, mapActions } from 'vuex';
 import button from "@/presentation/NavBarButton"
 export default {
-    name: "Toolbar",
+    name: "Navbar",
     data() {
         return{
-            buttons : ["Sign up!", "Home", "Search", "Meal", "Workout", "Profile", "Login"],
+            buttons : ["Sign up!","Profile", "Home", "Search", "Meal", "Workout", "Sign out", "Login"],
             reRender : true
         }
     },
     methods: {
         isActivePage(page){
-            return this.$router.currentRoute.name === page;
+            return this.routeChange === page;
         },
         handleBtnPress(event){
             if(event==="Sign up!"){
@@ -35,10 +34,12 @@ export default {
             else if(event === "Profile"){
                 this.toggleProfileVisible();
             }
+            else if(event === "Sign out"){
+                this.signOutUser();
+            }
             else{
                 this.$router.push(event);
             }
-            this.forceReRender();
         },
         forceReRender(){ // Hack för att rerendra inte att rekommendera https://michaelnthiessen.com/force-re-render/
             this.reRender = false;
@@ -47,7 +48,8 @@ export default {
         ...mapActions([
             "toggleLoginVisible",
             "toggleSignUpVisible",
-            "toggleProfileVisible"
+            "toggleProfileVisible",
+            "signOutUser"
         ])
     },
     computed: {
@@ -59,16 +61,24 @@ export default {
                     .filter((element) => element !== "Login");
             }
             else{
-                render = render.filter((element) => element !== "Profile");
+                render = render.filter((element) => element !== "Profile")
+                .filter((element) => element !== "Sign out");
             }
             return render;
         },
-       
-        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn']) // TODO: Får se om det behövs ngn mer getter än signedIn 
-        
+        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn']), // TODO: Får se om det behövs ngn mer getter än signedIn 
+        routeChange: function(){
+            let screen = this.$router.currentRoute.name;
+            return screen;
+        }
     },
     components: {
         'navbutton' : button
+    },
+    watch: {
+        $route(to, from){
+            this.forceReRender();
+        }
     }
 };
 </script>

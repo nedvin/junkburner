@@ -1,7 +1,7 @@
 <template>
     <div
         class="nav-bar-button"
-        :class="{active : this.isActive, signUp : this.isSignup, login : this.isLogin}"
+        :class="{active : isActive, signUp : this.isSignup, login : this.isLogin, signOut : isSignOut}"
         @click="$emit('navBtnClicked', text)"
     >
         <p>
@@ -15,14 +15,17 @@ export default {
     data() {
         return {
             isSignup: this.text === "Sign up!",
-            isLogin: this.text === "Login"
+            isLogin: this.text === "Login",
+            isSignOut: this.text === "Sign out" 
         }
     },
     props: {
         text : String,
-        isActive : Boolean
     },
     computed: {
+        isActive: function(){
+            return this.$router.currentRoute.name === this.text;
+        }
     }
 }
 </script>
@@ -42,6 +45,11 @@ export default {
 
 .login {
     background-color: #05c46b !important; 
+}
+
+.signOut {
+    background-color: #ff3f34 !important;
+    color: black !important;
 }
 
 .nav-bar-button{

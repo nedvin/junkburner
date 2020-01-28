@@ -20,7 +20,7 @@ export default {
         ]),
         generateWorkout(){
             this.generateWorkoutSession(this.totalKcal);
-            this.$router.push('Workout')
+            this.$router.push('Workout');
         }
     }
 

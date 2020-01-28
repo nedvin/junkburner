@@ -4,7 +4,7 @@
             <h1>Calculated training</h1>
         </div>
         <div class="exercises-container">
-          <v-workout-container />
+          <v-exercise-container />
         </div>
         <p></p>
         <div class="box-80 centered">
@@ -17,7 +17,6 @@
             <button class="btn btn-abort" @click="punishUser">Different punishment please</button>
         </div>
     </div>
-  </div>
 </template>
 
 <script>

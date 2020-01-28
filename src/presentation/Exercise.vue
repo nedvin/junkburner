@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
     .exercise-container{
-        width: 100px;
+        width: 200px;
         display: inline-block;
     
     }
