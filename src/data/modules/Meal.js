@@ -5,8 +5,7 @@ const state = {
     totalKcal : 0,
     totalFat : 0,
     totalCarb : 0,
-    totalProt : 0,
-
+    totalProt : 0
 };
 
 /**************  GETTERS ***************************/
@@ -19,17 +18,36 @@ const getters = {
 };
 
 /**************  ACTIONS ***************************/
+import {db} from "@/main";
 
 const actions = {
-    addDish({commit, dispatch}, dish){
-        let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === dish.id);
+    initMealState({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        currentMeal: doc.data().mealState.currentMeal,
+                        totalKcal: doc.data().mealState.totalKcal,
+                        totalFat: doc.data().mealState.totalFat,
+                        totalCarb: doc.data().mealState.totalCarb,
+                        totalProt: doc.data().mealState.totalProt,
+                    }
+            }
+        }).then(mealState => {
+            commit('initMealStateFirebase', mealState);
+            }
+        )
+    },
+    addDish({commit, dispatch}, payload){
+        let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === payload.dish.id);
         if(!dishInMeal){
-            commit("addDish", dish);
-            commit("addNutrition", dish);
+            commit("addDish", payload.dish);
+            commit("addNutrition", payload.dish);
         }
         else{
-            dispatch('setAmount', {id: dish.id, amount: (dishInMeal.amount + 1)})
+            dispatch('setAmount', {id: payload.dish.id, amount: (dishInMeal.amount + 1)})
         }
+        dispatch('updateMealStateFirebase', payload.userId);
     },
 
     removeDish({commit}, dish){ 
@@ -43,12 +61,31 @@ const actions = {
         commit('removeNutrition', dishToChange);
         commit('setAmount', {dish: dishToChange, amount: newAmount});
         commit('addNutrition', dishToChange)
+    },
+
+    updateMealStateFirebase({commit}, userId) {
+        db.collection('users').doc(userId).update({
+            mealState: {
+                currentMeal: state.currentMeal,
+                totalCarb: state.totalCarb,
+                totalFat: state.totalFat,
+                totalKcal: state.totalKcal,
+                totalProt: state.totalProt
+            }
+        });
     }
 
 };
 
 /**************  MUTATIONS ***************************/
 const mutations = {
+    initMealStateFirebase(state, mealState) {
+        state.currentMeal = mealState.currentMeal,
+        state.totalKcal = mealState.totalKcal,
+        state.totalCarb = mealState.totalCarb,
+        state.totalFat = mealState.totalFat,
+        state.totalProt = mealState.totalProt
+    },
     addDish(state, dish){
         state.currentMeal.push(dish);  
     },
@@ -73,6 +110,14 @@ const mutations = {
 
     setAmount(state, payload) {
         payload.dish.amount = payload.amount;
+    },
+
+    clearMealState(state) {
+        state.currentMeal = [];
+        state.totalKcal = 0,
+        state.totalFat = 0,
+        state.totalCarb = 0,
+        state.totalProt = 0
     }
 };
 

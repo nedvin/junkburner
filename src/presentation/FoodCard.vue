@@ -7,13 +7,14 @@
             <button 
                 class="btn btn-add" 
                 @click="$emit('addDishToMeal', {
-                    id: itemId,
-                    name: name,
-                    kcal: kcal,
-                    carbs: carbs,
-                    fat: fat,
-                    protein: protein,
-                    amount: 1
+                    dish: {
+                        id: itemId,
+                        name: name,
+                        kcal: kcal,
+                        carbs: carbs,
+                        fat: fat,
+                        protein: protein,
+                        amount: 1}
                     })"
             >
                 Add to meal

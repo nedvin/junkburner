@@ -20,12 +20,13 @@ export default {
             "removeDish"
             ]),
         addDishToMeal(event){
-            event.type = this.searchQuery;
+            event.dish.type = this.searchQuery;
+            event.userId = this.userId;
             this.addDish(event);
         }
     },
     computed: {
-        ...mapGetters(["searchResult", "dishDetails", "selectedDish", "searchQuery"])
+        ...mapGetters(["searchResult", "dishDetails", "selectedDish", "searchQuery", 'userId'])
     },
     components : {
         "search" : search

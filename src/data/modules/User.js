@@ -30,6 +30,27 @@ import {db} from "@/main";
 import router from '@/router'
 
 const actions = {
+    initUser({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        age: doc.data().age,
+                        weight: doc.data().weight,
+                        length: doc.data().length,
+                        gender: doc.data().gender,
+                        userId: doc.data().userID,
+                    }
+            }
+        }).then(user => {
+            commit('loadUser', user);
+            commit('calculateKcalRdi');
+            }
+        )
+    },
+    setSignedIn({commit}) {
+        commit('setSignedIn');
+    },
     loadUser({commit}, user){
         commit("loadUser", user);
         commit("calculateKcalRdi");
@@ -74,7 +95,6 @@ const actions = {
                 commit('calculateKcalRdi');
                 commit('setSnackbarMessage', 'Successfully logged in');
                 commit('setSuccessVisible');
-                router.push('/search')
             })
             .catch((err) => {
                 commit('setSnackbarMessage', err.message)
@@ -100,7 +120,10 @@ const actions = {
                 })
                 .finally(
                     setTimeout(() => commit('setAlertNotVisible'), 2500),
-                    setTimeout(() => commit('setSuccessNotVisible'), 2500)
+                    setTimeout(() => commit('setSuccessNotVisible'), 2500),
+                    commit('clearMealState'),
+                    commit('clearUserState'),
+                    commit('clearWorkoutState')
                 );
     },
     updateUserSettings({commit}, userInfo) {
@@ -128,7 +151,7 @@ const actions = {
         ); 
     },
     signUpUser({commit}, user) {
-        firebase
+         firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
                 return db.collection('users').doc(cred.user.uid).set({
@@ -136,7 +159,21 @@ const actions = {
                     age: user.age,
                     weight: user.weight,
                     length: user.length,
-                    gender: user.gender
+                    gender: user.gender,
+                    mealState: {
+                        currentMeal : [],
+                        totalKcal : 0,
+                        totalFat : 0,
+                        totalCarb : 0,
+                        totalProt : 0,
+                    },
+                    searchState: {
+                        searchResult : [],
+                        searchQuery : "",
+                        restaurant: "",
+                        selectedDish : {},
+                        apiNutrientData: []
+                    }
                 })
             })
             .then(() => {
@@ -165,6 +202,9 @@ const mutations = {
         state.gender = user.gender;
         state.signedIn = true;
     },
+    setSignedIn(state) {
+        state.signedIn = true;
+    },
     signOut(state){
         state.signedIn = false;
     },
@@ -187,6 +227,16 @@ const mutations = {
         else{
             state.kcalRdi = Math.round(447.593 + 9.247*state.weight + 3.098*state.length - 4.33*state.age);
         }
+    },
+
+    clearUserState(state) {
+        state.age = 0,
+        state.length = 0,
+        state.weight = 0,
+        state.kcalRdi = 0,
+        state.userId = "",
+        state.gender = "",
+        state.signedIn = false
     }
 };
 

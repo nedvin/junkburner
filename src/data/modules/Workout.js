@@ -86,6 +86,16 @@ const mutations = {
         state.totalKcal = totalExercise.totalKcal;
         state.totalTime = totalExercise.totalTime;
         state.sessions = totalExercise.sessions;
+    },
+
+    clearWorkoutState(state) {
+        state.exercises = [],
+        state.totalKcal = 0,
+        state.totalTime = {
+            minutes: 0,
+            hours: 0
+        },
+        state.sessions = 0
     }
 };
 
