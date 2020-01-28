@@ -26,6 +26,7 @@
             ]),
             async signOut(){
                 await this.signOutUser();
+                this.$router.push('/');
                 this.toggle();
             },
             updateProfile(userData){
