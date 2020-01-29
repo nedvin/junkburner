@@ -12,9 +12,6 @@ export default {
         "v-workout": workout
     },
     methods: {
-        lessThen350Kcal(kcalAmount){
-            return kcalAmount < 350;
-        },
         ...mapActions([
             "generateWorkoutSession"
         ]),
@@ -24,13 +21,9 @@ export default {
     },
     computed: {
         ...mapGetters([
-            "totalExercise", 
             "totalKcal",
             'userId'
         ])
-    },
-    props: [
-        "type"
-    ]
+    }
 }
 </script>
