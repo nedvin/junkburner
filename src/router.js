@@ -15,17 +15,14 @@ let router = new Router({
             component: HomeView
         },
         {
-            path: "/search",
-            name: "Search",
+            path: "/meal",
+            name: "Meal",
             component: SearchView,
-           // meta: {
-           //     requiresAuth: true
-           //   }
         },
         {
             path: "/workout",
             name: "Workout",
-            component: WorkoutView
+            component: WorkoutView,
         },
         {
             path: "*",

@@ -59,7 +59,7 @@ const actions = {
             }
         )
     },
-    newSearch({commit}){
+    newSearch({commit, dispatch}, payload){
         let url = "https://trackapi.nutritionix.com/v2/search/instant";
         let apiHeader = new Headers(apiHeaderTemplate);
         apiHeader.append("Content-Type", "application/json");
@@ -73,7 +73,8 @@ const actions = {
             body : apiBody
         }).then(handleHTTPError)
         .then(response => response.json())
-        .then(response => commit("newSearchResult", response["branded"]));
+        .then(response => commit("newSearchResult", response["branded"]))
+        .finally(() => dispatch('updateSearchStateFirebase', payload.userId));
     },
 
     newQuery({commit}, query){
@@ -106,8 +107,9 @@ const actions = {
         dispatch('updateSearchStateFirebase', payload.userId);
     },
 
-    changeQuery({commit}, query) {
-        commit("changeQuery", query)
+    changeQuery({commit, dispatch}, payload) {
+        commit("changeQuery", payload.query)
+        dispatch('updateSearchStateFirebase', payload.userId)
     },
 
     updateSearchStateFirebase({commit}, userId) {
@@ -177,6 +179,14 @@ const mutations = {
         state.selectedDish = searchState.selectedDish,
         state.apiNutrientData = searchState.apiNutrientData
     },
+
+    clearSearchState(state) {
+        state.searchResult = [],
+        state.searchQuery = '',
+        state.restaurant = '',
+        state.selectDish = {},
+        state.apiNutrientData = []
+    }
 };
 
 export default {
