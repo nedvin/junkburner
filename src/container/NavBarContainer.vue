@@ -21,9 +21,6 @@ export default {
         }
     },
     methods: {
-        isActivePage(page){
-            return this.routeChange === page;
-        },
         handleBtnPress(event){
             if(event==="Sign up!"){
                 this.toggleSignUpVisible();
@@ -38,6 +35,9 @@ export default {
                 this.signOutUser();
             }
             else{
+                if(event === "Workout"){
+                    this.generateWorkoutSession({kcal : this.totalKcal, userId: this.userId});
+                }
                 this.$router.push(event);
             }
         },
@@ -49,7 +49,8 @@ export default {
             "toggleLoginVisible",
             "toggleSignUpVisible",
             "toggleProfileVisible",
-            "signOutUser"
+            "signOutUser",
+            "generateWorkoutSession"
         ])
     },
     computed: {
@@ -66,11 +67,7 @@ export default {
             }
             return render;
         },
-        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn']), // TODO: Får se om det behövs ngn mer getter än signedIn 
-        routeChange: function(){
-            let screen = this.$router.currentRoute.name;
-            return screen;
-        }
+        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn', 'totalKcal']) // TODO: Får se om det behövs ngn mer getter än signedIn 
     },
     components: {
         'navbutton' : button

@@ -1,35 +1,43 @@
 <template>
-    <div id="workout-container">
-        <div class="box-80">
-            <h1>Calculated training</h1>
+    <div>
+        <div id="workout-container" v-if="hasMeal()">
+            <div class="box-80">
+                <h1>Calculated training</h1>
+            </div>
+            <div v-if="!signedIn" class="sign-in-message">
+                You need to sign in to be able to use the training generator!
+            </div>
+            <div class="exercises-container" v-if="signedIn">
+                <v-exercise-container />
+            </div>
+            <div class="box-80 centered workout-text" v-if="signedIn">
+                <span>
+                    {{
+                        "Perform for " +
+                            totalExercise.sessions +
+                            "x session(s) spending a total of " +
+                            totalExercise.totalTime.hours +
+                            " hours and " +
+                            totalExercise.totalTime.minutes +
+                            " minutes for a total of " +
+                            totalExercise.totalKcal +
+                            " amount of kcal burned."
+                    }}
+                </span>
+            </div>
+            <div class="box-80 centered" v-if="signedIn">
+                <button class="btn btn-abort" @click="punishUser">
+                    Different punishment please
+                </button>
+            </div>
         </div>
-        <div v-if="!signedIn" class="sign-in-message">
-            You need to sign in to be able to use the training generator!
-        </div>
-        <div class="exercises-container" v-if="signedIn">
-            <v-exercise-container />
-        </div>
-        <div class="box-80 centered" v-if="signedIn">
-            <span>
-                {{
-                    "Perform for " +
-                        totalExercise.sessions +
-                        "x session(s) spending a total of " +
-                        totalExercise.totalTime.hours +
-                        " hours and " +
-                        totalExercise.totalTime.minutes +
-                        " minutes for a total of " +
-                        totalExercise.totalKcal +
-                        " amount of kcal burned."
-                }}
-            </span>
-        </div>
-        <div class="box-80 centered" v-if="signedIn">
-            <button class="btn btn-abort" @click="punishUser">
-                Different punishment please
-            </button>
+        <div id="workout-container" v-if="!hasMeal()">
+            <div class="box-80">
+                <h1>Make a meal before generating a workout!</h1>
+            </div>
         </div>
     </div>
+    
 </template>
 
 <script>
@@ -43,13 +51,17 @@ export default {
     computed: {
         ...mapGetters([
             "totalExercise", 
-            "signedIn"])
+            "signedIn",
+            "totalKcal"
+        ])
     },
     methods: {
         punishUser() {
             this.$emit("punishUser");
         },
-
+        hasMeal(){
+            return this.totalKcal > 0;
+        }
     }
 };
 </script>
@@ -81,5 +93,16 @@ export default {
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
+}
+
+.workout-text{
+    margin: 20px;
+}
+
+@media screen and (max-width: 510px) {
+    .exercise-container{
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 </style>

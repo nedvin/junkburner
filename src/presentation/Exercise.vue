@@ -31,7 +31,18 @@ export default {
 <style scoped>
     .exercise-container{
         width: 200px;
+        height: 150px;
         display: inline-block;
-    
+        margin : 20px;
+        text-align: center;
     }
+
+    .exercise-header{
+        background-color: orange;
+    }
+
+    .exercise-name{
+        font-size: 18px;
+    }
+
 </style>

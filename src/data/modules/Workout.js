@@ -79,7 +79,8 @@ const actions = {
             workoutSession.workout.workout.tid = 0;
         }
         else{
-            workoutSession.workout.warmup.tid = 15;
+            let warmupSeed = 5 - Math.floor(Math.random() * 10);
+            workoutSession.workout.warmup.tid = warmupSeed + 15;
             payload.kcal -= workoutSession.workout.warmup.tid * workoutSession.workout.warmup.kcalPerMin;
             workoutSession.workout.workout.tid = Math.ceil(payload.kcal / workoutSession.workout.workout.kcalPerMin);  
         }
