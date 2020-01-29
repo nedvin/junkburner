@@ -58,10 +58,16 @@ export default {
             this.changeQuery({query: query, userId: this.userId})
             this.newSearch({userId: this.userId})
         },
-        ...mapActions(['changeQuery', 'newSearch'])
+        ...mapActions([
+                'changeQuery', 
+                'newSearch'
+            ])
     },
     computed: {
-        ...mapGetters(['restaurant', 'userId'])
+        ...mapGetters([
+                'restaurant', 
+                'userId'
+            ])
     },
     components: {
         'v-food-options': FoodOptions
