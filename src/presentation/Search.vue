@@ -11,10 +11,10 @@
         </div>
 
         <!-- CHOOSE TYPE OF FOOD -->
-        <v-food-options-container/>        
+        <v-food-options-container v-if="signedIn"/>        
 
         <!-- SEARCH RESULTS -->
-        <div class="search-results-box">
+        <div class="search-results-box" v-if="signedIn">
             <v-food-card 
                 v-for="result in searchResult" 
                 :key="result.nix_item_id"
@@ -26,6 +26,10 @@
                 :id="result.nix_item_id"
                 @addDishToMeal="bubbleEvent"
             />
+        </div>
+
+        <div v-if="!signedIn" class="sign-in-message">
+            You need to sign in to be able to create your junkfood meal!
         </div>
     </div>
 </template>
@@ -48,6 +52,9 @@ export default {
         bubbleEvent(event){
             this.$emit('addDishToMeal', event);
         }
+    },
+    computed: {
+        ...mapGetters(['signedIn'])
     }
     
 };
@@ -77,6 +84,11 @@ export default {
 
 .icon-small {
     height: 16px;
+}
+
+.sign-in-message {
+    margin-top: 20px;
+    font-size: 1.2em;
 }
 
 /****** CHOOSE RESTAURANT *******/

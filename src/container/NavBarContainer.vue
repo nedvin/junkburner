@@ -16,7 +16,7 @@ export default {
     name: "Navbar",
     data() {
         return{
-            buttons : ["Sign up!","Profile", "Home", "Search", "Meal", "Workout", "Sign out", "Login"],
+            buttons : ["Sign up!","Profile", "Home", "Meal", "Workout", "Sign out", "Login"],
             reRender : true
         }
     },
