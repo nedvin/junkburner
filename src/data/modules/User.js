@@ -151,8 +151,8 @@ const actions = {
             setTimeout(() => commit('setSuccessNotVisible'), 5000)
         ); 
     },
-    signUpUser({commit}, user) {
-         firebase
+    async signUpUser({commit}, user) {
+        await firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
                 return db.collection('users').doc(cred.user.uid).set({

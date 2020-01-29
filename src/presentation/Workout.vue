@@ -9,13 +9,12 @@
         <div class="exercises-container" v-if="signedIn">
             <v-exercise-container />
         </div>
-        <p></p>
         <div class="box-80 centered" v-if="signedIn">
             <span>
                 {{
                     "Perform for " +
                         totalExercise.sessions +
-                        " x sessions spending a total of " +
+                        "x session(s) spending a total of " +
                         totalExercise.totalTime.hours +
                         " hours and " +
                         totalExercise.totalTime.minutes +
@@ -42,12 +41,15 @@ export default {
         "v-exercise-container": exercisecontainer
     },
     computed: {
-        ...mapGetters(["totalExercise", 'signedIn'])
+        ...mapGetters([
+            "totalExercise", 
+            "signedIn"])
     },
     methods: {
         punishUser() {
             this.$emit("punishUser");
-        }
+        },
+
     }
 };
 </script>

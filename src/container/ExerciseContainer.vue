@@ -1,19 +1,19 @@
 <template>
     <div>
         <v-exercise 
-            v-if="this.lessThen350Kcal(this.totalKcal)"
+            v-if="this.isSmallWorkout(this.totalKcal)"
             workoutType="Exercise"
             :exerciseName="this.totalExercise.workout.warmup.name"
             :exerciseTime="this.totalExercise.workout.warmup.tid"
         />
         <v-exercise 
-            v-if="!this.lessThen350Kcal(this.totalKcal)"
+            v-if="this.isLargeWorkout(this.totalKcal)"
             workoutType="Warmup"
             :exerciseName="this.totalExercise.workout.warmup.name"
             :exerciseTime="this.totalExercise.workout.warmup.tid"
         />
         <v-exercise 
-            v-if="!this.lessThen350Kcal(this.totalKcal)"
+            v-if="this.isLargeWorkout(this.totalKcal)"
             workoutType="Workout"
             :exerciseName="this.totalExercise.workout.workout.name"
             :exerciseTime="this.totalExercise.workout.workout.tid"
@@ -31,8 +31,11 @@ export default {
         "v-exercise": Exercise
     },
     methods: {
-        lessThen350Kcal(kcalAmount){
-            return kcalAmount < 350;
+        isSmallWorkout(kcalAmount){
+            return kcalAmount < 350 && kcalAmount > 0;
+        },
+        isLargeWorkout(kcalAmount){
+            return !this.isSmallWorkout(kcalAmount) && kcalAmount > 0;
         }
     },
     computed: {

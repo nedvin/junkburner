@@ -16,7 +16,7 @@ export default {
             this.setLoginVisible();
         },
         goToSearch() {
-            this.$router.push('/search');
+            this.$router.push('Meal');
         },
         showSignUp(){
             this.setSignUpVisible();
