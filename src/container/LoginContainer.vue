@@ -1,5 +1,9 @@
 <template>
-    <loginform v-if="this.loginVisibility" @closeForm="close" @login="login" />
+    <v-login-form 
+        v-if="this.loginVisibility" 
+        @closeForm="close" 
+        @login="login" 
+    />
 </template>
 
 <script>
@@ -31,12 +35,8 @@
             }
         },
         components: {
-            loginform: loginform
+            'v-login-form': loginform
         }
         
     }
 </script>
-
-<style scoped>
-
-</style>

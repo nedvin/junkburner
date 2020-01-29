@@ -20,7 +20,6 @@
             },
             ...mapActions([
                 "toggleProfileVisible",
-                "signOutUser",
                 "updateUserSettings"
             ]),
             updateProfile(userData){
@@ -33,7 +32,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

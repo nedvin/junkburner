@@ -93,7 +93,9 @@ const actions = {
         workoutSession.totalKcal += workoutSession.workout.workout.kcalPerMin*workoutSession.workout.workout.tid;
         workoutSession.totalKcal = Math.round(workoutSession.sessions*workoutSession.totalKcal);
         commit('storeTotalExercise', workoutSession);
-        dispatch('updateWorkoutStateFirebase', payload.userId);
+        if(payload.signIn){
+            dispatch('updateWorkoutStateFirebase', payload.userId);
+        }    
     },
 
     updateWorkoutStateFirebase({commit}, userId) {

@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         chooseRestaurant(restaurant) {
-            this.selectRestaurant({restaurant: restaurant, userId: this.userId})
+            this.selectRestaurant({restaurant: restaurant, userId: this.userId, signedin: this.signedIn})
         },
         activeRestaurant(name) {
             return name === this.restaurant;
@@ -48,7 +48,7 @@ export default {
         ...mapActions(['selectRestaurant'])
     },
     computed: {
-        ...mapGetters(['restaurant', 'userId'])
+        ...mapGetters(['restaurant', 'userId', 'signedIn'])
     },
     components: {
         "v-restaurant-button": restaurantButton

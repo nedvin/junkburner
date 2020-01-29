@@ -1,6 +1,6 @@
 <template>
     <div v-if="reRender">
-        <navbutton
+        <nav-button
             v-for="button in buttonsToRender" 
             :text="button" 
             :key="button"
@@ -37,12 +37,12 @@ export default {
             }
             else{
                 if(event === "Workout"){
-                    this.generateWorkoutSession({kcal : this.totalKcal, userId: this.userId});
+                    this.generateWorkoutSession({kcal : this.totalKcal, userId: this.userId, signedIn: this.signedIn});
                 }
                 this.$router.push(event);
             }
         },
-        forceReRender(){ // Hack för att rerendra inte att rekommendera https://michaelnthiessen.com/force-re-render/
+        forceReRender(){
             this.reRender = false;
             this.$nextTick(() => {this.reRender = true;})
         },
@@ -69,10 +69,13 @@ export default {
             }
             return render;
         },
-        ...mapGetters(['user', 'kcalRdi', 'userId', 'signedIn', 'totalKcal']) // TODO: Får se om det behövs ngn mer getter än signedIn 
+        ...mapGetters([
+            'userId', 
+            'signedIn', 
+            'totalKcal'])
     },
     components: {
-        'navbutton' : button
+        'nav-button' : button
     },
     watch: {
         $route(to, from){

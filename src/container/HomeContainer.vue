@@ -1,15 +1,19 @@
 <template>
     <div>
-        <homedisplay @createMeal="goToSearch" @showFormLogin="showLogin" @showFormSignup="showSignUp"/>
+        <v-home-display 
+            @createMeal="goToSearch" 
+            @showFormLogin="showLogin" 
+            @showFormSignup="showSignUp"
+        />
     </div>
 </template>
 
 <script>
-import homePresentation from "@/presentation/HomeDisplay"
+import homePresentation from '@/presentation/HomeDisplay'
 import {mapActions} from 'vuex';
 export default {
     components:{
-        homedisplay: homePresentation
+        'v-home-display': homePresentation
     },
     methods: {
         showLogin(){

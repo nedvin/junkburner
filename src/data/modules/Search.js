@@ -104,7 +104,9 @@ const actions = {
         commit("changeQuery", "")
         commit('newSearchResult', [])
         commit("selectRestaurant", payload.restaurant)
-        dispatch('updateSearchStateFirebase', payload.userId);
+        if(payload.signedIn){
+            dispatch('updateSearchStateFirebase', payload.userId);
+        } 
     },
 
     changeQuery({commit, dispatch}, payload) {

@@ -1,5 +1,7 @@
 <template>
-    <meal-overview @punishMe="generateWorkout"/>
+    <v-meal-overview 
+        @punishMe="generateWorkout"
+    />
 </template>
 
 <script>
@@ -7,12 +9,12 @@ import mealOverview from "@/presentation/MealOverview"
 import {mapActions, mapGetters} from "vuex";
 export default {
     components: {
-        "meal-overview" : mealOverview
+        "v-meal-overview" : mealOverview
     },
     computed : {
         ...mapGetters([
             "totalKcal",
-            'userId'
+            "userId"
         ])
     },
     methods: {
@@ -21,7 +23,7 @@ export default {
         ]),
         generateWorkout(){
             this.generateWorkoutSession({kcal: this.totalKcal, userId: this.userId});
-            this.$router.push('Workout');
+            this.$router.push("Workout");
         }
     }
 
