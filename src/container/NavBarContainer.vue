@@ -33,6 +33,7 @@ export default {
             }
             else if(event === "Sign out"){
                 this.signOutUser();
+                this.setProfileNotVisible();
             }
             else{
                 if(event === "Workout"){
@@ -50,7 +51,8 @@ export default {
             "toggleSignUpVisible",
             "toggleProfileVisible",
             "signOutUser",
-            "generateWorkoutSession"
+            "generateWorkoutSession",
+            "setProfileNotVisible"
         ])
     },
     computed: {

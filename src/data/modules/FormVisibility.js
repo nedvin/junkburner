@@ -34,6 +34,9 @@ const actions = {
     toggleSignUpVisible({commit}){
         commit('toggleSignUpVisible');
     },
+    setProfileNotVisible({commit}){
+        commit('setProfileNotVisible');
+    },
     toggleProfileVisible({commit}){
         commit('toggleProfileVisible');
     }
@@ -69,6 +72,9 @@ const mutations = {
             state.loginVisibility = false;
         }
         state.signUpVisibility = !state.signUpVisibility;
+    },
+    setProfileNotVisible(state){
+        state.profileVisibility = false;
     },
     toggleProfileVisible(state){
         state.profileVisibility = !state.profileVisibility;
