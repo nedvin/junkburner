@@ -173,6 +173,15 @@ const actions = {
                         restaurant: "",
                         selectedDish : {},
                         apiNutrientData: []
+                    },
+                    workoutState: {
+                        workout : {},
+                        totalKcal: 0,
+                        totalTime: {
+                            minutes : 0,
+                            hours : 0
+                        },
+                        sessions : 0
                     }
                 })
             })

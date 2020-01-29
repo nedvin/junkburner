@@ -178,7 +178,7 @@ const mutations = {
         state.restaurant = searchState.restaurant,
         state.selectedDish = searchState.selectedDish,
         state.apiNutrientData = searchState.apiNutrientData
-    },
+    }
 };
 
 export default {

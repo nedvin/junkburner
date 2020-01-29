@@ -11,7 +11,8 @@ export default {
     },
     computed : {
         ...mapGetters([
-            "totalKcal"
+            "totalKcal",
+            'userId'
         ])
     },
     methods: {
@@ -19,7 +20,7 @@ export default {
             "generateWorkoutSession"
         ]),
         generateWorkout(){
-            this.generateWorkoutSession(this.totalKcal);
+            this.generateWorkoutSession({kcal: this.totalKcal, userId: this.userId});
             this.$router.push('Workout');
         }
     }

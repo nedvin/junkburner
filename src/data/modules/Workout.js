@@ -36,10 +36,27 @@ const getters = {
 };
 
 /**************  ACTIONS ***************************/
-
+import {db} from '@/main'
 
 const actions = {
-    generateWorkoutSession({commit}, kcal){
+    initWorkoutState({commit}, user) {
+        let userRef = db.collection('users').doc(user.uid);
+        userRef.get().then(doc => {
+            if(doc.exists) {
+                return {
+                        workout: doc.data().workoutState.workout,
+                        totalKcal: doc.data().workoutState.totalKcal,
+                        totalTime: doc.data().workoutState.totalTime,
+                        sessions: doc.data().workoutState.sessions
+                    }
+            }
+        }).then(workoutState => {
+            commit('initWorkoutStateFirebase', workoutState);
+            }
+        )
+    },
+
+    generateWorkoutSession({commit, dispatch}, payload){
         let workoutSession = {
             workout : {},
             totalKcal: 0,
@@ -52,19 +69,19 @@ const actions = {
         let seed = Math.floor(Math.random() * 10);
         workoutSession.workout = workoutTemplates[seed];
         let totalTimeInMin = 0;
-        if(kcal > 1000){
-            workoutSession.sessions = Math.ceil(kcal/1000);
-            kcal = kcal / workoutSession.sessions;
+        if(payload.kcal > 1000){
+            workoutSession.sessions = Math.ceil(payload.kcal/1000);
+            payload.kcal = payload.kcal / workoutSession.sessions;
         }
-        if(kcal < 350){
-            let workoutTid = kcal / workoutSession.workout.warmup.kcalPerMin;
+        if(payload.kcal < 350){
+            let workoutTid = payload.kcal / workoutSession.workout.warmup.kcalPerMin;
             workoutSession.workout.warmup.tid = Math.ceil(workoutTid);
             workoutSession.workout.workout.tid = 0;
         }
         else{
             workoutSession.workout.warmup.tid = 15;
-            kcal -= workoutSession.workout.warmup.tid * workoutSession.workout.warmup.kcalPerMin;
-            workoutSession.workout.workout.tid = Math.ceil(kcal / workoutSession.workout.workout.kcalPerMin);  
+            payload.kcal -= workoutSession.workout.warmup.tid * workoutSession.workout.warmup.kcalPerMin;
+            workoutSession.workout.workout.tid = Math.ceil(payload.kcal / workoutSession.workout.workout.kcalPerMin);  
         }
         
         totalTimeInMin = (workoutSession.workout.workout.tid + workoutSession.workout.warmup.tid) * workoutSession.sessions;
@@ -74,7 +91,22 @@ const actions = {
         workoutSession.totalKcal = workoutSession.workout.warmup.kcalPerMin*workoutSession.workout.warmup.tid;
         workoutSession.totalKcal += workoutSession.workout.workout.kcalPerMin*workoutSession.workout.workout.tid;
         workoutSession.totalKcal = Math.round(workoutSession.sessions*workoutSession.totalKcal);
-        commit('storeTotalExercise', workoutSession)
+        commit('storeTotalExercise', workoutSession);
+        dispatch('updateWorkoutStateFirebase', payload.userId);
+    },
+
+    updateWorkoutStateFirebase({commit}, userId) {
+        db.collection('users').doc(userId).update({
+            workoutState: {
+                workout: state.workout,
+                totalKcal: state.totalKcal,
+                totalTime: {
+                    minutes: state.totalTime.minutes,
+                    hours: state.totalTime.hours
+                },
+                sessions: state.sessions 
+            }
+        });
     }
 
 };
@@ -96,6 +128,13 @@ const mutations = {
             hours: 0
         },
         state.sessions = 0
+    },
+
+    initWorkoutStateFirebase(state, workoutState) {
+        state.workout = workoutState.workout,
+        state.totalKcal = workoutState.totalKcal,
+        state.totalTime = workoutState.totalTime,
+        state.sessions = workoutState.sessions
     }
 };
 
