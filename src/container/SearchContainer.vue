@@ -30,7 +30,13 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["searchResult", "dishDetails", "selectedDish", "searchQuery", 'userId'])
+        ...mapGetters([
+                "searchResult", 
+                "dishDetails", 
+                "selectedDish", 
+                "searchQuery", 
+                "userId"
+            ])
     },
     components : {
         "v-search" : search
