@@ -17,9 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
 .header {
-    width : 500px;
+    width: 500px;
 }
 .header img {
     max-width: 80px;

@@ -4,22 +4,27 @@
             {{ name }}
         </div>
         <div class="food-options-box">
-            <button 
-                class="btn btn-add" 
-                @click="$emit('addDishToMeal', {
-                    dish: {
-                        id: itemId,
-                        name: name,
-                        kcal: kcal,
-                        carbs: carbs,
-                        fat: fat,
-                        protein: protein,
-                        amount: 1}
-                    })"
+            <button
+                class="btn btn-add"
+                @click="
+                    $emit('addDishToMeal', {
+                        dish: {
+                            id: itemId,
+                            name: name,
+                            kcal: kcal,
+                            carbs: carbs,
+                            fat: fat,
+                            protein: protein,
+                            amount: 1
+                        }
+                    })
+                "
             >
                 Add to meal
             </button>
-            <button class="btn btn-info" @click="displayInfo">More info</button>
+            <button class="btn btn-info" @click="displayInfo">
+                More info
+            </button>
         </div>
         <div class="info-table" v-if="showInfo">
             <table>
@@ -54,7 +59,7 @@ export default {
     },
     methods: {
         displayInfo() {
-            if(this.showInfo === true) {
+            if (this.showInfo === true) {
                 this.showInfo = false;
                 return;
             }
@@ -77,14 +82,14 @@ export default {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     transition: 0.3s;
     min-width: 210px;
     max-width: 210px;
 }
 
 .food-item-box:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 .food-title-box {
