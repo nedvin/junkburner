@@ -3,8 +3,8 @@
         <h1>
             Update user profile
         </h1>
-    
-            <div class="input-row">
+
+        <div class="input-row">
             <div>
                 <label for="age"><b>Age:</b></label>
                 <input
@@ -58,23 +58,21 @@
                 </select>
             </div>
         </div>
-        <button 
-            @click="$emit('closeForm')" 
-            class="btn btn-abort"
-        >
+        <button @click="$emit('closeForm')" class="btn btn-abort">
             Close
         </button>
-        <button 
-            type="submit" 
+        <button
+            type="submit"
             class="btn btn-green"
-            :disabled="$v.$invalid" 
-            @click="$emit('updateProfile', {
-                'age' : age,
-                'weight' : weight,
-                'length' : length,
-                'gender' : gender
-                }
-            )"
+            :disabled="$v.$invalid"
+            @click="
+                $emit('updateProfile', {
+                    age: age,
+                    weight: weight,
+                    length: length,
+                    gender: gender
+                })
+            "
         >
             Update profile
         </button>
@@ -92,13 +90,13 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-    data(){
+    data() {
         return {
             age: this.user.age,
             weight: this.user.weight,
             length: this.user.length,
             gender: this.user.gender
-        }
+        };
     },
     validations: {
         age: {
@@ -122,7 +120,7 @@ export default {
     props: {
         user: Object
     }
-}
+};
 </script>
 
 <style scoped src="@/constants/FormStyle.css" />

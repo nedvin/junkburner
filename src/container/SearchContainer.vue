@@ -1,7 +1,6 @@
 <template>
     <v-search 
             :searchResult="this.searchResult" 
-            :dishDetails="this.dishDetails" 
             @addDishToMeal="addDishToMeal"
         />
 </template>
@@ -15,14 +14,8 @@ export default {
         };
     },
     methods: {
-        ...mapActions([
-            "newQuery", 
-            "selectDish", 
-            "newSearch", 
-            "newSearchDetails",
-            "addDish",
-            "removeDish"
-            ]),
+        ...mapActions(["addDish"]),
+
         addDishToMeal(event){
             event.dish.type = this.searchQuery;
             event.userId = this.userId;
@@ -31,9 +24,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-                "searchResult", 
-                "dishDetails", 
-                "selectedDish", 
+                "searchResult",  
                 "searchQuery", 
                 "userId"
             ])

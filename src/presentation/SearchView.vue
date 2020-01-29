@@ -1,19 +1,19 @@
 <template>
-  <div>
-    <overview/>
-    <searchContainer />
-  </div>
+    <div>
+        <v-overview />
+        <v-search-container />
+    </div>
 </template>
 
 <script>
-  import Overview from '@/container/MealContainer'
-  import SearchContainer from '@/container/SearchContainer'
+import Overview from "@/container/MealContainer";
+import SearchContainer from "@/container/SearchContainer";
 
-  export default {
-    name: 'SearchView',
+export default {
+    name: "SearchView",
     components: {
-      'overview': Overview,
-      'searchContainer': SearchContainer
+        "v-overview": Overview,
+        "v-search-container": SearchContainer
     }
-  }
+};
 </script>

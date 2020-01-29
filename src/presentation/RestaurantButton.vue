@@ -1,5 +1,9 @@
 <template>
-    <div class="restaurant-button" :class="{active: isActive}" @click="$emit('click')">
+    <div
+        class="restaurant-button"
+        :class="{ active: isActive }"
+        @click="$emit('click')"
+    >
         <img :src="url" :alt="alt" class="responsive-pic" />
     </div>
 </template>
@@ -11,11 +15,11 @@ export default {
         alt: String,
         isActive: Boolean
     }
-}
+};
 </script>
 
 <style scoped>
-    .restaurant-button {
+.restaurant-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +30,8 @@ export default {
     margin: 20px;
 }
 
-.restaurant-button:hover, .active {
+.restaurant-button:hover,
+.active {
     background-color: orange;
     border-color: orange;
     cursor: pointer;

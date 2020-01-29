@@ -4,19 +4,16 @@
             <h1>Create your meal!</h1>
         </div>
 
-        <!-- CHOOSE RESTAURANT -->
         <div class="restaurants-box box-80">
             <h3>Choose restaurant</h3>
-            <v-restaurant-btn-container/>
+            <v-restaurant-btn-container />
         </div>
 
-        <!-- CHOOSE TYPE OF FOOD -->
-        <v-food-options-container v-if="signedIn"/>        
+        <v-food-options-container v-if="signedIn" />
 
-        <!-- SEARCH RESULTS -->
         <div class="search-results-box" v-if="signedIn">
-            <v-food-card 
-                v-for="result in searchResult" 
+            <v-food-card
+                v-for="result in searchResult"
                 :key="result.nix_item_id"
                 :kcal="result.full_nutrients[3].value"
                 :carbs="result.full_nutrients[2].value"
@@ -35,28 +32,26 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import * as impIcons from '@/constants/icons';
-import foodCard from '@/presentation/FoodCard'
-import restaurantButtonContainer from '@/container/RestaurantButtonContainer'
-import foodOptionsContainer from '@/container/FoodOptionsContainer'
+import { mapGetters } from "vuex";
+import foodCard from "@/presentation/FoodCard";
+import restaurantButtonContainer from "@/container/RestaurantButtonContainer";
+import foodOptionsContainer from "@/container/FoodOptionsContainer";
 
-export default { 
-    props : ["searchResult", "dishDetails"],
+export default {
+    props: ["searchResult", "dishDetails"],
     components: {
-        'v-food-card': foodCard,
-        'v-restaurant-btn-container': restaurantButtonContainer,
-        'v-food-options-container': foodOptionsContainer
+        "v-food-card": foodCard,
+        "v-restaurant-btn-container": restaurantButtonContainer,
+        "v-food-options-container": foodOptionsContainer
     },
     methods: {
-        bubbleEvent(event){
-            this.$emit('addDishToMeal', event);
+        bubbleEvent(event) {
+            this.$emit("addDishToMeal", event);
         }
     },
     computed: {
-        ...mapGetters(['signedIn'])
+        ...mapGetters(["signedIn"])
     }
-    
 };
 </script>
 

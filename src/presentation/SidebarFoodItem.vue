@@ -5,23 +5,16 @@
             <span class="sidebar-food-item-name">{{ name }}</span>
         </div>
         <div>
-            <select 
+            <select
                 @change="$emit('changeAmount', $event, itemId)"
                 :value="amount"
             >
-                <option 
-                    v-for="number in 5" 
-                    :key="number" 
-                    :value="number"
-                >
+                <option v-for="number in 5" :key="number" :value="number">
                     {{ number }}
                 </option>
             </select>
-           <!-- <input type="text" class="food-item-amount" :value="amount" /> -->
-            <button 
-                class="btn delete-btn" 
-                @click="$emit('delete')"
-            >
+            
+            <button class="btn delete-btn" @click="$emit('delete')">
                 X
             </button>
         </div>
@@ -29,29 +22,39 @@
 </template>
 
 <script>
-import * as impIcons from '@/constants/icons';
+import * as impIcons from "@/constants/icons";
 
 export default {
-    name: 'SidebarFoodItem',
+    name: "SidebarFoodItem",
     data() {
         return {
             newAmount: this.amount,
-            icons: [impIcons.HAMBURGER_ICON, impIcons.SANDWICH_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON, impIcons.COOKIES_ICON]
+            icons: [
+                impIcons.HAMBURGER_ICON,
+                impIcons.SANDWICH_ICON,
+                impIcons.FRIES_ICON,
+                impIcons.SALAD_ICON,
+                impIcons.COFFEE_ICON,
+                impIcons.DRINKS_ICON,
+                impIcons.COOKIES_ICON
+            ]
         };
     },
     computed: {
         icon() {
-            let foodItemIcon = this.icons.find(icon => icon.query === this.type)
-            return foodItemIcon.url
+            let foodItemIcon = this.icons.find(
+                icon => icon.query === this.type
+            );
+            return foodItemIcon.url;
         }
     },
     props: [
-        'name', 
-        'amount', 
-        'type', 
-        'itemId'
-    ]
-}
+            "name", 
+            "amount", 
+            "type", 
+            "itemId"
+        ]
+};
 </script>
 
 <style scoped>

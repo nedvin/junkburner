@@ -1,9 +1,7 @@
 <template>
     <div>
         <div id="container-home">
-
-            <homecontainer />
-            
+            <v-home-container />
         </div>
     </div>
 </template>
@@ -13,14 +11,7 @@ import homecontainer from "@/container/HomeContainer";
 
 export default {
     components: {
-        homecontainer: homecontainer
-    },
-    data() {
-        return {
-        };
-    },
-    methods: {
-
+        "v-home-container": homecontainer
     }
 };
 </script>

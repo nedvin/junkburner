@@ -4,8 +4,18 @@
         <div class="navbar-container">
             <v-navbar />
         </div>
-        <v-snackbar v-if="alertVisibility" :type="alert" :msg="snackbarMessage" class="center"/>
-        <v-snackbar v-if="successVisibility" :type="success" :msg="snackbarMessage" class="center"/>
+        <v-snackbar
+            v-if="alertVisibility"
+            :type="alert"
+            :msg="snackbarMessage"
+            class="center"
+        />
+        <v-snackbar
+            v-if="successVisibility"
+            :type="success"
+            :msg="snackbarMessage"
+            class="center"
+        />
     </div>
 </template>
 
@@ -13,18 +23,22 @@
 import header from "@/presentation/Header";
 import navbar from "@/container/NavBarContainer";
 import snackbar from "@/presentation/Snackbar";
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
     name: "HeaderView",
     data() {
-      return {
-        alert: 'alert',
-        success: 'success'
-      }
+        return {
+            alert: "alert",
+            success: "success"
+        };
     },
     computed: {
-      ...mapGetters(['alertVisibility', 'successVisibility', 'snackbarMessage'])
+        ...mapGetters([
+            "alertVisibility",
+            "successVisibility",
+            "snackbarMessage"
+        ])
     },
     components: {
         "v-header": header,
@@ -50,10 +64,10 @@ export default {
 }
 
 .center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 850px) {

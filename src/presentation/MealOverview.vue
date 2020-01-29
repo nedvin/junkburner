@@ -36,18 +36,21 @@
                         <td>{{ totalFat }} grams</td>
                     </tr>
                 </table>
+
                 <div class="rdi-div">
                     <p>Recommended daily intake:</p>
-                    <p> {{ kcalRdi }} kcal</p>
+                    <p>{{ kcalRdi }} kcal</p>
                 </div>
-                <button class="btn btn-abort" @click="punishUser">Punish me</button>
+                <button class="btn btn-abort" @click="punishUser">
+                    Punish me
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import sidebarFoodItemContainer from "@/container/SidebarFoodItemContainer";
 
 export default {
@@ -61,8 +64,8 @@ export default {
                 wrapper.className = "sidebar-ctrl-visibility";
             }
         },
-        punishUser(event){
-            this.$emit('punishMe');
+        punishUser() {
+            this.$emit("punishMe");
         }
     },
     computed: {

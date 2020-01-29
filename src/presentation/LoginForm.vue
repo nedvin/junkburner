@@ -27,23 +27,33 @@
             </div>
         </div>
 
-        <button @click="$emit('closeForm')" class="btn btn-abort">Close</button>
-        <button type="submit" class="btn btn-green" @click="$emit('login', {'email' : email, 'password': password})">Login</button>
+        <button 
+            @click="$emit('closeForm')" 
+            class="btn btn-abort"
+        >
+            Close
+        </button>
+        <button
+            type="submit"
+            class="btn btn-green"
+            @click="$emit('login', { email: email, password: password })"
+        >
+            Login
+        </button>
     </div>
-
 </template>
 
 <script>
-
 export default {
-    data(){
+    data() {
         return {
-            message: "Please do not use your real e-mail or password, we have no control over what firebase does with them.",
+            message:
+                "Please do not use your real e-mail or password, we have no control over what firebase does with them.",
             email: "",
             password: ""
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped src="@/constants/FormStyle.css" />
