@@ -78,13 +78,6 @@
         >
             Update profile
         </button>
-        
-        <button
-            @click="$emit('signOutUser')" 
-            class="btn btn-abort"
-        >
-            Sign out
-        </button>
     </div>
 </template>
 

@@ -4,7 +4,6 @@
         :user="this.user" 
         @closeForm="this.toggle"
         @updateProfile="this.updateProfile"  
-        @signOutUser="this.signOut"
     />
 </template>
 
@@ -24,11 +23,6 @@
                 "signOutUser",
                 "updateUserSettings"
             ]),
-            async signOut(){
-                await this.signOutUser();
-                this.$router.push('/');
-                this.toggle();
-            },
             updateProfile(userData){
                 this.updateUserSettings(userData);
                 this.toggle();
