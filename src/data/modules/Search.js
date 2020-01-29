@@ -178,6 +178,14 @@ const mutations = {
         state.restaurant = searchState.restaurant,
         state.selectedDish = searchState.selectedDish,
         state.apiNutrientData = searchState.apiNutrientData
+    },
+
+    clearSearchState(state) {
+        state.searchResult = [],
+        state.searchQuery = '',
+        state.restaurant = '',
+        state.selectDish = {},
+        state.apiNutrientData = []
     }
 };
 

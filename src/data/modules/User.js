@@ -123,7 +123,8 @@ const actions = {
                     setTimeout(() => commit('setSuccessNotVisible'), 5000),
                     commit('clearMealState'),
                     commit('clearUserState'),
-                    commit('clearWorkoutState')
+                    commit('clearWorkoutState'),
+                    commit('clearSearchState')
                 );
     },
     updateUserSettings({commit}, userInfo) {
