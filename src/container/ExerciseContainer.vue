@@ -39,7 +39,10 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["totalKcal"])
+        ...mapGetters([
+                "totalExercise", 
+                "totalKcal"
+            ])
     }
 }
 </script>

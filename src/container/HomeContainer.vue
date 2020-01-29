@@ -25,11 +25,10 @@ export default {
         showSignUp(){
             this.setSignUpVisible();
         },
-        ...mapActions(['setLoginVisible','setSignUpVisible'])
+        ...mapActions([
+                'setLoginVisible',
+                'setSignUpVisible'
+            ])
     }
 }
 </script>
-
-<style scoped>
-
-</style>
