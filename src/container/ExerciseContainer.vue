@@ -39,10 +39,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["totalExercise", "totalKcal"])
-    },
-    props: [
-        "type"
-    ]
+        ...mapGetters(["totalKcal"])
+    }
 }
 </script>
