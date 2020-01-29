@@ -1,6 +1,6 @@
 <template>
     <div v-if="reRender">
-        <nav-button
+        <v-nav-button
             v-for="button in buttonsToRender" 
             :text="button" 
             :key="button"
@@ -70,12 +70,13 @@ export default {
             return render;
         },
         ...mapGetters([
-            'userId', 
-            'signedIn', 
-            'totalKcal'])
+                'userId', 
+                'signedIn', 
+                'totalKcal'
+            ])
     },
     components: {
-        'nav-button' : button
+        'v-nav-button' : button
     },
     watch: {
         $route(to, from){

@@ -48,7 +48,11 @@ export default {
         ...mapActions(['selectRestaurant'])
     },
     computed: {
-        ...mapGetters(['restaurant', 'userId', 'signedIn'])
+        ...mapGetters([
+                'restaurant', 
+                'userId', 
+                'signedIn'
+            ])
     },
     components: {
         "v-restaurant-button": restaurantButton

@@ -1,5 +1,5 @@
 <template>
-    <profile 
+    <v-profile 
         v-if="this.profileVisibility" 
         :user="this.user" 
         @closeForm="this.toggle"
@@ -28,7 +28,7 @@
             }
         },
         components: {
-            profile: profile
+            "v-profile": profile
         }
     }
 </script>

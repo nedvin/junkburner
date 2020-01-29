@@ -11,7 +11,10 @@
     import { mapGetters, mapActions } from "vuex";
     export default {
         computed: {
-            ...mapGetters(["loginVisibility", 'signedIn'])
+            ...mapGetters([
+                "loginVisibility", 
+                'signedIn'
+            ])
         },
         methods: {
             close(){
