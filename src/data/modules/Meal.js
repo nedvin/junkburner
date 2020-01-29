@@ -62,7 +62,7 @@ const actions = {
         commit('removeNutrition', dishToChange);
         commit('setAmount', {dish: dishToChange, amount: newAmount});
         commit('addNutrition', dishToChange)
-        dispatch('updateMealStateFirebase', payload.userId)
+      //  dispatch('updateMealStateFirebase', payload.userId)
     },
 
     updateMealStateFirebase({commit}, userId) {
