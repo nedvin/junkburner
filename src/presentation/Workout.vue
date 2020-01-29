@@ -37,29 +37,25 @@
             </div>
         </div>
     </div>
-    
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import exercisecontainer from "@/container/ExerciseContainer";
+
 export default {
     name: "WorkoutView",
     components: {
         "v-exercise-container": exercisecontainer
     },
     computed: {
-        ...mapGetters([
-            "totalExercise", 
-            "signedIn",
-            "totalKcal"
-        ])
+        ...mapGetters(["totalExercise", "signedIn", "totalKcal"])
     },
     methods: {
         punishUser() {
             this.$emit("punishUser");
         },
-        hasMeal(){
+        hasMeal() {
             return this.totalKcal > 0;
         }
     }
@@ -95,12 +91,12 @@ export default {
     justify-content: space-evenly;
 }
 
-.workout-text{
+.workout-text {
     margin: 20px;
 }
 
 @media screen and (max-width: 510px) {
-    .exercise-container{
+    .exercise-container {
         flex-direction: column;
         justify-content: center;
     }
