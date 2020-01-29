@@ -18,8 +18,6 @@ export default {
     data() {
         return {};
     },
-    methods: {},
-    computed: {},
     props: [
         "workoutType",
         "exerciseName",
