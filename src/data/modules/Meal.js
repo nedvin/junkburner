@@ -21,7 +21,7 @@ const getters = {
 import {db} from "@/main";
 
 const actions = {
-    initMealState({commit}, user) {
+    initMealState({commit, dispatch}, user) {
         let userRef = db.collection('users').doc(user.uid);
         userRef.get().then(doc => {
             if(doc.exists) {
@@ -36,7 +36,7 @@ const actions = {
         }).then(mealState => {
             commit('initMealStateFirebase', mealState);
             }
-        )
+        ).catch(err => {dispatch('signOut')})
     },
     addDish({commit, dispatch}, payload){
         let dishInMeal = state.currentMeal.find(dishInMeal => dishInMeal.id === payload.dish.id);
