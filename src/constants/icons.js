@@ -16,12 +16,6 @@ export const FRIES_ICON = {
     query: 'fries'
 }
 
-export const MEAL_ICON = {
-    name: "Meal",
-    url: require("@/images/004-meal.png"),
-    query: 'meal'
-}
-
 export const SALAD_ICON = {
     name: "Salads",
     url: require("@/images/005-salad.png"),
