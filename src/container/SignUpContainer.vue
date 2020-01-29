@@ -1,5 +1,5 @@
 <template>
-    <signupform v-if="this.signUpVisibility" @closeForm="close" @signUp="signUp" />
+    <v-signup-form v-if="this.signUpVisibility" @closeForm="close" @signUp="signUp" />
 </template>
 
 <script>
@@ -26,17 +26,13 @@
                 "signUpUser",
                 "loginUser"
             ]),
-            async signUp(userData){
-                await this.signUpUser(userData);
+            signUp(userData){
+                this.signUpUser(userData);
                 this.close();
             }
         },
         components: {
-            signupform: signupform
+            "v-signup-form": signupform
         }
     }
 </script>
-
-<style scoped>
-
-</style>

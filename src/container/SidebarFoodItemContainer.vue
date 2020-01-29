@@ -30,10 +30,16 @@ export default {
             }
             this.removeDish(payload)
         },
-        ...mapActions(['removeDish', 'setAmount'])
+        ...mapActions([
+                "removeDish", 
+                "setAmount"
+            ])
     },
     computed: {
-        ...mapGetters(['currentMeal', 'userId'])
+        ...mapGetters([
+                "currentMeal",
+                "userId"
+            ])
     },
     components: {
         'v-sidebar-food-item': sidebarFoodItem
