@@ -55,13 +55,13 @@ export default {
             return name === this.restaurant;
         },
         search(query) {
-            this.changeQuery(query)
-            this.newSearch()
+            this.changeQuery({query: query, userId: this.userId})
+            this.newSearch({userId: this.userId})
         },
         ...mapActions(['changeQuery', 'newSearch'])
     },
     computed: {
-        ...mapGetters(['restaurant'])
+        ...mapGetters(['restaurant', 'userId'])
     },
     components: {
         'v-food-options': FoodOptions
