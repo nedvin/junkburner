@@ -36,6 +36,10 @@
                         <td>{{ totalFat }} grams</td>
                     </tr>
                 </table>
+                <div class="rdi-div">
+                    <p>Recommended daily intake:</p>
+                    <p> {{ kcalRdi }} kcal</p>
+                </div>
                 <button class="btn btn-abort" @click="punishUser">Punish me</button>
             </div>
         </div>
@@ -93,6 +97,20 @@ table {
 
 td {
     padding: 5px;
+}
+
+.rdi-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+    margin-bottom: 10px;
+    background-color: #9a9898;
+    padding: 5px;
+}
+
+.rdi-div p {
+    margin: 2px;
 }
 
 .sidebar-food-items {
