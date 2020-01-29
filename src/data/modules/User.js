@@ -27,10 +27,10 @@ const getters = {
 /**************  ACTIONS ***************************/
 import firebase from "firebase";
 import {db} from "@/main";
-import router from '@/router'
 
 const actions = {
-    initUser({commit}, user) {
+    initUser({commit, dispatch}, user) {
+        commit('setUserId', user.uid)
         let userRef = db.collection('users').doc(user.uid);
         userRef.get().then(doc => {
             if(doc.exists) {
@@ -46,7 +46,7 @@ const actions = {
             commit('loadUser', user);
             commit('calculateKcalRdi');
             }
-        )
+        ).catch(err => {dispatch('signOut')})
     },
     setSignedIn({commit}) {
         commit('setSignedIn');
@@ -151,8 +151,8 @@ const actions = {
             setTimeout(() => commit('setSuccessNotVisible'), 5000)
         ); 
     },
-    async signUpUser({commit}, user) {
-        await firebase
+    signUpUser({commit}, user) {
+        firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
                 return db.collection('users').doc(cred.user.uid).set({
@@ -226,6 +226,9 @@ const mutations = {
     },
     setWeight(state, weight){
         state.weight = weight;
+    },
+    setUserId(state, userId) {
+        state.userId = userId;
     },
     setGender(state, gender){
         state.gender = gender;

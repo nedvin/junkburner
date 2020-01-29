@@ -42,7 +42,7 @@ const getters = {
 import {db} from '@/main'
 
 const actions = {
-    initSearchState({commit}, user) {
+    initSearchState({commit, dispatch}, user) {
         let userRef = db.collection('users').doc(user.uid);
         userRef.get().then(doc => {
             if(doc.exists) {
@@ -57,7 +57,7 @@ const actions = {
         }).then(searchState => {
             commit('initSearchStateFirebase', searchState);
             }
-        )
+        ).catch(err => {dispatch('signOut')})
     },
     newSearch({commit, dispatch}, payload){
         let url = "https://trackapi.nutritionix.com/v2/search/instant";
