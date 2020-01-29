@@ -1,5 +1,9 @@
 <template>
-    <search :searchResult="this.searchResult" :dishDetails="this.dishDetails" @addDishToMeal="addDishToMeal"/>
+    <v-search 
+            :searchResult="this.searchResult" 
+            :dishDetails="this.dishDetails" 
+            @addDishToMeal="addDishToMeal"
+        />
 </template>
 
 <script>
@@ -29,7 +33,7 @@ export default {
         ...mapGetters(["searchResult", "dishDetails", "selectedDish", "searchQuery", 'userId'])
     },
     components : {
-        "search" : search
+        "v-search" : search
     }
 };
 </script>
