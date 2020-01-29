@@ -19,8 +19,6 @@ firebase.initializeApp({
   appId: "1:787171612727:web:6d951b7b717e95fbfa47b2",
 });
 
-
-
 export const db = firebase.firestore()
 
 new Vue({
@@ -40,26 +38,7 @@ new Vue({
   })
   },
 
-  async created(){
-
-    //initialize store data structure by submitting action.
-    
-    await this.$store.dispatch('INIT_SEARCH');
-    /*
-    this.$store.dispatch('INIT_MEAL');
-    this.$store.dispatch('INIT_WORKOUT');
-
-    this.$store.dispatch("newQuery", "mcdonalds burger");
-    await this.$store.dispatch("newSearch");
-    this.$store.dispatch("newQuery", "mcdonalds burger");
-    await this.$store.dispatch("newSearch"); 
-    
-    this.$store.dispatch("selectDish", 4);
-    await this.$store.dispatch("newSearchDetails");
-    this.$store.dispatch("addDish", this.$store.getters.dishDetails);
-    //this.$store.dispatch("removeDish", this.$store.getters.dishDetails); */
-
-    //this.$store.dispatch('generateWorkoutSession', 999);
-    
- }
+created() {  
+    this.$store.dispatch('INIT_SEARCH'); 
+}
 }).$mount("#app");
