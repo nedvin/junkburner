@@ -1,11 +1,16 @@
 <template>
     <div
         class="nav-bar-button"
-        :class="{active : isActive, signUp : this.isSignup, login : this.isLogin, signOut : isSignOut}"
+        :class="{
+            active: isActive,
+            signUp: this.isSignup,
+            login: this.isLogin,
+            signOut: isSignOut
+        }"
         @click="$emit('navBtnClicked', text)"
     >
         <p>
-            {{text}}
+            {{ text }}
         </p>
     </div>
 </template>
@@ -16,35 +21,34 @@ export default {
         return {
             isSignup: this.text === "Sign up!",
             isLogin: this.text === "Login",
-            isSignOut: this.text === "Sign out" 
-        }
+            isSignOut: this.text === "Sign out"
+        };
     },
     props: {
-        text : String,
+        text: String
     },
     computed: {
-        isActive: function(){
+        isActive: function() {
             return this.$router.currentRoute.name === this.text;
         }
     }
-}
+};
 </script>
 
 <style scoped>
-
 /**STYLES */
 .active {
     color: orange !important;
     border-bottom: 5px solid orange;
 }
 
-.signUp{
-    background-color: #ffa801 !important; 
+.signUp {
+    background-color: #ffa801 !important;
     color: #1e272e !important;
 }
 
 .login {
-    background-color: #05c46b !important; 
+    background-color: #05c46b !important;
 }
 
 .signOut {
@@ -52,7 +56,7 @@ export default {
     color: black !important;
 }
 
-.nav-bar-button{
+.nav-bar-button {
     height: 70px;
     background-color: #1e272e;
     color: #fff;
@@ -63,16 +67,16 @@ export default {
     padding-left: 5px;
     padding-right: 5px;
     text-decoration: none;
-    width:70px;
+    width: 70px;
 }
 
 /** EVENTS */
-.nav-bar-button:hover{
+.nav-bar-button:hover {
     background-color: #485460;
     cursor: pointer;
 }
 
-.nav-bar-button:active{
+.nav-bar-button:active {
     font-size: 11px;
     padding-bottom: 3px;
     background-color: #1e272e !important;
@@ -82,26 +86,24 @@ export default {
 }
 
 /** QUERIES */
-@media screen and (max-width: 1020px){
+@media screen and (max-width: 1020px) {
     .nav-bar-button {
         font-size: 12px;
-        width:50px;
+        width: 50px;
     }
 }
 
-@media screen and (max-width: 850px){
+@media screen and (max-width: 850px) {
     .nav-bar-button {
         font-size: 12px;
-        width:50px;
+        width: 50px;
         height: 37px;
         padding-top: 2px;
     }
 
     .active {
-    border: none;
-    color: #ffa801;
+        border: none;
+        color: #ffa801;
     }
 }
-
-
 </style>
