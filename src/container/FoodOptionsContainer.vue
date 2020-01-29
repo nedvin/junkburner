@@ -41,7 +41,7 @@ export default {
             burgerKing: {
                 name: 'Burger King',
                 visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
+                icons: [impIcons.HAMBURGER_ICON, impIcons.SANDWICH_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
             },
             subway: {
                 name: 'Subway',
