@@ -139,12 +139,18 @@ const actions = {
 };
 
 /**************  MUTATIONS ***************************/
+import keywords from '@/constants/keywords'
+
 const mutations = {
     changeQuery(state, query){
         state.searchQuery = query;
     },
 
     newSearchResult(state, result){
+        let query = state.searchQuery;
+        let searchKeywords = keywords[query]
+        result = result.filter(dish => {return dish.food_name.match(searchKeywords) !== null})
+
         result = result.map(dish => {
             dish.full_nutrients.forEach(dishNutrient => {
                 state.apiNutrientData.forEach(nutrient => {
