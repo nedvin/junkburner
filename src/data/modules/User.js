@@ -177,8 +177,7 @@ const actions = {
                     searchState: {
                         searchResult : [],
                         searchQuery : "",
-                        restaurant: "",
-                        apiNutrientData: []
+                        restaurant: ""
                     },
                     workoutState: {
                         workout : {},

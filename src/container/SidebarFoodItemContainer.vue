@@ -29,11 +29,10 @@ export default {
             });
         },
         deleteDish(dishItem) {
-            let payload = {
-                dish: dishItem,
-                userId: this.userId
-            }
-            this.removeDish(payload)
+            this.removeDish({
+                    dish: dishItem, 
+                    userId: this.userId
+                })
         },
         ...mapActions([
                 "removeDish", 

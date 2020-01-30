@@ -87,6 +87,7 @@
                     <option>Female</option>
                 </select>
             </div>
+            <p>All fields are required</p>
         </div>
         <button @click="$emit('closeForm')" class="btn btn-abort">Close</button>
         <button

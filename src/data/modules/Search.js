@@ -46,9 +46,7 @@ const actions = {
                 return {
                         searchResult: doc.data().searchState.searchResult,
                         searchQuery: doc.data().searchState.searchQuery,
-                        restaurant: doc.data().searchState.restaurant,
-                        selectedDish: doc.data().searchState.selectedDish,
-                        apiNutrientData: doc.data().searchState.apiNutrientData,
+                        restaurant: doc.data().searchState.restaurant
                     }
             }
         }).then(searchState => {
@@ -56,7 +54,7 @@ const actions = {
             }
         ).catch(err => {dispatch('signOut')})
     },
-    newSearch({commit, dispatch}, payload){
+    newSearch({commit, dispatch}, {userId}){
         let url = "https://trackapi.nutritionix.com/v2/search/instant";
         let apiHeader = new Headers(apiHeaderTemplate);
         apiHeader.append("Content-Type", "application/json");
@@ -71,30 +69,25 @@ const actions = {
         }).then(handleHTTPError)
         .then(response => response.json())
         .then(response => commit("newSearchResult", response["branded"]))
-        .finally(() => dispatch('updateSearchStateFirebase', payload.userId));
+        .finally(() => dispatch('updateSearchStateFirebase', userId));
     },
 
     newQuery({commit}, query){
         commit("changeQuery", query);
     },
 
-    selectDish({commit}, index){    
-        let dish = state.searchResult[index];
-        commit("newSelectedDish", dish);
-    },
-
-    selectRestaurant({commit, dispatch}, payload) {
+    selectRestaurant({commit, dispatch}, {restaurant, userId, signedIn}) {
         commit("changeQuery", "")
         commit('newSearchResult', [])
-        commit("selectRestaurant", payload.restaurant)
-        if(payload.signedIn){
-            dispatch('updateSearchStateFirebase', payload.userId);
+        commit("selectRestaurant", restaurant)
+        if(signedIn){
+            dispatch('updateSearchStateFirebase', userId);
         } 
     },
 
-    changeQuery({commit, dispatch}, payload) {
-        commit("changeQuery", payload.query)
-        dispatch('updateSearchStateFirebase', payload.userId)
+    changeQuery({commit, dispatch}, {query, userId}) {
+        commit("changeQuery", query)
+        dispatch('updateSearchStateFirebase', userId)
     },
 
     updateSearchStateFirebase({commit}, userId) {
@@ -102,8 +95,7 @@ const actions = {
             searchState: {
                 searchResult: state.searchResult,
                 searchQuery: state.searchQuery,
-                restaurant: state.restaurant,
-                selectedDish: state.selectedDish,
+                restaurant: state.restaurant
             }
         });
     },
@@ -145,10 +137,6 @@ const mutations = {
         state.searchResult = result;
     },
 
-    newSelectedDish(state, dish){
-        state.selectedDish = dish;
-    },
-
     selectRestaurant(state, restaurant) {
         state.restaurant = restaurant;
     },
@@ -160,8 +148,7 @@ const mutations = {
     initSearchStateFirebase(state, searchState) {
         state.searchResult = searchState.searchResult,
         state.searchQuery = searchState.searchQuery,
-        state.restaurant = searchState.restaurant,
-        state.selectedDish = searchState.selectedDish
+        state.restaurant = searchState.restaurant
     },
 
     clearSearchState(state) {
