@@ -9,7 +9,7 @@
                 @change="$emit('changeAmount', $event, itemId)"
                 :value="amount"
             >
-                <option v-for="number in 5" :key="number" :value="number">
+                <option v-for="number in amount+5" :key="number" :value="number">
                     {{ number }}
                 </option>
             </select>
