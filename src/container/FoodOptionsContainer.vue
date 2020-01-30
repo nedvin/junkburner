@@ -26,7 +26,7 @@
 
 <script>
 import FoodOptions from '@/presentation/FoodOptions'
-import * as impIcons from '@/constants/icons'
+import {HAMBURGER, FRIES, SALAD, SANDWICH, DRINKS, COFFEE, COOKIE}  from '@/constants/icons'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -36,17 +36,36 @@ export default {
             mcDonalds: {
                 name: 'McDonalds',
                 visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
+                icons: [
+                        HAMBURGER, 
+                        FRIES, 
+                        SALAD, 
+                        COFFEE, 
+                        DRINKS
+                    ]
             },
             burgerKing: {
                 name: 'Burger King',
                 visible: false,
-                icons: [impIcons.HAMBURGER_ICON, impIcons.SANDWICH_ICON, impIcons.FRIES_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.DRINKS_ICON]
+                icons: [
+                        HAMBURGER, 
+                        SANDWICH, 
+                        FRIES, 
+                        SALAD, 
+                        COFFEE, 
+                        DRINKS
+                    ]
             },
             subway: {
                 name: 'Subway',
                 visible: false,
-                icons: [impIcons.SANDWICH_ICON, impIcons.SALAD_ICON, impIcons.COFFEE_ICON, impIcons.COOKIES_ICON, impIcons.DRINKS_ICON]
+                icons: [
+                        SANDWICH, 
+                        SALAD, 
+                        COFFEE, 
+                        COOKIE, 
+                        DRINKS
+                    ]
             }
         };
     },

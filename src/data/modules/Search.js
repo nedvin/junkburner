@@ -98,7 +98,7 @@ const actions = {
     },
 
     updateSearchStateFirebase({commit}, userId) {
-        db.collection('users').doc(userId).update({
+         db.collection('users').doc(userId).update({
             searchState: {
                 searchResult: state.searchResult,
                 searchQuery: state.searchQuery,

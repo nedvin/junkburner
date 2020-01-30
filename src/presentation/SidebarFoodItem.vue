@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import * as impIcons from "@/constants/icons";
+import {HAMBURGER, FRIES, SALAD, SANDWICH, DRINKS, COFFEE, COOKIE}  from '@/constants/icons'
 
 export default {
     name: "SidebarFoodItem",
@@ -30,13 +30,13 @@ export default {
         return {
             newAmount: this.amount,
             icons: [
-                impIcons.HAMBURGER_ICON,
-                impIcons.SANDWICH_ICON,
-                impIcons.FRIES_ICON,
-                impIcons.SALAD_ICON,
-                impIcons.COFFEE_ICON,
-                impIcons.DRINKS_ICON,
-                impIcons.COOKIES_ICON
+                HAMBURGER,
+                SANDWICH,
+                FRIES,
+                SALAD,
+                COFFEE,
+                DRINKS,
+                COOKIE
             ]
         };
     },
