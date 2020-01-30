@@ -18,14 +18,16 @@ export default {
         generateWorkout(){
             this.generateWorkoutSession({
                 kcal: this.totalKcal, 
-                userId: this.userId
+                userId: this.userId,
+                signedIn: this.signedIn
             });
         }
     },
     computed: {
         ...mapGetters([
             "totalKcal",
-            'userId'
+            "userId",
+            "signedIn"
         ])
     }
 }

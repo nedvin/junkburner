@@ -32,17 +32,28 @@ export default {
             this.removeDish({
                     dish: dishItem, 
                     userId: this.userId
-                })
+                });
+                if(this.sessions !== 0){
+                    this.generateWorkoutSession({
+                        kcal: this.totalKcal,
+                        userId: this.userId,
+                        signedIn: this.signedIn
+                    })
+                }
         },
         ...mapActions([
                 "removeDish", 
-                "setAmount"
+                "setAmount",
+                "generateWorkoutSession"
             ])
     },
     computed: {
         ...mapGetters([
                 "currentMeal",
-                "userId"
+                "userId",
+                "signedIn",
+                "sessions",
+                "totalKcal"
             ])
     },
     components: {

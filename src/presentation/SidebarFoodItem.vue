@@ -106,4 +106,8 @@ export default {
 .delete-btn:hover {
     background-color: firebrick;
 }
+
+select:hover{
+    cursor: pointer;
+}
 </style>

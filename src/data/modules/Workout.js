@@ -28,7 +28,7 @@ const state = {
 
 /**************  GETTERS ***************************/
 const getters = {
-    exercises : state => state.exercises,
+    workout : state => state.workout,
     workoutTotalKcal: state => state.totalKcal,
     totalTime: state => state.totalTime,
     sessions: state => state.sessions,
@@ -58,7 +58,7 @@ const actions = {
         .catch(err => {}) // This is supposed to be empty
     },
 
-    generateWorkoutSession({commit, dispatch}, {kcal, signIn, userId}){
+    generateWorkoutSession({commit, dispatch}, {kcal, signedIn, userId}){
         let workoutSession = {
             workout : {},
             totalKcal: 0,
@@ -97,7 +97,7 @@ const actions = {
 
         commit('storeTotalExercise', workoutSession);
         
-        if(signIn){
+        if(signedIn){
             dispatch('updateWorkoutStateFirebase', userId);
         }    
     },

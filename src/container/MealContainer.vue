@@ -14,7 +14,8 @@ export default {
     computed : {
         ...mapGetters([
             "totalKcal",
-            "userId"
+            "userId",
+            "signedIn"
         ])
     },
     methods: {
@@ -22,7 +23,11 @@ export default {
             "generateWorkoutSession"
         ]),
         generateWorkout(){
-            this.generateWorkoutSession({kcal: this.totalKcal, userId: this.userId});
+            this.generateWorkoutSession({
+                kcal: this.totalKcal, 
+                userId: this.userId, 
+                signedIn: this.signedIn
+            });
             this.$router.push("Workout");
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
