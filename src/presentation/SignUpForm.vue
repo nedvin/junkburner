@@ -115,7 +115,7 @@ export default {
     data() {
         return {
             message:
-                "Please do not use your real e-mail or password, we have no control over what firebase does with them.",
+                "Please do not use your real e-mail or password, we have no control over what firebase does with them. Age has to be between 10 and 120, weight has to be a positive number (not larger than 450), length has to be between 50 and 250 cm!",
             email: "",
             password: "",
             age: 0,
