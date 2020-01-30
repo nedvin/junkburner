@@ -1,5 +1,9 @@
 <template>
-    <v-signup-form v-if="this.signUpVisibility" @closeForm="close" @signUp="signUp" />
+    <v-signup-form 
+        v-if="this.signUpVisibility" 
+        @closeForm="close" 
+        @signUp="signUp" 
+    />
 </template>
 
 <script>

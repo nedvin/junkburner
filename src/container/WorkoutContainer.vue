@@ -16,7 +16,10 @@ export default {
             "generateWorkoutSession"
         ]),
         generateWorkout(){
-            this.generateWorkoutSession({kcal: this.totalKcal, userId: this.userId});
+            this.generateWorkoutSession({
+                kcal: this.totalKcal, 
+                userId: this.userId
+            });
         }
     },
     computed: {

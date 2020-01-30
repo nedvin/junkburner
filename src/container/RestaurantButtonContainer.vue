@@ -40,7 +40,11 @@ export default {
     },
     methods: {
         chooseRestaurant(restaurant) {
-            this.selectRestaurant({restaurant: restaurant, userId: this.userId, signedin: this.signedIn})
+            this.selectRestaurant({
+                restaurant: restaurant, 
+                userId: this.userId, 
+                signedin: this.signedIn
+            })
         },
         activeRestaurant(name) {
             return name === this.restaurant;

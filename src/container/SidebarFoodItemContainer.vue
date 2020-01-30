@@ -1,6 +1,7 @@
 <template>
     <div>
-        <v-sidebar-food-item v-for="dishItem in currentMeal" 
+        <v-sidebar-food-item 
+            v-for="dishItem in currentMeal" 
             :key="dishItem.id"
             :name="dishItem.name"
             :amount="dishItem.amount"
@@ -21,7 +22,11 @@ export default {
     methods: {
         changeAmount(event, id) {
             let newAmount = Number(event.target.value);
-            this.setAmount({id: id, amount: newAmount, userId: this.userId});
+            this.setAmount({
+                id: id, 
+                amount: newAmount, 
+                userId: this.userId
+            });
         },
         deleteDish(dishItem) {
             let payload = {

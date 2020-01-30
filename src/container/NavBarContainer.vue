@@ -16,7 +16,15 @@ export default {
     name: "Navbar",
     data() {
         return{
-            buttons : ["Sign up!","Profile", "Home", "Meal", "Workout", "Sign out", "Login"],
+            buttons : [
+                "Sign up!",
+                "Profile", 
+                "Home", 
+                "Meal", 
+                "Workout", 
+                "Sign out", 
+                "Login"
+            ],
             reRender : true
         }
     },
@@ -37,7 +45,11 @@ export default {
             }
             else{
                 if(event === "Workout"){
-                    this.generateWorkoutSession({kcal : this.totalKcal, userId: this.userId, signedIn: this.signedIn});
+                    this.generateWorkoutSession({
+                        kcal : this.totalKcal, 
+                        userId: this.userId, 
+                        signedIn: this.signedIn
+                    });
                 }
                 this.$router.push(event);
             }
