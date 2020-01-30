@@ -4,9 +4,6 @@
             <div class="box-80">
                 <h1>Calculated training</h1>
             </div>
-            <div v-if="!signedIn" class="sign-in-message">
-                You need to sign in to be able to use the training generator!
-            </div>
             <div v-if="signedIn">
                 <v-exercise-container class="exercises-box"/>
             </div>
@@ -31,10 +28,13 @@
                 </button>
             </div>
         </div>
-        <div id="workout-container" v-if="!hasMeal()">
+        <div id="workout-container" v-if="!hasMeal() && signedIn">
             <div class="box-80">
                 <h1>Make a meal before generating a workout!</h1>
             </div>
+        </div>
+        <div v-if="!signedIn" class="sign-in-message">
+                You need to sign in to be able to use the training generator!
         </div>
     </div>
 </template>
@@ -65,7 +65,8 @@ export default {
 <style scoped>
 .sign-in-message {
     margin-top: 20px;
-    font-size: 1.2em;
+    margin-left: 20px;
+    font-size: 1.4em;
 }
 
 #workout-container {
