@@ -51,7 +51,8 @@ const actions = {
         else{
             dispatch('setAmount', {
                 id: dish.id, 
-                amount: (dishInMeal.amount + 1)
+                amount: (dishInMeal.amount + 1),
+                userId: userId
             })
         }
     },
