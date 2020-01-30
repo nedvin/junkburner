@@ -48,11 +48,10 @@ const actions = {
             }
         })
         .then(user => {
-            commit('loadUser', user);
-            commit('calculateKcalRdi');
+            dispatch('loadUser', user);
             }
         )
-        .catch(err => {dispatch('signOut')})
+        .catch(() => {commit('calculateKcalRdi'); console.log("nu var det error")}) // This is supposed to be empty
     },
     setSignedIn({commit}) {
         commit('setSignedIn');
@@ -98,7 +97,6 @@ const actions = {
                     userId: doc.data().userID,
                 };
                 commit('loadUser', user);
-                commit('calculateKcalRdi');
                 commit('setSnackbarMessage', 'Successfully logged in');
                 commit('setSuccessVisible');
             })
@@ -158,6 +156,12 @@ const actions = {
         ); 
     },
     signUpUser({commit}, user) {
+        commit('setAge', user.age);
+        commit('setLength', user.length);
+        commit('setAge', user.age);
+        commit('setGender', user.gender);
+        commit('setWeight', user.weight);
+
         firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password).then(cred => {
@@ -238,7 +242,7 @@ const mutations = {
         state.gender = gender;
     },
     calculateKcalRdi(state){ // Revised Harris-Benedict Equation
-        if(state.gender === "F"){
+        if(state.gender === "Female"){
             state.kcalRdi = Math.round(88.362 + 13.397*state.weight + 4.799*state.length - 5.677*state.age);
         }
         else{

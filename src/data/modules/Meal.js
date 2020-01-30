@@ -22,7 +22,7 @@ import {db} from "@/main";
 
 const actions = {
 
-    initMealState({commit, dispatch}, user) {
+    initMealState({commit}, user) {
         let userRef = db.collection('users').doc(user.uid);
         userRef.get().then(doc => {
             if(doc.exists) {
@@ -38,7 +38,7 @@ const actions = {
         .then(mealState => {
             commit('initMealStateFirebase', mealState);
         })
-        .catch(err => {dispatch('signOut')})
+        .catch(err => {}) // This is supposed to be empty
     },
 
     addDish({commit, dispatch}, {dish, userId}){

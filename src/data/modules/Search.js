@@ -52,7 +52,7 @@ const actions = {
         }).then(searchState => {
             commit('initSearchStateFirebase', searchState);
             }
-        ).catch(err => {dispatch('signOut')})
+        ).catch(err => {}) // This is supposed to be empty
     },
     newSearch({commit, dispatch}, {userId}){
         let url = "https://trackapi.nutritionix.com/v2/search/instant";
