@@ -51,7 +51,7 @@ const actions = {
             dispatch('loadUser', user);
             }
         )
-        .catch(() => {commit('calculateKcalRdi'); console.log("nu var det error")}) // This is supposed to be empty
+        .catch(() => commit('calculateKcalRdi'))
     },
     setSignedIn({commit}) {
         commit('setSignedIn');
@@ -136,6 +136,7 @@ const actions = {
         commit('setLength', userInfo.length)
         commit('setWeight', userInfo.weight)
         commit('setGender', userInfo.gender)
+        commit('calculateKcalRdi')
         db.collection('users').doc(state.userId).update({
             age: userInfo.age,
             length: userInfo.length,

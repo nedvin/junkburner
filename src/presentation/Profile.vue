@@ -42,7 +42,7 @@
                     placeholder="Your length in centimeters"
                     name="length"
                     @input="$v.length.$touch()"
-                    v-model="user.length"
+                    v-model="length"
                 />
             </div>
             <p class="error-msg" v-if="$v.length.$error">
