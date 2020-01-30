@@ -39,7 +39,7 @@ const getters = {
 import {db} from '@/main'
 
 const actions = {
-    initWorkoutState({commit, dispatch}, user) {
+    initWorkoutState({commit}, user) {
         let userRef = db.collection('users').doc(user.uid);
         userRef.get().then(doc => {
             if(doc.exists) {
@@ -55,7 +55,7 @@ const actions = {
             commit('initWorkoutStateFirebase', workoutState);
             }
         )
-        .catch(err => {dispatch('signOut')})
+        .catch(err => {}) // This is supposed to be empty
     },
 
     generateWorkoutSession({commit, dispatch}, {kcal, signIn, userId}){
