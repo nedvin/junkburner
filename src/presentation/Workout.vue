@@ -7,8 +7,8 @@
             <div v-if="!signedIn" class="sign-in-message">
                 You need to sign in to be able to use the training generator!
             </div>
-            <div class="exercises-container" v-if="signedIn">
-                <v-exercise-container />
+            <div v-if="signedIn">
+                <v-exercise-container class="exercises-box"/>
             </div>
             <div class="box-80 centered workout-text" v-if="signedIn">
                 <span>
@@ -26,7 +26,7 @@
                 </span>
             </div>
             <div class="box-80 centered" v-if="signedIn">
-                <button class="btn btn-abort" @click="punishUser">
+                <button class="btn btn-abort mb-50" @click="punishUser">
                     Different punishment please
                 </button>
             </div>
@@ -75,6 +75,10 @@ export default {
     width: 100%;
 }
 
+.mb-50 {
+    margin-bottom: 50px;
+}
+
 .centered {
     display: flex;
     justify-content: center;
@@ -84,7 +88,7 @@ export default {
     width: 80%;
 }
 
-.exercises-container {
+.exercises-box {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -96,9 +100,10 @@ export default {
 }
 
 @media screen and (max-width: 510px) {
-    .exercise-container {
+    .exercises-box {
         flex-direction: column;
-        justify-content: center;
+        /*justify-content: center;*/
+        align-items: center;
     }
 }
 </style>
