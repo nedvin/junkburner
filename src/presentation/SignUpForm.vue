@@ -54,7 +54,7 @@
                 <label for="weight"><b>Weight:</b></label>
                 <input
                     type="number"
-                    placeholder="Your weight in kilograms"
+                    placeholder="Kilograms"
                     name="weight"
                     @input="$v.weight.$touch()"
                     v-model="weight"
@@ -69,7 +69,7 @@
                 <label for="length"><b>Length:</b></label>
                 <input
                     type="number"
-                    placeholder="Your length in centimeters"
+                    placeholder="Centimeters"
                     name="length"
                     @input="$v.length.$touch()"
                     v-model="length"
@@ -115,12 +115,12 @@ export default {
     data() {
         return {
             message:
-                "Please do not use your real e-mail or password, we have no control over what firebase does with them. Age has to be between 10 and 120, weight has to be a positive number (not larger than 450), length has to be between 50 and 250 cm!",
+                "Please do not use your real e-mail or password, we have no control over what firebase does with them.",
             email: "",
             password: "",
-            age: 0,
-            weight: 0,
-            length: 0,
+            age: Number,
+            weight: Number,
+            length: Number,
             gender: "Male",
             submitStatus: null
         };
