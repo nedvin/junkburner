@@ -5,19 +5,12 @@ import store from "./data/Model.js";
 import Vuelidate from 'vuelidate'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import apiInfo from "@/data/modules/apiConfig";
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 
-firebase.initializeApp({
-  apiKey: "AIzaSyAoxKTWM8Pz78VaZZCK54ZJ8sJFZ8fEgTo",
-  authDomain: "junkburner-ed983.firebaseapp.com",
-  databaseURL: "https://junkburner-ed983.firebaseio.com",
-  projectId: "junkburner-ed983",
-  storageBucket: "junkburner-ed983.appspot.com",
-  messagingSenderId: "787171612727",
-  appId: "1:787171612727:web:6d951b7b717e95fbfa47b2",
-});
+firebase.initializeApp(apiInfo.firebase);
 
 export const db = firebase.firestore()
 

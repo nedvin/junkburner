@@ -165,6 +165,7 @@ td {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 60px;
 }
 
 @media screen and (max-width: 850px) {
