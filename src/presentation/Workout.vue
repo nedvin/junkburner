@@ -15,7 +15,7 @@
                             "x session(s) spending a total of " +
                             totalExercise.totalTime.hours +
                             " hours and " +
-                            totalExercise.totalTime.minutes +
+                            paddedMinutes +
                             " minutes for a total of " +
                             totalExercise.totalKcal +
                             " amount of kcal burned."
@@ -49,7 +49,18 @@ export default {
         "v-exercise-container": exercisecontainer
     },
     computed: {
-        ...mapGetters(["totalExercise", "signedIn", "totalKcal"])
+        ...mapGetters([
+            "totalExercise", 
+            "signedIn", 
+            "totalKcal"
+        ]),
+        paddedMinutes: function(){
+            let min = this.totalExercise.totalTime.minutes.toString();
+            if(this.totalExercise.totalTime.minutes < 10){
+                return min.padStart(2, 0);
+            }
+            return min;
+        }
     },
     methods: {
         punishUser() {
