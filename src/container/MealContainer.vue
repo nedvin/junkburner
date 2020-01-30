@@ -24,6 +24,10 @@ export default {
         generateWorkout(){
             this.generateWorkoutSession({kcal: this.totalKcal, userId: this.userId});
             this.$router.push("Workout");
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0,0);
         }
     }
 

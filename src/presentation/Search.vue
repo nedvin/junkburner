@@ -10,15 +10,15 @@
         </div>
 
         <v-food-options-container v-if="signedIn" />
-
+        
         <div class="search-results-box" v-if="signedIn">
             <v-food-card
                 v-for="result in searchResult"
                 :key="result.nix_item_id"
-                :kcal="result.full_nutrients[3].value"
-                :carbs="result.full_nutrients[2].value"
-                :protein="result.full_nutrients[0].value"
-                :fat="result.full_nutrients[1].value"
+                :kcal="nutritionInfo(result, 'nf_calories')" 
+                :carbs="nutritionInfo(result, 'nf_total_carbohydrate')"
+                :protein="nutritionInfo(result, 'nf_protein')"
+                :fat="nutritionInfo(result, 'nf_total_fat')"
                 :name="result.food_name"
                 :id="result.nix_item_id"
                 @addDishToMeal="bubbleEvent"
@@ -47,6 +47,15 @@ export default {
     methods: {
         bubbleEvent(event) {
             this.$emit("addDishToMeal", event);
+        },
+        nutritionInfo(dish, nutrition){
+            let fullNutrient =  dish.full_nutrients.filter(nutrient => {
+                if(nutrient.name){
+                    return nutrient.name === nutrition;
+                }
+                return false;
+            });
+            return fullNutrient[0].value;
         }
     },
     computed: {

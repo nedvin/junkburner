@@ -2,8 +2,19 @@
     <div id = "container-footer">
         <div id = "footer-div">
             <p>
-                Powered by <a href="https://www.nutritionix.com">Nutritionix</a><br>
-                Icons made by <a href="https://www.flaticon.com/authors/freepik">Freepic</a> from <a href="https://www.flaticon.com">Flaticon</a>
+                Powered by 
+                <a href="https://www.nutritionix.com">
+                    Nutritionix
+                </a>
+                <br>
+                Icons made by 
+                <a href="https://www.flaticon.com/authors/freepik">
+                    Freepic
+                </a> 
+                from 
+                <a href="https://www.flaticon.com">
+                    Flaticon
+                </a>
             </p>
         </div>
     </div>
