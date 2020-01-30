@@ -38,7 +38,7 @@ import restaurantButtonContainer from "@/container/RestaurantButtonContainer";
 import foodOptionsContainer from "@/container/FoodOptionsContainer";
 
 export default {
-    props: ["searchResult", "dishDetails"],
+    props: ["searchResult"],
     components: {
         "v-food-card": foodCard,
         "v-restaurant-btn-container": restaurantButtonContainer,

@@ -24,7 +24,6 @@ const state = {
     searchResult : [],
     searchQuery : "",
     restaurant: "",
-    selectedDish : {},
     apiNutrientData: []
 };
 
@@ -32,8 +31,6 @@ const state = {
 const getters = {
     searchResult : state => state.searchResult,
     searchQuery : state => state.searchQuery,
-    selectedDish : state => state.selectedDish,
-    dishDetails : state => state.dishDetails,
     restaurant : state => state.restaurant,
     apiNutrientData : state => state.apiNutrientData
 };
@@ -81,23 +78,9 @@ const actions = {
         commit("changeQuery", query);
     },
 
-    selectDish({commit}, index){     // TODO: Styr upp vilken slags parameter denna ska ta. Ett index? En rätt? Index just nu placeholder.
+    selectDish({commit}, index){    
         let dish = state.searchResult[index];
         commit("newSelectedDish", dish);
-    },
-
-    newSearchDetails({commit}){
-        let url = "https://trackapi.nutritionix.com/v2/search/item?nix_item_id=";
-        url = url + state.selectedDish["nix_item_id"];
-        let apiHeader = new Headers(apiHeaderTemplate);
-        apiHeader.append("Content-Type", "application/x-www-form-urlencoded");
-        return fetch(url, {
-                method : "GET",
-                headers : apiHeader
-            }).then(handleHTTPError)
-            .then(response => response.json())
-            .then(response => commit("newDishDetails", response.foods[0]));
-
     },
 
     selectRestaurant({commit, dispatch}, payload) {
@@ -121,7 +104,6 @@ const actions = {
                 searchQuery: state.searchQuery,
                 restaurant: state.restaurant,
                 selectedDish: state.selectedDish,
-                apiNutrientData: state.apiNutrientData
             }
         });
     },
@@ -150,7 +132,6 @@ const mutations = {
         let query = state.searchQuery;
         let searchKeywords = keywords[query]
         result = result.filter(dish => {return dish.food_name.match(searchKeywords) !== null})
-
         result = result.map(dish => {
             dish.full_nutrients.forEach(dishNutrient => {
                 state.apiNutrientData.forEach(nutrient => {
@@ -168,10 +149,6 @@ const mutations = {
         state.selectedDish = dish;
     },
 
-    newDishDetails(state, dish){
-        state.dishDetails = dish;
-    },
-
     selectRestaurant(state, restaurant) {
         state.restaurant = restaurant;
     },
@@ -184,16 +161,14 @@ const mutations = {
         state.searchResult = searchState.searchResult,
         state.searchQuery = searchState.searchQuery,
         state.restaurant = searchState.restaurant,
-        state.selectedDish = searchState.selectedDish,
-        state.apiNutrientData = searchState.apiNutrientData
+        state.selectedDish = searchState.selectedDish
     },
 
     clearSearchState(state) {
         state.searchResult = [],
         state.searchQuery = '',
         state.restaurant = '',
-        state.selectDish = {},
-        state.apiNutrientData = []
+        state.selectDish = {}
     }
 };
 

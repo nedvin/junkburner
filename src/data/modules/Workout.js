@@ -17,7 +17,7 @@ const workoutTemplates = [
 /**************  STATE ***************************/
 
 const state = {
-    workout : {},
+    workout : workoutTemplates[0],
     totalKcal: 0,
     totalTime: {
         minutes : 0,
@@ -50,13 +50,15 @@ const actions = {
                         sessions: doc.data().workoutState.sessions
                     }
             }
-        }).then(workoutState => {
+        })
+        .then(workoutState => {
             commit('initWorkoutStateFirebase', workoutState);
             }
-        ).catch(err => {dispatch('signOut')})
+        )
+        .catch(err => {dispatch('signOut')})
     },
 
-    generateWorkoutSession({commit, dispatch}, payload){
+    generateWorkoutSession({commit, dispatch}, {kcal, signIn, userId}){
         let workoutSession = {
             workout : {},
             totalKcal: 0,
@@ -69,20 +71,20 @@ const actions = {
         let seed = Math.floor(Math.random() * 10);
         workoutSession.workout = workoutTemplates[seed];
         let totalTimeInMin = 0;
-        if(payload.kcal > 1000){
-            workoutSession.sessions = Math.ceil(payload.kcal/1000);
-            payload.kcal = payload.kcal / workoutSession.sessions;
+        if(kcal > 1000){
+            workoutSession.sessions = Math.ceil(kcal/1000);
+            kcal = kcal / workoutSession.sessions;
         }
-        if(payload.kcal < 350){
-            let workoutTid = payload.kcal / workoutSession.workout.warmup.kcalPerMin;
+        if(kcal < 350){
+            let workoutTid = kcal / workoutSession.workout.warmup.kcalPerMin;
             workoutSession.workout.warmup.tid = Math.ceil(workoutTid);
             workoutSession.workout.workout.tid = 0;
         }
         else{
             let warmupSeed = 5 - Math.floor(Math.random() * 10);
             workoutSession.workout.warmup.tid = warmupSeed + 15;
-            payload.kcal -= workoutSession.workout.warmup.tid * workoutSession.workout.warmup.kcalPerMin;
-            workoutSession.workout.workout.tid = Math.ceil(payload.kcal / workoutSession.workout.workout.kcalPerMin);  
+            kcal -= workoutSession.workout.warmup.tid * workoutSession.workout.warmup.kcalPerMin;
+            workoutSession.workout.workout.tid = Math.ceil(kcal / workoutSession.workout.workout.kcalPerMin);  
         }
         
         totalTimeInMin = (workoutSession.workout.workout.tid + workoutSession.workout.warmup.tid) * workoutSession.sessions;
@@ -92,9 +94,11 @@ const actions = {
         workoutSession.totalKcal = workoutSession.workout.warmup.kcalPerMin*workoutSession.workout.warmup.tid;
         workoutSession.totalKcal += workoutSession.workout.workout.kcalPerMin*workoutSession.workout.workout.tid;
         workoutSession.totalKcal = Math.round(workoutSession.sessions*workoutSession.totalKcal);
+
         commit('storeTotalExercise', workoutSession);
-        if(payload.signIn){
-            dispatch('updateWorkoutStateFirebase', payload.userId);
+        
+        if(signIn){
+            dispatch('updateWorkoutStateFirebase', userId);
         }    
     },
 

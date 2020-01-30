@@ -20,7 +20,11 @@ const getters = {
     gender : state => state.gender,
     signedIn : state => state.signedIn,
     user : state => { 
-        return { "age" : state.age, "length" : state.length, "weight" : state.weight, "gender" : state.gender};
+        return { "age" : state.age, 
+        "length" : state.length, 
+        "weight" : state.weight, 
+        "gender" : state.gender
+        };
     }
 };
 
@@ -42,11 +46,13 @@ const actions = {
                         userId: doc.data().userID,
                     }
             }
-        }).then(user => {
+        })
+        .then(user => {
             commit('loadUser', user);
             commit('calculateKcalRdi');
             }
-        ).catch(err => {dispatch('signOut')})
+        )
+        .catch(err => {dispatch('signOut')})
     },
     setSignedIn({commit}) {
         commit('setSignedIn');
@@ -172,7 +178,6 @@ const actions = {
                         searchResult : [],
                         searchQuery : "",
                         restaurant: "",
-                        selectedDish : {},
                         apiNutrientData: []
                     },
                     workoutState: {
